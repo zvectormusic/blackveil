@@ -29,12 +29,16 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       "Blackveil" (English) and "Blackveil en français" (fr/blackveil/, its pages'
                       parent; no grand_parent); both index pages have a download button to
                       releases/latest
+README.md             the repository's front page (2026-10-31): Blackveil's pitch for producers who know what
+                      a rumble is (user: the first draft was "too naive"), highlights, install,
+                      links to the release and the manual's pages (`…/blackveil/<page>.html`; the
+                      `<page>/` form is a 404), build pointers, licence and credits
 ```
 
 - **Docs, always (user, 2026-10-31: "from now on update the docs when something changes"):** every
   change updates the docs in the same piece of work, without being asked: a user-facing one (a
   control, a range, a default, a workflow, the look) the manual `docs/<plugin>/` (and its
-  screenshots when the window changed), and every change the project's `CLAUDE.md` / `SPEC.md` /
+  screenshots when the window changed), the root `README.md` when a highlight changed, and every change the project's `CLAUDE.md` / `SPEC.md` /
   `PROGRESS.md`. No third-party product names in the manual (see "Licences").
 
 - **`shared/`:** code a second project reuses. `shared/dsp/vital_filters.h` (Vital's filters and

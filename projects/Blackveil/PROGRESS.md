@@ -483,3 +483,7 @@
 - 2026-10-31: release v0.4.1 (https://github.com/zvectormusic/blackveil/releases/tag/v0.4.1):
   Blackveil-0.4.1-Setup.exe (CHOP / SHUFFLE, the simpler presets, the reorganised factory set, the
   preset list's wheel); the download checked against the build (same SHA-256).
+- 2026-10-31: the repository's `README.md` (user: "draft a readme file with highlights features and
+  links"): the pitch (the user's pick of three: short, for people who know what a rumble is, plus
+  "precise rumble design"), highlights, requirements, install, links to the release and the manual
+  (checked live), building, licence and credits.
