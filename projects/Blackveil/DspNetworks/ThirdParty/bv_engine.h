@@ -89,7 +89,10 @@
       at 30 / 80 Hz, the dry kick being untouched) and POL (+ / -), then WIDTH (its side
       signal, 0..200 %) and the RUMBLE level (WetLevel, dB); then the dry kick (the SOURCE's
       output, untouched) added back at DRY
-      (dB, when DRY is on), all at VOLUME (dB).
+      (dB, when DRY is on); then BASS MONO (BassMono, 2026-10-31: under it, 20..500 Hz, the
+      output's lows summed to mono through a 24 dB Linkwitz-Riley pair, like DUCK's; 20 = OFF,
+      ON / OFF crossfades over ~20 ms; BOUNCE's RUMBLE and KICK stems get their own copy), all at
+      VOLUME (dB).
     - LIMITER (the last stage, so it also catches the dry kick): DRIVE (dB) into a stereo-linked
       peak limiter without lookahead (no latency: the gain drops at once, holds 12 ms, recovers
       over RELEASE), the output clamped at CEILING (dB).
@@ -180,6 +183,7 @@ template <int NV> struct bv_engine : public data::base,
 	static constexpr int MaxDuckPoints = 16;        // the duck curve's breakpoints (slider pack 0)
 	static constexpr float DuckFull = 1990.0f;      // DuckSplit at or above it: FULL (the whole band)
 	static constexpr float GateFull = 995.0f;       // GateLength at or above it: FULL (no gate)
+	static constexpr float BassMonoOff = 20.5f;    // BassMono at or under it: OFF
 
 	// append-only: presets and DAW sessions store these by index
 	enum Parameters
@@ -271,6 +275,7 @@ template <int NV> struct bv_engine : public data::base,
 		BounceBars,   // 1..8: how many bars it holds
 		BounceStem,   // 0 RUMBLE, 1 KICK, 2 MIX
 		DelaySwing,   // -1/3..1/3 of TIME: the odd repeats early / late (0 = straight; 2026-10-30)
+		BassMono,     // Hz, 20..500: OUTPUT's lows under it in mono (<= 20 = OFF; 2026-10-31)
 		numParameters
 	};
 
@@ -375,7 +380,12 @@ template <int NV> struct bv_engine : public data::base,
 			dkA[k].clear();
 			dkSR[k].clear();
 			dkSK[k].clear();
+			bmA[k].clear();
+			bmSR[k].clear();
+			bmSK[k].clear();
 		}
+		bassMonoOnSm = bassMono.load() > BassMonoOff ? 1.0f : 0.0f;
+		bassMonoSm = bassMono.load() > BassMonoOff ? bassMono.load() : 120.0f;
 		duckTgtSm = duckTarget.load() ? 1.0f : 0.0f;
 		rumOnSm = 1.0f;
 		wetGainSm = wetGainTarget();
@@ -804,7 +814,26 @@ template <int NV> struct bv_engine : public data::base,
 			r[c0 + j] = xr + rt * (duckBand(dkR, xr, 1, g, duckFullSm) - xr);
 		}
 
-		// OUTPUT: the rumble through PHASE / POL and WIDTH, the dry kick added back, VOLUME
+		// BASS MONO's crossover (OFF keeps the last frequency, so the fade out sounds like it)
+		const float bmV = bassMono.load();
+		const float bmOnTarget = bmV > BassMonoOff ? 1.0f : 0.0f;
+		if (bmV > BassMonoOff)
+			bassMonoSm += chunkCoef * (bmV - bassMonoSm);
+		{
+			const double K = std::tan(MathConstants<double>::pi * jmin((double)bassMonoSm, 0.45 * sr) / sr);
+			const double d = 1.0 + MathConstants<double>::sqrt2 * K + K * K;
+			const double lb = K * K / d, a1 = 2.0 * (K * K - 1.0) / d, a2 = (1.0 - MathConstants<double>::sqrt2 * K + K * K) / d;
+			for (auto* s : { bmA, bmSR, bmSK })
+			{
+				for (int k = 0; k < 2; k++)
+				{
+					s[k].set(lb, 2.0 * lb, lb, a1, a2);
+					s[k + 2].set(1.0 / d, -2.0 / d, 1.0 / d, a1, a2);
+				}
+			}
+		}
+
+		// OUTPUT: the rumble through PHASE / POL and WIDTH, the dry kick added back, BASS MONO, VOLUME
 		float rumble[Chunk];
 		float stem[2][2][Chunk];             // BOUNCE: [RUMBLE, KICK][channel]
 		for (int i = c0; i < c0 + cn; i++)
@@ -825,18 +854,27 @@ template <int NV> struct bv_engine : public data::base,
 			const float kl = dryGainSm * srcL[i - c0], kr = dryGainSm * srcR[i - c0];
 			const float pl = mid + side + kl;
 			const float pr = mid - side + kr;
-			const float dl = pl + tg * (duckBand(dkA, pl, 0, gg, gf) - pl);
-			const float dr = pr + tg * (duckBand(dkA, pr, 1, gg, gf) - pr);
+			float dl = pl + tg * (duckBand(dkA, pl, 0, gg, gf) - pl);
+			float dr = pr + tg * (duckBand(dkA, pr, 1, gg, gf) - pr);
 			// (the snapshot's output: what DUCK acts on, ducked: the rumble, or in ALL with the dry kick)
 			rumble[i - c0] = (1.0f - tg) * mid + tg * 0.5f * (dl + dr);
+			// BASS MONO: the whole output's lows (the rumble and the dry kick) in mono
+			bassMonoOnSm += smoothCoef * (bmOnTarget - bassMonoOnSm);
+			bassMonoPair(bmA, dl, dr, bassMonoOnSm);
 			l[i] = volSm * dl;
 			r[i] = volSm * dr;
-			// BOUNCE's stems, the same way (ALL: each through its own crossover)
+			// BOUNCE's stems, the same way (ALL: each through its own crossover; BASS MONO too)
 			const float rl = mid + side, rr = mid - side;
-			stem[0][0][i - c0] = volSm * (rl + tg * (duckBand(dkSR, rl, 0, gg, gf) - rl));
-			stem[0][1][i - c0] = volSm * (rr + tg * (duckBand(dkSR, rr, 1, gg, gf) - rr));
-			stem[1][0][i - c0] = volSm * (kl + tg * (duckBand(dkSK, kl, 0, gg, gf) - kl));
-			stem[1][1][i - c0] = volSm * (kr + tg * (duckBand(dkSK, kr, 1, gg, gf) - kr));
+			float sl = rl + tg * (duckBand(dkSR, rl, 0, gg, gf) - rl);
+			float sr2 = rr + tg * (duckBand(dkSR, rr, 1, gg, gf) - rr);
+			float ql = kl + tg * (duckBand(dkSK, kl, 0, gg, gf) - kl);
+			float qr = kr + tg * (duckBand(dkSK, kr, 1, gg, gf) - kr);
+			bassMonoPair(bmSR, sl, sr2, bassMonoOnSm);
+			bassMonoPair(bmSK, ql, qr, bassMonoOnSm);
+			stem[0][0][i - c0] = volSm * sl;
+			stem[0][1][i - c0] = volSm * sr2;
+			stem[1][0][i - c0] = volSm * ql;
+			stem[1][1][i - c0] = volSm * qr;
 		}
 
 		// LIMITER: the last stage (it also catches the dry kick)
@@ -1009,6 +1047,7 @@ template <int NV> struct bv_engine : public data::base,
 		if constexpr (P == BounceBars) bounceBars = jlimit(1, MaxBounceBars, roundToInt(v));
 		if constexpr (P == BounceStem) bounceStem = jlimit(0, NumStems - 1, roundToInt(v));
 		if constexpr (P == DelaySwing) delaySwing.store((float)jlimit(-0.34, 0.34, v));
+		if constexpr (P == BassMono) bassMono.store((float)jlimit(20.0, 500.0, v));
 		if constexpr (P == Bounce)
 		{
 			const bool on = v > 0.5;
@@ -1342,6 +1381,7 @@ template <int NV> struct bv_engine : public data::base,
 		addParam<BounceBars>(data, "BounceBars", 1.0, (double)MaxBounceBars, 2.0, 1.0);
 		addParam<BounceStem>(data, "BounceStem", 0.0, (double)(NumStems - 1), 0.0, 1.0);
 		addParam<DelaySwing>(data, "DelaySwing", -0.34, 0.34, 0.0);
+		addParam<BassMono>(data, "BassMono", 20.0, 500.0, 20.0);
 	}
 
 	// one parameter: its range (step 0 = continuous) and default
@@ -2292,6 +2332,19 @@ private:
 		return full * gain * x + (1.0f - full) * (hi + gain * lo);
 	}
 
+	// BASS MONO, one stereo sample: the lows (f[0], f[1]) of both channels summed to mono, the
+	// highs (f[2], f[3]) as they are; on (0..1) crossfades from the input (the filters always run)
+	void bassMonoPair(Biquad* f, float& l, float& r, float on)
+	{
+		const float lol = f[1].process(f[0].process(l, 0), 0);
+		const float lor = f[1].process(f[0].process(r, 1), 1);
+		const float hil = f[3].process(f[2].process(l, 0), 0);
+		const float hir = f[3].process(f[2].process(r, 1), 1);
+		const float m = 0.5f * (lol + lor);
+		l += on * (hil + m - l);
+		r += on * (hir + m - r);
+	}
+
 	// NOISE: two filter stages per COLOR (DARK, MID: band-passes at 500 Hz / 2 kHz; AIR: 12 dB
 	// high-passes at 5 kHz, 24 dB in all), a trim per COLOR so 0 dB is about -12 dB under the
 	// kick's peak; the envelope follows the source (instant attack, ~40 ms release)
@@ -2361,6 +2414,12 @@ private:
 	Biquad dkSR[4], dkSK[4];   // BOUNCE: the RUMBLE and KICK stems' in ALL (dkA, split)
 	float duckSplitSm = 2000.0f, duckFullSm = 1.0f;   // FULL: 1 = the whole band
 	std::atomic<float> duckSplit { 2000.0f };
+
+	// BASS MONO: the output's lows under it summed to mono (the same 24 dB Linkwitz-Riley pair as
+	// DUCK's), the output's (bmA) and BOUNCE's RUMBLE and KICK stems' (bmSR, bmSK); ON / OFF crossfades
+	Biquad bmA[4], bmSR[4], bmSK[4];
+	float bassMonoSm = 120.0f, bassMonoOnSm = 0.0f;
+	std::atomic<float> bassMono { 20.0f };
 
 	// GRAIN: the recent input (both channels), the grains, the next grain's countdown (samples)
 	struct Grain

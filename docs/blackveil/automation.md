@@ -20,7 +20,7 @@ DAW lists them under these names:
 | EQ | EQ On, EQ Type, EQ Freq, EQ Gain, EQ Width, EQ Sub Cut |
 | Grain | Grain On, Grain Mode, Grain Size, Grain Density, Grain Spray, Grain Mix |
 | Duck | Duck Trigger, Duck Division, Duck Target, Duck Depth, Duck Low End |
-| Output | Polarity, Phase, Width, Volume |
+| Output | Polarity, Phase, Width, Volume, Bass Mono |
 | Limiter | Limiter On, Limiter Drive, Limiter Ceiling, Limiter Release |
 | Footer | Kick Level, Kick On, Rumble Level, Rumble Mute, Send Gate, Noise, Noise Color |
 

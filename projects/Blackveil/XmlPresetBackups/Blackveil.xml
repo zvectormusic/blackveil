@@ -16,6 +16,7 @@
             <Control type="ScriptComboBox" id="cmbDuckDiv" value="1.0"/>
             <Control type="ScriptComboBox" id="cmbDuckTarget" value="1.0"/>
             <Control type="ScriptSlider" id="knbKickIndex" value="0.0"/>
+            <Control type="ScriptLabel" id="lblKickFile" value=""/>
             <Control type="ScriptSlider" id="knbFxOrder" value="228.0"/>
             <Control type="ScriptSlider" id="knbChainOrder" value="181896.0"/>
             <Control type="ScriptPanel" id="pnlDuckCurve" value="JSON{&quot;points&quot;: [[0, 1, 0], [0.008, 0, 0], [0.068, 0, 0], [0.43, 1, 0.4], [1, 1, 0]], &quot;length&quot;: 3, &quot;offset&quot;: 0.0}"/>
@@ -70,6 +71,7 @@
             <Control type="ScriptSlider" id="knbOutPhase" value="0.0"/>
             <Control type="ScriptSlider" id="knbOutWidth" value="100.0"/>
             <Control type="ScriptSlider" id="knbOutVolume" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOutMono" value="20.0"/>
             <Control type="ScriptButton" id="btnDryOn" value="1.0"/>
             <Control type="ScriptComboBox" id="cmbEqType" value="1.0"/>
             <Control type="ScriptSlider" id="knbEqFreq" value="140.0"/>
@@ -82,7 +84,6 @@
             <Control type="ScriptSlider" id="knbDstCrush" value="0.0"/>
             <Control type="ScriptSlider" id="sldNoise" value="-60.0"/>
             <Control type="ScriptComboBox" id="cmbNoiseColor" value="2.0"/>
-            <Control type="ScriptLabel" id="lblKickFile" value=""/>
           </Content>
           <UIData Source="BlackveilUIData"/>
         </Processor>
@@ -119,7 +120,8 @@
                    GateLength="1000.0" ChainOrder="181896.0" DistCrush="0.0" NoiseLevel="-60.0"
                    NoiseColor="1.0" GrainOn="0.0" GrainMode="0.0" GrainSize="80.0"
                    GrainDensity="25.0" GrainSpray="200.0" GrainMix="0.5" EqType="0.0"
-                   Bounce="0.0" BounceBars="1.0" BounceStem="2.0" DelaySwing="0.0">
+                   Bounce="0.0" BounceBars="1.0" BounceStem="2.0" DelaySwing="0.0"
+                   BassMono="20.0">
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <SliderPacks>

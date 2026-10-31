@@ -348,6 +348,7 @@ const var BV_GRAIN_SPRAY = 80;
 const var BV_GRAIN_MIX = 81;
 const var BV_EQ_TYPE = 82;           // 0 BELL, 1 LOW SHELF, 2 HIGH SHELF (2026-10-30)
 const var BV_DELAY_SWING = 86;       // -1/3..1/3 of TIME (knbDlySwing / 100; 2026-10-30)
+const var BV_BASS_MONO = 87;         // Hz, 20..500, 20 = OFF (knbOutMono; 2026-10-31)
 const var BvEngine = Synth.getEffect("BvEngine");
 // HISE's master clock follows the host: it resyncs the engine's grid when the host's position
 // jumps (Inactive, the default, never does: until 2026-10-31 the GRID kick and duck lagged the
@@ -362,7 +363,7 @@ const var ENGINE_CTL = {"btnFx0On": [BV_FILTER_ON, 1.0], "cmbFltType": [BV_FILTE
                         "btnDryOn": [BV_DRY_ON, 1.0], "knbDryLevel": [BV_DRY_LEVEL, 1.0],
                         "sldKick": [BV_DRY_LEVEL, 1.0], "sldRumble": [BV_WET_LEVEL, 1.0],
                         "knbOutPhase": [BV_PHASE, 1.0], "btnOutPol": [BV_POLARITY, 1.0],
-                        "knbOutWidth": [BV_WIDTH, 1.0], "knbOutVolume": [BV_VOLUME, 1.0],
+                        "knbOutWidth": [BV_WIDTH, 1.0], "knbOutVolume": [BV_VOLUME, 1.0], "knbOutMono": [BV_BASS_MONO, 1.0],
                         "knbDuckDepth": [BV_DUCK_DEPTH, 0.01], "knbDuckSplit": [BV_DUCK_SPLIT, 1.0],
                         "btnFx3On": [BV_REVERB_ON, 1.0], "cmbRvbType": [BV_REVERB_TYPE, "combo"],
                         "knbRvbSize": [BV_REVERB_SIZE, 0.01], "knbRvbDamp": [BV_REVERB_DAMP, 0.01],
@@ -2702,8 +2703,9 @@ inline function onDuckPreset(component, value)
 }
 cmbDuckPreset.setControlCallback(onDuckPreset);
 
-// OUTPUT: POL + | -, PHASE, WIDTH, VOLUME. PHASE (0..360°, a rotation of the rumble's low end)
-// and POL line the rumble up with the kick where they overlap, so their sub adds instead of
+// OUTPUT: POL + | -, PHASE, WIDTH, VOLUME, BASS MONO (2026-10-31, user: "add a bass mono knob to the
+// output module": under it the output, rumble and dry kick, is mono; 20 = OFF). PHASE (0..360°,
+// a rotation of the rumble's low end) and POL line the rumble up with the kick where they overlap, so their sub adds instead of
 // cancelling. DRY (its level and power button) moved to the footer's KICK fader and mute: the two
 // components stay, hidden (component ids are append-only; they hold older sessions' values), and
 // follow the footer.
@@ -2712,9 +2714,11 @@ const var knbDryLevel = addKnob("knbDryLevel", "DRY", 0, 0, -60, 6, 0, "Decibel"
 const var knbOutPhase = addKnob("knbOutPhase", "PHASE", 0, 0, 0, 360, 0, "Linear", -1, "degrees");
 const var knbOutWidth = addKnob("knbOutWidth", "WIDTH", 0, 0, 0, 200, 100, "Linear", -1, "percent");
 const var knbOutVolume = addKnob("knbOutVolume", "VOLUME", 0, 0, -60, 6, 0, "Decibel", -12, "decibel");
+const var knbOutMono = addKnob("knbOutMono", "BASS MONO", 0, 0, 20, 500, 20, "Frequency", 120, "monofreq");
 nodeKnob(5, knbOutPhase, 0);
 nodeKnob(5, knbOutWidth, 1);
 nodeKnob(5, knbOutVolume, 2);
+nodeKnob(5, knbOutMono, 3);
 const var btnDryOn = addPower("btnDryOn", 1);
 knbDryLevel.set("visible", false);
 btnDryOn.set("visible", false);
@@ -3046,7 +3050,8 @@ const var HOST_PARAMS = [["cmbSrcMode", "Source"], ["cmbSrcTrig", "Kick Trigger"
                          ["btnLimOn", "Limiter On"], ["knbLimDrive", "Limiter Drive"],
                          ["knbLimCeiling", "Limiter Ceiling"], ["knbLimRelease", "Limiter Release"],
                          ["btnGrnOn", "Grain On"], ["cmbGrnMode", "Grain Mode"], ["knbGrnSize", "Grain Size"],
-                         ["knbGrnDensity", "Grain Density"], ["knbGrnSpray", "Grain Spray"], ["knbGrnMix", "Grain Mix"]];
+                         ["knbGrnDensity", "Grain Density"], ["knbGrnSpray", "Grain Spray"], ["knbGrnMix", "Grain Mix"],
+                         ["knbOutMono", "Bass Mono"]];
 for (hp in HOST_PARAMS)
 {
 	var hc = Content.getComponent(hp[0]);

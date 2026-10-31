@@ -193,6 +193,7 @@ inline function formatValue(id, v)
 	if (kind == "time") return Fmt.time(v);
 	if (kind == "freq") return Fmt.freq(v);
 	if (kind == "splitfreq") return v >= 1990 ? "FULL" : Fmt.freq(v);   // (Blackveil's DUCK LOW END)
+	if (kind == "monofreq") return v <= 20.5 ? "OFF" : Fmt.freq(v);       // (Blackveil's BASS MONO)
 	if (kind == "percent") return Fmt.percent(v);
 	if (kind == "signedPercent") return Fmt.signedPercent(v);
 	if (kind == "decibel") return Fmt.decibel(v);

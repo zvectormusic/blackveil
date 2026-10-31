@@ -54,7 +54,7 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   79 GrainDensity (/s, 2..100), 80 GrainSpray (ms, 0..1000), 81 GrainMix (0..1), 82 EqType (0 BELL,
   1 LOW SHELF, 2 HIGH SHELF; 2026-10-30), 83 Bounce (0 -> 1 writes the bounce), 84 BounceBars
   (1..8), 85 BounceStem (0 RUMBLE, 1 KICK, 2 MIX) (2026-10-30), 86 DelaySwing (-1/3..1/3 of TIME;
-  2026-10-30).
+  2026-10-30), 87 BassMono (Hz, 20..500; 20 = OFF; 2026-10-31).
 - **BOUNCE** (2026-10-30, user: drag the sound into the host; placed "in the envelope header",
   white, "always 1 bar", stem "in a drop down, default to rumble"): `pnlBounce` (white, a
   four-arrow drag icon, the user's reference) and `cmbBounceStem` (not saved) in the header left of KEY (since 2026-10-31; user: "key dropdown
@@ -143,6 +143,15 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   arrows button `btnDlyPing`; the repeats' lows stay mono under ~150 Hz). The lines hold 2 beats
   at 30 BPM with SWING's longer gap (5.5 s). CLONE's knobs (`knbClnBar2..4`, `knbClnDecay`) stay as hidden components.
   Before: CLONE played the input again 1, 2 and 3 sixteenths later (_XXX); see git history.
+- BASS MONO (2026-10-31, user: "add a bass mono knob to the output module"; "don't add the value
+  to the output screen"): `knbOutMono` (OUTPUT's fourth knob, 20..500 Hz, 20 = OFF, Theme kind
+  `monofreq`; host parameter "Bass Mono", appended; engine 87 BassMono). Engine: after the dry kick
+  is added back and DUCK's ALL, before VOLUME, `bassMonoPair` sums both channels' lows to mono
+  through a 24 dB Linkwitz-Riley pair like DUCK's (`bmA`; BOUNCE's RUMBLE and KICK stems their own,
+  `bmSR` / `bmSK`, so RUMBLE + KICK = MIX still holds); ON / OFF crossfades over ~20 ms (OFF
+  keeps the last frequency for the fade), the filters always run. Not in RANDOM (OUTPUT is setup).
+  Measured in HISE (REVERB HALL alone, WIDTH 100 %, side = (L - R) / 2): side under 80 Hz -17.3 dB
+  OFF, -29.0 at 80 Hz, -49.1 at 200, -73.9 at 500; side above 1.5 kHz and mid unchanged (+-0.6 dB).
 - DIST, EQ, LIMITER (2026-10-29): DIST's curves are level-compensated (`distMakeup`: the inverse of
   the slope at 0; FOLD keeps its square root), so DRIVE changes the character, not the rumble's
   level against the kick; the node display draws the shapes before it. EQ's WIDTH widens the bell

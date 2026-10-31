@@ -33,7 +33,7 @@ the whole kick-and-rumble sound from one plugin.
 3. **[DUCK]({% link blackveil/duck.md %})** turns the rumble down on each kick, following a curve
    you draw in the visualizer.
 4. **[OUTPUT and LIMITER]({% link blackveil/master.md %})** add the dry kick back, set the
-   rumble's phase and width, and keep the peaks in check.
+   rumble's phase and width, keep the low end mono, and keep the peaks in check.
 
 ## In this manual
 

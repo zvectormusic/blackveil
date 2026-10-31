@@ -11,7 +11,8 @@ whole sound.
 
 ## OUTPUT
 
-PHASE, POL and WIDTH act on the rumble only; the dry kick passes untouched.
+PHASE, POL and WIDTH act on the rumble only; the dry kick passes untouched. BASS MONO acts on the
+whole output, the rumble and the dry kick.
 
 | Control | Range | Default | |
 |---|---|---|---|
@@ -19,12 +20,20 @@ PHASE, POL and WIDTH act on the rumble only; the dry kick passes untouched.
 | **POL** | + / − | + | Flips the rumble's polarity. |
 | **WIDTH** | 0 .. 200 % | 100 % | Stereo width of the rumble. 0 % is mono. |
 | **VOLUME** | −60 .. +6 dB | 0 dB | The output level, before the limiter. |
+| **BASS MONO** | OFF .. 500 Hz | OFF | Everything below this frequency is made mono; above it the stereo image stays as it is. |
 
 ### Lining up the low end
 
 Where the kick and the rumble overlap, their low end can cancel: the result sounds thin, or the
 sub drops out. Use POL first, then PHASE, until the low end sounds fullest. PHASE is most exact
 around 50 Hz. The OUTPUT display shows the stereo image.
+
+### Mono low end
+
+A wide rumble (a wide reverb, WIDTH above 100 %) also spreads its sub between the two speakers,
+which sounds weaker on a mono club system and can cancel out entirely. BASS MONO keeps everything
+under its frequency in the middle: 100 .. 150 Hz is a usual setting for a club mix, while the
+highs keep their width.
 
 ## LIMITER
 

@@ -22,6 +22,8 @@
   <Component type="ScriptSlider" id="knbKickIndex" x="0" y="0" middlePosition="127.5"
              text="" width="72" height="92" max="255" dragDirection="Vertical"
              stepSize="1" visible="0"/>
+  <Component type="ScriptLabel" id="lblKickFile" x="0" y="0" visible="0" saveInPreset="1"
+             editable="0" text=""/>
   <Component type="ScriptSlider" id="knbFxOrder" x="0" y="0" middlePosition="127.5"
              text="" width="72" height="92" max="255" defaultValue="228.0"
              dragDirection="Vertical" stepSize="1" visible="0"/>
@@ -32,7 +34,8 @@
              visible="0" saveInPreset="1"/>
   <Component type="ScriptPanel" id="pnlBg" x="0" y="0" width="1200" height="926"/>
   <Component type="ScriptPanel" id="pnlUiSize" x="1106" y="42" width="70"
-             height="26" allowCallbacks="Clicks &amp; Hover" tooltip="SIZE: the window size, S 80 % / M 100 % / L 125 % (click for the next)"/>
+             tooltip="SIZE: the window size, S 80 % / M 100 % / L 125 % (click for the next)"
+             height="26" allowCallbacks="Clicks &amp; Hover"/>
   <Component type="ScriptComboBox" id="cmbKey" x="1034" y="42" max="13" items="OFF&#10;C&#10;C#&#10;D&#10;D#&#10;E&#10;F&#10;F#&#10;G&#10;G#&#10;A&#10;A#&#10;B"
              width="56" height="26" tooltip="KEY: the SAMPLE kick is tuned to it (its note from the file name), EQ FREQ snaps to its root and fifth, a COMB filter to its root"
              pluginParameterName="Key" isPluginParameter="1"/>
@@ -277,6 +280,10 @@
              stepSize="0.1000000014901161" min="-60" max="6" suffix=" dB"
              text="VOLUME" width="72" height="84" mode="Decibel" dragDirection="Vertical"
              pluginParameterName="Volume" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbOutMono" x="964" y="768" middlePosition="120"
+             stepSize="1.0" min="20" max="500" suffix=" Hz" text="BASS MONO"
+             width="72" height="84" mode="Frequency" defaultValue="20.0" dragDirection="Vertical"
+             pluginParameterName="Bass Mono" isPluginParameter="1"/>
   <Component type="ScriptButton" id="btnDryOn" x="0" y="0" text="POWER" width="18"
              height="18" defaultValue="1" visible="0" pluginParameterName="Kick On"
              isPluginParameter="1"/>
@@ -370,6 +377,4 @@
   <Component type="ScriptLabel" id="lblEdit" x="0" y="0" width="300" height="26"
              fontName="Segoe UI" fontSize="15" alignment="left" textColour="4293519852"
              text="" visible="0" bgColour="4279637786" itemColour="4287270292"/>
-  <Component type="ScriptLabel" id="lblKickFile" x="0" y="0" visible="0" saveInPreset="1"
-             editable="0" text=""/>
 </ContentProperties>

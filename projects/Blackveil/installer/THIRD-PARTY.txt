@@ -1,0 +1,26 @@
+Blackveil
+Copyright (C) 2026 ShadowDSP
+
+Blackveil is free software: you can redistribute it and/or modify it under the terms of the GNU
+General Public License as published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version (LICENSE.txt). The source code is available from
+ShadowDSP.
+
+Blackveil contains code from the following projects, each under the GNU General Public License
+version 3:
+
+- Vital (filters and reverb)
+  Copyright 2013-2019 Matt Tytel
+  GPL-3.0
+
+- DuskVerb (reverb rooms)
+  Copyright (C) 2026 Dusk Audio
+  GPL-3.0-or-later
+
+- HISE (the framework it is built with)
+  Copyright Christoph Hart
+  GPL-3.0
+
+- JUCE (used through HISE, under its GPL-3.0 option)
+  Copyright Raw Material Software Limited
+  GPL-3.0
