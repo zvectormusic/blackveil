@@ -7,6 +7,7 @@ has_children: true
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
 
 [Télécharger la dernière version](https://github.com/zvectormusic/blackveil/releases/latest){: .btn }
+[Écouter les démos]({{ site.baseurl }}{% link fr/blackveil/demos.md %}){: .btn }
 
 Blackveil est un générateur de rumble pour la techno. Il prend un kick, celui qui est déjà sur votre
 piste ou l'un de ses kicks intégrés, et l'envoie dans une chaîne d'effets (filtre, distorsion,
@@ -40,6 +41,7 @@ sec par-dessus. Vous obtenez tout le son kick + rumble avec un seul plugin.
 | Page | Contenu |
 |---|---|
 | [Prise en main]({{ site.baseurl }}{% link fr/blackveil/getting-started.md %}) | Installation, Blackveil sur une piste, votre premier rumble |
+| [Démos sonores]({{ site.baseurl }}{% link fr/blackveil/demos.md %}) | Des presets d'usine à 140 BPM, sec puis avec le rumble |
 | [Tutoriel : un rumble de A à Z]({{ site.baseurl }}{% link fr/blackveil/tutorial.md %}) | La construction guidée d'un rumble classique, étape par étape, avec ce qu'il faut écouter |
 | [Blackveil dans votre DAW]({{ site.baseurl }}{% link fr/blackveil/in-your-daw.md %}) | Les quatre configurations (sur la piste du kick, une piste de rumble, kick intégré, MIDI), passer en audio, arranger, mixer |
 | [La fenêtre]({{ site.baseurl }}{% link fr/blackveil/interface.md %}) | En-tête, visualiseur, modules, pied de fenêtre ; utiliser les contrôles |

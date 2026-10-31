@@ -362,6 +362,24 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
     The other factory presets (2026-10-31: Rumble/Classic Rumble 2, 3, Industrial/Closed Factory,
     Grainy Therapy, Sub Dirty, Tube Hammer 2, Movement/* (Deep Haze: the user's "Init 2"), Sub/*) were made by the user in the plugin
     and are kept as files, their setup stripped (`strip_setup`); the script never touches them.
+  - **Demos** (2026-10-31, user: "a few sound demos at 140 bpm, one for each preset, dry vs wet";
+    kept out of the repository): `bash tools/render_demos.sh ["Category/Name" ...]` (from this
+    folder, HISE running, project loaded, nothing unsaved, Live closed; ~30 s a preset) writes
+    `Binaries/Demos/Blackveil 140 - <Category> - <Name>.wav`: 2 bars of the preset's dry kick
+    (rumble muted; presets set DECAY / DRIVE, so the dry part is per preset), then 4 bars wet and
+    a last kick to where its tail stays under -60 dBFS (max 6 s). Joined by `tools/demo_join.ps1`
+    (prints each kick's distance from the grid). Its header explains the timing; the traps:
+    HISE's test sequencer is a block late at random (MIDI on a timer), and with HISE's transport
+    stopped the engine's grid free-runs (the GRID duck at a random phase against the kicks; the
+    visualizer showed the kick mid-cycle). So the kicks come from a MIDI player added for the
+    run, synced to HISE's internal clock (which starts the engine's grid too), its notes 9.28 ms
+    early (the synced player's measured start lag; the script checks it in the snapshot before
+    rendering). The end reloads the project (removes the player, restores the clock and tempo).
+    The site's demos (docs/blackveil/demos.md, EN + FR) are the user's pick of 12 (2026-10-31):
+    Closed Factory, Grainy Therapy, Tube Hammer, Deep Haze, Distant Club, Sub Groove 3, Classic
+    Rumble 1..3, Deep Tunnel, Low Pressure, Sub Density, as MP3 in docs/assets/audio/blackveil/
+    (<name>.mp3, lowercase, dashes; ffmpeg -codec:a libmp3lame -q:a 2, ~230 KB each). After a
+    re-render, encode those again.
   - **Shipping:** the export embeds `UserPresets/`; the plugin extracts them into
     `%APPDATA%\ShadowDSP\Blackveil\User Presets` when its version differs from that folder's
     `info.json` (`HISE_OVERWRITE_OLD_USER_PRESETS=1`, ExtraDefinitionsWindows in

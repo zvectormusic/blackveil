@@ -9,6 +9,7 @@ has_children: true
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
 
 [Download the latest version](https://github.com/zvectormusic/blackveil/releases/latest){: .btn }
+[Listen to the demos]({{ site.baseurl }}{% link blackveil/demos.md %}){: .btn }
 
 Blackveil is a rumble generator for techno. It takes a kick, either the one already on your track
 or one of its own built-in kicks, and sends it through a chain of effects (filter, distortion,
@@ -42,6 +43,7 @@ the whole kick-and-rumble sound from one plugin.
 | Page | Covers |
 |---|---|
 | [Getting started]({{ site.baseurl }}{% link blackveil/getting-started.md %}) | Installing, putting Blackveil on a track, your first rumble |
+| [Sound demos]({{ site.baseurl }}{% link blackveil/demos.md %}) | Factory presets at 140 BPM, dry then wet |
 | [Tutorial: a rumble from scratch]({{ site.baseurl }}{% link blackveil/tutorial.md %}) | A guided build of a classic rumble, step by step, with what to listen for |
 | [Blackveil in your DAW]({{ site.baseurl }}{% link blackveil/in-your-daw.md %}) | The four setups (on the kick track, a rumble track, built-in kick, MIDI), turning it into audio, arranging, mixing |
 | [The window]({{ site.baseurl }}{% link blackveil/interface.md %}) | Header, visualizer, modules, footer; how the controls work |

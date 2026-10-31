@@ -487,3 +487,17 @@
   links"): the pitch (the user's pick of three: short, for people who know what a rumble is, plus
   "precise rumble design"), highlights, requirements, install, links to the release and the manual
   (checked live), building, licence and credits.
+- 2026-10-31: preset demos (user: "capture a few sound demos at 140 bpm. ( one for each preset )
+  dry vs wet"; "out of the repo, move the tool"): `tools/render_demos.sh` + `tools/demo_join.ps1`
+  render all 23 factory presets into `Binaries/Demos/` (2 bars dry, 4 bars wet + a ringing last
+  kick, 11.4..16.3 s, 24-bit). Three rounds of fixes after the user listened / looked: the test
+  sequencer's MIDI landed up to a block off the grid (now a MIDI player module), the end was cut
+  (now the tail to -60 dBFS), and the GRID duck was at a random phase against the kicks, seen in
+  the visualizer (now the player synced to HISE's internal clock, 9.28 ms early). Measured: every
+  kick within 4 samples of the 140 BPM grid, the kick 0.0..0.2 ms after the grid line in the
+  engine's snapshot. Not listened to by me.
+- 2026-10-31: 12 of the demos on the manual's site (the user's pick): MP3 (ffmpeg, installed with
+  winget, VBR q2, 2.8 MB for the 12) in docs/assets/audio/blackveil/, a "Sound demos" page in
+  both languages (a row per preset: name + player, grouped by category, `.demo` in custom.scss),
+  a "Listen to the demos" button on both home pages, a row in their tables, a README link. Not
+  previewed (no local Jekyll): check the live page after the push.

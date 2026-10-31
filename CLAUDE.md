@@ -29,6 +29,9 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       "Blackveil" (English) and "Blackveil en français" (fr/blackveil/, its pages'
                       parent; no grand_parent); both index pages have a download button to
                       releases/latest
+                      Sound demos: docs/<plugin>/demos.md (+ fr/), MP3s in docs/assets/audio/<plugin>/
+                      (ffmpeg from winget Gyan.FFmpeg, libmp3lame -q:a 2), linked from both index
+                      pages (a "Listen" button) and the README
 README.md             the repository's front page (2026-10-31): Blackveil's pitch for producers who know what
                       a rumble is (user: the first draft was "too naive"), highlights, install,
                       links to the release and the manual's pages (`…/blackveil/<page>.html`; the

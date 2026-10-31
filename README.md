@@ -8,6 +8,7 @@ more than a preset, every stage is yours to shape, for precise rumble design.
 
 [**Download the latest version**](https://github.com/zvectormusic/blackveil/releases/latest) ·
 [**User manual**](https://zvectormusic.github.io/blackveil/) ·
+[**Sound demos**](https://zvectormusic.github.io/blackveil/blackveil/demos.html) ·
 [Manuel en français](https://zvectormusic.github.io/blackveil/fr/blackveil/)
 
 ![The Blackveil window](docs/assets/images/blackveil/overview.png)

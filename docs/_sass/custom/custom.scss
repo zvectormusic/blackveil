@@ -63,3 +63,10 @@ div.highlighter-rouge code { color: $sd-dim; }
 // buttons and back to top: the white pill
 .btn, #back-to-top { background: $sd-text; color: $sd-ink; border-radius: 3px; padding: .35rem .9rem; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
 .site-footer { color: $sd-faint; }
+
+// sound demos: one row per preset, its name then a full-width player
+.demo { display: flex; align-items: center; gap: 1rem; padding: .5rem .75rem; margin: .4rem 0;
+        background: $sd-section; border: 1px solid $sd-line-soft; border-radius: 3px; }
+.demo-name { flex: 0 0 10rem; font-weight: 600; letter-spacing: .06em; color: $sd-text; }
+.demo audio { flex: 1 1 auto; min-width: 0; height: 2.25rem; }
+@media (max-width: 40rem) { .demo { flex-direction: column; align-items: stretch; gap: .4rem; } .demo-name { flex: none; } }
