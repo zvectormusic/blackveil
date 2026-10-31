@@ -1,7 +1,6 @@
 ---
 title: Astuces et dépannage
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 12
 ---
 

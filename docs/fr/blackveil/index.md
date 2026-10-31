@@ -1,11 +1,12 @@
 ---
 title: Blackveil en français
-parent: Blackveil
-nav_order: 13
+nav_order: 2
 has_children: true
 ---
 
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
+
+[Télécharger la dernière version](https://github.com/zvectormusic/blackveil/releases/latest){: .btn }
 
 Blackveil est un générateur de rumble pour la techno. Il prend un kick, celui qui est déjà sur votre
 piste ou l'un de ses kicks intégrés, et l'envoie dans une chaîne d'effets (filtre, distorsion,

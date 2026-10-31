@@ -1,7 +1,6 @@
 ---
 title: Chaîne d'effets
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 6
 ---
 

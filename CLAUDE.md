@@ -24,7 +24,11 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       https://zvectormusic.github.io/blackveil/ (repository
                       git@github.com:zvectormusic/blackveil.git). Links between pages:
                       {{ site.baseurl }}{% link blackveil/x.md %} (GitHub's Jekyll leaves the
-                      /blackveil base out of a bare {% link %}: every such link was a 404)
+                      /blackveil base out of a bare {% link %}: every such link was a 404).
+                      The languages are top-level sidebar entries side by side (user, 2026-10-31):
+                      "Blackveil" (English) and "Blackveil en français" (fr/blackveil/, its pages'
+                      parent; no grand_parent); both index pages have a download button to
+                      releases/latest
 ```
 
 - **Docs, always (user, 2026-10-31: "from now on update the docs when something changes"):** every

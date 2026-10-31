@@ -1,7 +1,6 @@
 ---
 title: Sortie et limiteur
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 8
 ---
 

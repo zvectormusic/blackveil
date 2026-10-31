@@ -1,7 +1,6 @@
 ---
 title: Duck et visualiseur
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 7
 ---
 

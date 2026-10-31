@@ -1,7 +1,6 @@
 ---
 title: BOUNCE
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 10
 ---
 

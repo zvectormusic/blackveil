@@ -8,6 +8,8 @@ has_children: true
 
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
 
+[Download the latest version](https://github.com/zvectormusic/blackveil/releases/latest){: .btn }
+
 Blackveil is a rumble generator for techno. It takes a kick, either the one already on your track
 or one of its own built-in kicks, and sends it through a chain of effects (filter, distortion,
 delay, reverb, EQ, grain). The result is the **rumble**: a dark low-end tail that sits between the

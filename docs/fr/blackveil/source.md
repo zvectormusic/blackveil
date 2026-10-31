@@ -1,7 +1,6 @@
 ---
 title: Source
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 5
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Prise en main
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 1
 ---
 

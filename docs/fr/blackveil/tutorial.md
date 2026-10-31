@@ -1,7 +1,6 @@
 ---
 title: "Tutoriel : un rumble de A à Z"
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 2
 ---
 

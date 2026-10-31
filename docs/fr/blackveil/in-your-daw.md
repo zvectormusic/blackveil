@@ -1,7 +1,6 @@
 ---
 title: Blackveil dans votre DAW
 parent: Blackveil en français
-grand_parent: Blackveil
 nav_order: 3
 ---
 
