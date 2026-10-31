@@ -473,3 +473,10 @@
   Therapy, Sub Dirty, Tube Hammer 2; new Movement: Distant Club, Feedback Pong, Sub Groove 1..3;
   new Sub: Sub Density; Movement/Deep Haze, the user's "Init 2"). 22 presets. Version 0.4.1 (so the plugin unpacks them). Init stays all
   defaults (the tutorial starts from it).
+- 2026-10-31: two rhythmic duck curve presets (user: "add two additional curve presets with a
+  rythmic feel"; chose CHOP and SHUFFLE of three suggested, TRIPLET not taken): CHOP = four dips a
+  beat, one per 16th (13 points), SHUFFLE = a full duck, then a dip to 45 % at 2/3 of the beat
+  (7 points). Two more header buttons (they end at x 724, inside the visualizer); RANDOM picks them
+  too, CHOP's DEPTH capped at 85 like LONG / GATE (`RAND_DUCK_HARD`). Tested in HISE: each button
+  loads its curve and lights (`duckPresetMatch`), screenshots. Manual EN / FR updated. Manual screenshots
+  duck.png and overview.png retaken. Plugin build (204 s), installed. Not heard yet.

@@ -177,7 +177,8 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   `src/vital_filters.h`). Never call DuskVerb's reset() (it drops its prepared engines).
 - DUCK: the curve is a list of breakpoints `duckPts` ([x, y, bend]) over LENGTH (41 DuckLength,
   beats: `DUCK_LENGTHS`), edited in the visualizer (`cePaint` / `ceMouse`), with
-  presets (`DUCK_PRESETS`: since 2026-10-30 one button each in the visualizer's header, in the
+  presets (`DUCK_PRESETS`, ten since 2026-10-31: CHOP, a 16th-note gate, and SHUFFLE, a
+  second shallower dip on the swung 8th, are the rhythmic ones; since 2026-10-30 one button each in the visualizer's header, in the
   LENGTH pills' place, lit when the curve matches one, `duckPresetMatch`; `cmbDuckPreset` hidden).
   LENGTH is always 1/4 since then (user: "we only need 1/4"; `DUCK_LEN_FIXED`: a stored, random
   or make_presets length is ignored). `duckSend` writes the points into the engine's slider pack 0
@@ -298,7 +299,7 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   rules for every new sound: CUTOFF's range by TYPE (`RAND_FLT_CUTOFF`: HP 20..60, BP 60..250, the
   low passes 100..1500), a negative ENV goes no lower than 50 Hz (`RAND_FLT_FLOOR`), no REVERB and
   no DELAY on: REVERB (else DELAY) on, DELAY as the only tail FEEDBACK >= 45 and MIX >= 50, SUB CUT
-  <= 35 under a low pass below 150 Hz, DEPTH <= 85 for LONG / GATE. Before, a roll with only FILTER
+  <= 35 under a low pass below 150 Hz, DEPTH <= 85 for LONG / GATE / CHOP. Before, a roll with only FILTER
   (an HP or BP at 1..2 kHz possible) or DIST had no tail, and DUCK took the rest. MUTATE uses none
   of this (the knobs move +-7 % as before). `randLastRecipe` names the last roll's recipe (tests). Never SOURCE, KEY, SEND GATE, DUCK's trigger /
   TARGET, levels, OUTPUT, LIMITER. Each control is set with `setValue` + `changed()` (its callback

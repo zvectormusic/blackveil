@@ -395,6 +395,8 @@ const var ENGINE_CTL = {"btnFx0On": [BV_FILTER_ON, 1.0], "cmbFltType": [BV_FILTE
 const var BV_DUCK_LENGTH = 41;
 const var DUCK_LENGTHS = ["1/32", "1/16", "1/8", "1/4", "1/2", "1 BAR"];
 const var DUCK_LENGTH_BEATS = [0.125, 0.25, 0.5, 1.0, 2.0, 4.0];
+// (CHOP: a 16th-note gate, four dips a beat; SHUFFLE: a full duck, then a shallower one on the
+// swung 8th, 2/3 of the beat; 2026-10-31, user)
 const var DUCK_PRESETS = {"TIGHT": [[0, 1, 0], [0.008, 0, 0], [0.068, 0, 0], [0.43, 1, 0.4], [1, 1, 0]],
                           "PUMP": [[0, 1, 0], [0.03, 0, 0], [0.92, 1, 0.7], [1, 1, 0]],
                           "SMOOTH": [[0, 1, 0], [0.12, 0.05, -0.5], [0.8, 1, -0.3], [1, 1, 0]],
@@ -403,8 +405,13 @@ const var DUCK_PRESETS = {"TIGHT": [[0, 1, 0], [0.008, 0, 0], [0.068, 0, 0], [0.
                           "SNAP": [[0, 1, 0], [0.005, 0, 0], [0.25, 1, -0.6], [1, 1, 0]],
                           "SWELL": [[0, 1, 0], [0.01, 0, 0], [1, 1, 0.8]],
                           "DOUBLE": [[0, 1, 0], [0.01, 0, 0], [0.2, 0.7, -0.3], [0.5, 0.7, 0], [0.52, 0.2, 0],
-                                     [0.9, 1, 0.3], [1, 1, 0]]};
-const var DUCK_PRESET_NAMES = ["TIGHT", "PUMP", "SMOOTH", "LONG", "GATE", "SNAP", "SWELL", "DOUBLE"];
+                                     [0.9, 1, 0.3], [1, 1, 0]],
+                          "CHOP": [[0, 1, 0], [0.01, 0, 0], [0.2, 1, -0.5], [0.25, 1, 0], [0.26, 0, 0], [0.45, 1, -0.5],
+                                   [0.5, 1, 0], [0.51, 0, 0], [0.7, 1, -0.5], [0.75, 1, 0], [0.76, 0, 0], [0.95, 1, -0.5],
+                                   [1, 1, 0]],
+                          "SHUFFLE": [[0, 1, 0], [0.01, 0, 0], [0.4, 1, -0.5], [0.66, 1, 0], [0.68, 0.45, 0],
+                                      [0.95, 1, -0.4], [1, 1, 0]]};
+const var DUCK_PRESET_NAMES = ["TIGHT", "PUMP", "SMOOTH", "LONG", "GATE", "SNAP", "SWELL", "DOUBLE", "CHOP", "SHUFFLE"];
 var duckPts = [];
 // LENGTH is always 1/4 since 2026-10-30 (user: "we only need 1/4"): a stored or random length is
 // ignored; DUCK_LENGTHS and the stored "length" stay (presets and sessions hold one)
@@ -3108,7 +3115,7 @@ const var RAND_NO_RECIPE = {"name": "", "weight": 0, "on": [], "after": [], "kno
 const var RAND_FLT_CUTOFF = [[100, 1500], [100, 1500], [60, 250], [60, 250], [20, 60], [20, 60],
                              [100, 1500], [100, 1500], [100, 1500], [40, 200]];
 const var RAND_FLT_FLOOR = 50;            // Hz: a negative ENV takes CUTOFF no lower (but HP)
-const var RAND_DUCK_HARD = ["LONG", "GATE"];   // curves that hold the rumble down for most of the beat
+const var RAND_DUCK_HARD = ["LONG", "GATE", "CHOP"];   // curves that hold the rumble down for most of the beat (CHOP: four times)
 const var RAND_DUCK_HARD_MAX = 85;        // their DEPTH at most
 const var RAND_POWER_IDS = ["btnFx0On", "btnFx1On", "btnFx2On", "btnFx3On", "btnEqOn", "btnGrnOn"];
 var randLastRecipe = "";                  // (for tests: the last roll's recipe)

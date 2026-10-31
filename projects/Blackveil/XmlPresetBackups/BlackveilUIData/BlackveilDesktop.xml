@@ -261,8 +261,8 @@
              visible="0"/>
   <Component type="ScriptPanel" id="pnlDuckTarget" x="1000" y="192" width="164"
              height="22" allowCallbacks="Clicks &amp; Hover"/>
-  <Component type="ScriptComboBox" id="cmbDuckPreset" x="1000" y="128" max="8"
-             items="TIGHT&#10;PUMP&#10;SMOOTH&#10;LONG&#10;GATE&#10;SNAP&#10;SWELL&#10;DOUBLE"
+  <Component type="ScriptComboBox" id="cmbDuckPreset" x="1000" y="128" max="10"
+             items="TIGHT&#10;PUMP&#10;SMOOTH&#10;LONG&#10;GATE&#10;SNAP&#10;SWELL&#10;DOUBLE&#10;CHOP&#10;SHUFFLE"
              width="164" height="22" text="CURVE PRESETS" visible="0" saveInPreset="0"/>
   <Component type="ScriptButton" id="btnOutPol" x="954" y="480" text="POL +|POL -"
              width="92" height="24" pluginParameterName="Polarity" isPluginParameter="1"/>

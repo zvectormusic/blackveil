@@ -37,8 +37,10 @@ Le verrou au bout du titre de DUCK empêche RANDOM de modifier la courbe.
 ## Presets de courbe {#curve-presets}
 
 Les boutons CURVE en haut du visualiseur chargent une courbe : **TIGHT, PUMP, SMOOTH, LONG, GATE,
-SNAP, SWELL, DOUBLE**. Le bouton s'allume tant que la courbe lui correspond. Charger un preset garde
-votre OFFSET.
+SNAP, SWELL, DOUBLE, CHOP, SHUFFLE**. Le bouton s'allume tant que la courbe lui correspond. Deux
+sont rythmiques : **CHOP** baisse le rumble sur chaque double croche, comme un gate ; **SHUFFLE** le
+baisse à fond sur le kick, puis moins sur la croche swinguée (aux deux tiers du temps). Charger
+un preset garde votre OFFSET.
 
 ## Éditer la courbe {#editing-the-curve}
 

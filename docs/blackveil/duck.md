@@ -37,7 +37,9 @@ The lock at the end of DUCK's title keeps RANDOM from changing the curve.
 ## Curve presets
 
 The CURVE buttons along the visualizer's top row load a curve: **TIGHT, PUMP, SMOOTH, LONG, GATE, SNAP,
-SWELL, DOUBLE**. The button lights while the curve matches it. Loading a preset keeps your OFFSET.
+SWELL, DOUBLE, CHOP, SHUFFLE**. The button lights while the curve matches it. Two of them are
+rhythmic: **CHOP** ducks on every 16th note, like a gate; **SHUFFLE** ducks fully on the kick, then
+again, less, on the swung 8th (two thirds of the beat). Loading a preset keeps your OFFSET.
 
 ## Editing the curve
 

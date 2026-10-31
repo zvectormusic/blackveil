@@ -23,7 +23,7 @@
 #          btnGrnOn GRAIN (off by default)
 #   order A B C D E: the chain left to right, 0 FILTER, 1 DIST, 2 DELAY, 3 REVERB, 4 EQ; GRAIN
 #          (5) goes last (a five-slot order puts it there)
-#   curve NAME LEN: a duck curve preset (TIGHT PUMP SMOOTH LONG GATE SNAP SWELL DOUBLE), LENGTH (ignored since 2026-10-30: always 1/4)
+#   curve NAME LEN: a duck curve preset (TIGHT PUMP SMOOTH LONG GATE SNAP SWELL DOUBLE CHOP SHUFFLE), LENGTH (ignored since 2026-10-30: always 1/4)
 #                   index into DUCK_LENGTHS (2 = 1/8, 3 = 1/4, 4 = 1/2)
 
 repl() { curl -s -X POST localhost:1900/api/repl -H "Content-Type: application/json" \
