@@ -78,7 +78,7 @@ When the rumble is right, you may want it as audio: to edit it, to save CPU, or 
 change Blackveil later.
 
 - **BOUNCE** (in the header): drag the last bar of the RUMBLE, the KICK or the MIX straight onto
-  a track. Quick, and loops perfectly. See [BOUNCE]({% link blackveil/bounce.md %}).
+  a track. Quick, and loops perfectly. See [BOUNCE]({{ site.baseurl }}{% link blackveil/bounce.md %}).
 - **Freeze** the track (in Live: right-click the track → **Freeze Track**, then **Flatten** to
   turn it into audio). Good for a whole arrangement with automation.
 - **Resample**: record the Blackveil track onto a new audio track (in Live: set the new track's
@@ -87,7 +87,7 @@ change Blackveil later.
 ## Arranging with it
 
 Every control is a host parameter, so you can automate it like any other device (see
-[Automation]({% link blackveil/automation.md %})). Ideas:
+[Automation]({{ site.baseurl }}{% link blackveil/automation.md %})). Ideas:
 
 - **Breakdowns:** pull the **RUMBLE** fader down, or switch the REVERB off, and bring it back for
   the drop.
@@ -98,7 +98,7 @@ Every control is a host parameter, so you can automate it like any other device 
 
 Presets keep your setup (SOURCE, KEY, the kick) when you load them, so you can try sounds in the
 middle of an arrangement without breaking the routing. See
-[What a preset holds]({% link blackveil/presets.md %}#what-a-preset-holds).
+[What a preset holds]({{ site.baseurl }}{% link blackveil/presets.md %}#what-a-preset-holds).
 
 ## Mixing tips
 
@@ -109,6 +109,6 @@ middle of an arrangement without breaking the routing. See
   hard.
 - **Kick and rumble in phase.** If the low end sounds thinner with the rumble than without,
   flip **POL** or turn **PHASE** (see
-  [Lining up the low end]({% link blackveil/master.md %}#lining-up-the-low-end)).
+  [Lining up the low end]({{ site.baseurl }}{% link blackveil/master.md %}#lining-up-the-low-end)).
 - **No latency.** Blackveil adds no delay to the track, so it needs no compensation and is fine
   to play live.

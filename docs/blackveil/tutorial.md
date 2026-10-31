@@ -73,7 +73,7 @@ back between them. Its curve is the white line in the visualizer.
 ![The visualizer with the TIGHT curve over one beat, and DUCK on the right]({{ '/assets/images/blackveil/duck.png' | relative_url }})
 
 To fine-tune the curve, drag its points. Double-click to add or remove a point, and drag a
-diamond to bend a segment. See [Editing the curve]({% link blackveil/duck.md %}#editing-the-curve).
+diamond to bend a segment. See [Editing the curve]({{ site.baseurl }}{% link blackveil/duck.md %}#editing-the-curve).
 
 ## 5. Keep it tight: SEND GATE
 
@@ -101,7 +101,7 @@ changed.
 Where the kick and the rumble overlap, their lows can cancel each other out, and the result sounds
 thin. In **OUTPUT**, flip **POL** to − and back to + and keep the fuller one. Then slowly turn
 **PHASE** until the low end sounds the fullest. See
-[Lining up the low end]({% link blackveil/master.md %}#lining-up-the-low-end).
+[Lining up the low end]({{ site.baseurl }}{% link blackveil/master.md %}#lining-up-the-low-end).
 
 ![OUTPUT: POL, PHASE, WIDTH and VOLUME]({{ '/assets/images/blackveil/output.png' | relative_url }})
 
@@ -118,8 +118,8 @@ thin. In **OUTPUT**, flip **POL** to − and back to + and keep the fuller one. 
 That's a complete rumble. Next:
 
 - Run your own kick through it: set SOURCE to **EXT** and see
-  [Blackveil in your DAW]({% link blackveil/in-your-daw.md %}).
-- Turn it into an audio clip with [BOUNCE]({% link blackveil/bounce.md %}).
+  [Blackveil in your DAW]({{ site.baseurl }}{% link blackveil/in-your-daw.md %}).
+- Turn it into an audio clip with [BOUNCE]({{ site.baseurl }}{% link blackveil/bounce.md %}).
 
 ## Variations to try
 

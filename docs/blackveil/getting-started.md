@@ -52,8 +52,8 @@ The factory presets are unpacked on the first start into
 
 ## Next steps
 
-- Follow the [tutorial]({% link blackveil/tutorial.md %}): a complete rumble in ten minutes.
-- Choose the right routing for your track in [Blackveil in your DAW]({% link blackveil/in-your-daw.md %}).
-- Read [The window]({% link blackveil/interface.md %}) for a tour of every section.
-- Shape how the rumble breathes around the kick in [Duck and the visualizer]({% link blackveil/duck.md %}).
-- Roll the dice: [RANDOM]({% link blackveil/presets.md %}#random) gives a new sound in one click.
+- Follow the [tutorial]({{ site.baseurl }}{% link blackveil/tutorial.md %}): a complete rumble in ten minutes.
+- Choose the right routing for your track in [Blackveil in your DAW]({{ site.baseurl }}{% link blackveil/in-your-daw.md %}).
+- Read [The window]({{ site.baseurl }}{% link blackveil/interface.md %}) for a tour of every section.
+- Shape how the rumble breathes around the kick in [Duck and the visualizer]({{ site.baseurl }}{% link blackveil/duck.md %}).
+- Roll the dice: [RANDOM]({{ site.baseurl }}{% link blackveil/presets.md %}#random) gives a new sound in one click.

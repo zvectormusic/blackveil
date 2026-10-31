@@ -19,19 +19,19 @@ De gauche à droite :
 
 | Contrôle | Rôle |
 |---|---|
-| **Dé (RANDOM)** | Clic : un nouveau son. Maj-clic : MUTATE, de petits changements du son actuel. Voir [RANDOM]({% link fr/blackveil/presets.md %}#random). |
+| **Dé (RANDOM)** | Clic : un nouveau son. Maj-clic : MUTATE, de petits changements du son actuel. Voir [RANDOM]({{ site.baseurl }}{% link fr/blackveil/presets.md %}#random). |
 | **Flèche d'annulation** | Annule le dernier tirage RANDOM (jusqu'à 8). |
 | **Case du preset** | Le preset actuel. ‹ › passent d'un preset à l'autre ; un clic sur le nom ouvre le navigateur. Un point signale que le son a changé depuis son chargement. |
 | **Disquette** | Sauvegarde le son actuel comme preset. |
-| **Stem + BOUNCE** | Glissez BOUNCE dans votre DAW pour obtenir la dernière mesure du stem choisi (RUMBLE, KICK ou MIX). Voir [BOUNCE]({% link fr/blackveil/bounce.md %}). |
-| **KEY** | La fondamentale de votre morceau (OFF, C .. B). Accorde le kick SAMPLE et aimante EQ FREQ sur la tonalité. Voir [Source]({% link fr/blackveil/source.md %}#key). |
+| **Stem + BOUNCE** | Glissez BOUNCE dans votre DAW pour obtenir la dernière mesure du stem choisi (RUMBLE, KICK ou MIX). Voir [BOUNCE]({{ site.baseurl }}{% link fr/blackveil/bounce.md %}). |
+| **KEY** | La fondamentale de votre morceau (OFF, C .. B). Accorde le kick SAMPLE et aimante EQ FREQ sur la tonalité. Voir [Source]({{ site.baseurl }}{% link fr/blackveil/source.md %}#key). |
 | **SIZE** | Change la taille de la fenêtre : S (80 %), M (100 %), L (125 %), puis retour à S. Mémorisée par utilisateur, pas par session. |
 
 ## Visualiseur {#visualizer}
 
 Le grand affichage du haut montre un temps du son, capturé pendant la lecture de l'hôte, avec la
 courbe de ducking par-dessus et les presets de courbe sur sa ligne du haut. Les contrôles de DUCK
-sont sur son bord droit. Voir [Duck et visualiseur]({% link fr/blackveil/duck.md %}).
+sont sur son bord droit. Voir [Duck et visualiseur]({{ site.baseurl }}{% link fr/blackveil/duck.md %}).
 
 ## Modules {#modules}
 
@@ -60,8 +60,8 @@ sombres.
 
 | Contrôle | Rôle |
 |---|---|
-| **SEND GATE** | La part de chaque kick qui alimente la chaîne d'effets. Voir [Sortie]({% link fr/blackveil/master.md %}#send-gate). |
-| **NOISE** + couleur | Du bruit ajouté à l'entrée de la chaîne, qui suit chaque kick. Voir [Sortie]({% link fr/blackveil/master.md %}#noise). |
+| **SEND GATE** | La part de chaque kick qui alimente la chaîne d'effets. Voir [Sortie]({{ site.baseurl }}{% link fr/blackveil/master.md %}#send-gate). |
+| **NOISE** + couleur | Du bruit ajouté à l'entrée de la chaîne, qui suit chaque kick. Voir [Sortie]({{ site.baseurl }}{% link fr/blackveil/master.md %}#noise). |
 | **KICK** + coupure | Le niveau du kick sec dans la sortie. |
 | **RUMBLE** + coupure | Le niveau du rumble dans la sortie. |
 

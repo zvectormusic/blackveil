@@ -20,7 +20,11 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       remote_theme; GitHub builds it, nothing to install): docs/<plugin>/*.md, one
                       page per section, screenshots in docs/assets/images/<plugin>/; the home page
                       is Blackveil's manual (blackveil/index.md, permalink /; user, 2026-10-31),
-                      docs/blackveil-redirect.html forwards the old /blackveil/ address
+                      docs/blackveil-redirect.html forwards the old /blackveil/ address. Live at
+                      https://zvectormusic.github.io/blackveil/ (repository
+                      git@github.com:zvectormusic/blackveil.git). Links between pages:
+                      {{ site.baseurl }}{% link blackveil/x.md %} (GitHub's Jekyll leaves the
+                      /blackveil base out of a bare {% link %}: every such link was a 404)
 ```
 
 - **Docs, always (user, 2026-10-31: "from now on update the docs when something changes"):** every

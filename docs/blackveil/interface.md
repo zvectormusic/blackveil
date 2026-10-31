@@ -18,19 +18,19 @@ From left to right:
 
 | Control | What it does |
 |---|---|
-| **Dice (RANDOM)** | Click: a new sound. Shift-click: MUTATE, small changes to the current sound. See [RANDOM]({% link blackveil/presets.md %}#random). |
+| **Dice (RANDOM)** | Click: a new sound. Shift-click: MUTATE, small changes to the current sound. See [RANDOM]({{ site.baseurl }}{% link blackveil/presets.md %}#random). |
 | **Undo arrow** | Takes back the last RANDOM roll (up to 8). |
 | **Preset box** | The current preset. ‹ › step through presets; click the name to open the browser. A dot means the sound changed since it was loaded. |
 | **Floppy disk** | Saves the current sound as a preset. |
-| **Stem + BOUNCE** | Drag BOUNCE into your DAW to get the last bar of the chosen stem (RUMBLE, KICK or MIX). See [Bounce]({% link blackveil/bounce.md %}). |
-| **KEY** | The root note of your track (OFF, C .. B). Tunes the SAMPLE kick and snaps EQ FREQ to the key. See [Source]({% link blackveil/source.md %}#key). |
+| **Stem + BOUNCE** | Drag BOUNCE into your DAW to get the last bar of the chosen stem (RUMBLE, KICK or MIX). See [Bounce]({{ site.baseurl }}{% link blackveil/bounce.md %}). |
+| **KEY** | The root note of your track (OFF, C .. B). Tunes the SAMPLE kick and snaps EQ FREQ to the key. See [Source]({{ site.baseurl }}{% link blackveil/source.md %}#key). |
 | **SIZE** | Steps the window size: S (80 %), M (100 %), L (125 %), then back to S. Remembered per user, not per session. |
 
 ## Visualizer
 
 The large display at the top shows one beat of the sound, captured while the host plays, and the
 duck curve over it, with the curve presets along its top row. DUCK's controls sit at its right edge.
-See [Duck and the visualizer]({% link blackveil/duck.md %}).
+See [Duck and the visualizer]({{ site.baseurl }}{% link blackveil/duck.md %}).
 
 ## Modules
 
@@ -58,8 +58,8 @@ the current setup (for example the sample-only controls in EXT mode) are drawn d
 
 | Control | What it does |
 |---|---|
-| **SEND GATE** | How much of each kick feeds the FX chain. See [Output]({% link blackveil/master.md %}#send-gate). |
-| **NOISE** + colour | Noise added to the FX chain's input, following each kick. See [Output]({% link blackveil/master.md %}#noise). |
+| **SEND GATE** | How much of each kick feeds the FX chain. See [Output]({{ site.baseurl }}{% link blackveil/master.md %}#send-gate). |
+| **NOISE** + colour | Noise added to the FX chain's input, following each kick. See [Output]({{ site.baseurl }}{% link blackveil/master.md %}#noise). |
 | **KICK** + mute | The level of the dry kick in the output. |
 | **RUMBLE** + mute | The level of the rumble in the output. |
 

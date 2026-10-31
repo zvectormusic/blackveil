@@ -46,11 +46,11 @@ bouncés se trouvent aussi dans `%APPDATA%\ShadowDSP\Blackveil`.
 
 ## Et ensuite
 
-- Suivez le [tutoriel]({% link fr/blackveil/tutorial.md %}) : un rumble complet en dix minutes.
+- Suivez le [tutoriel]({{ site.baseurl }}{% link fr/blackveil/tutorial.md %}) : un rumble complet en dix minutes.
 - Choisissez le bon routage pour votre morceau dans
-  [Blackveil dans votre DAW]({% link fr/blackveil/in-your-daw.md %}).
-- Lisez [La fenêtre]({% link fr/blackveil/interface.md %}) pour faire le tour de chaque section.
+  [Blackveil dans votre DAW]({{ site.baseurl }}{% link fr/blackveil/in-your-daw.md %}).
+- Lisez [La fenêtre]({{ site.baseurl }}{% link fr/blackveil/interface.md %}) pour faire le tour de chaque section.
 - Façonnez la respiration du rumble autour du kick dans
-  [Duck et visualiseur]({% link fr/blackveil/duck.md %}).
-- Lancez les dés : [RANDOM]({% link fr/blackveil/presets.md %}#random) donne un nouveau son en un
+  [Duck et visualiseur]({{ site.baseurl }}{% link fr/blackveil/duck.md %}).
+- Lancez les dés : [RANDOM]({{ site.baseurl }}{% link fr/blackveil/presets.md %}#random) donne un nouveau son en un
   clic.

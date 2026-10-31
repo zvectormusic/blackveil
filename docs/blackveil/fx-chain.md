@@ -13,7 +13,7 @@ from left to right, and you can put them in any order.
   reverb gives a dirty tail; after it, a dirty room. A filter after the reverb tames its tail.
 - **Switch off:** the power button in the title bar. Off modules are drawn darker and pass the
   signal through. Switching fades, so it doesn't click.
-- **Lock:** the lock in a module's bottom right corner keeps [RANDOM]({% link blackveil/presets.md %}#random)
+- **Lock:** the lock in a module's bottom right corner keeps [RANDOM]({{ site.baseurl }}{% link blackveil/presets.md %}#random)
   from changing it or moving it.
 
 Default order: FILTER, DIST, DELAY, REVERB, EQ, GRAIN (GRAIN off).

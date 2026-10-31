@@ -79,7 +79,7 @@ Quand le rumble est au point, vous pouvez le vouloir en audio : pour l'éditer, 
 le garder si vous changez Blackveil plus tard.
 
 - **BOUNCE** (dans l'en-tête) : glissez la dernière mesure du RUMBLE, du KICK ou du MIX directement
-  sur une piste. Rapide, et la boucle est parfaite. Voir [BOUNCE]({% link fr/blackveil/bounce.md %}).
+  sur une piste. Rapide, et la boucle est parfaite. Voir [BOUNCE]({{ site.baseurl }}{% link fr/blackveil/bounce.md %}).
 - **Freeze** de la piste (dans Live : clic droit sur la piste → **Freeze Track**, puis **Flatten**
   pour la convertir en audio). Idéal pour tout un arrangement avec automation.
 - **Rééchantillonner** : enregistrez la piste de Blackveil sur une nouvelle piste audio (dans Live :
@@ -89,7 +89,7 @@ le garder si vous changez Blackveil plus tard.
 ## Arranger avec {#arranging-with-it}
 
 Chaque contrôle est un paramètre hôte : vous pouvez l'automatiser comme sur n'importe quel appareil
-(voir [Automation]({% link fr/blackveil/automation.md %})). Quelques idées :
+(voir [Automation]({{ site.baseurl }}{% link fr/blackveil/automation.md %})). Quelques idées :
 
 - **Breaks :** baissez le fader **RUMBLE**, ou éteignez la REVERB, et ramenez-les pour le drop.
 - **Montées :** augmentez le **CUTOFF** de FILTER ou la **SIZE** de REVERB sur 8 ou 16 mesures.
@@ -99,7 +99,7 @@ Chaque contrôle est un paramètre hôte : vous pouvez l'automatiser comme sur n
 
 Les presets gardent votre configuration (SOURCE, KEY, le kick) quand vous les chargez : vous pouvez
 essayer des sons en plein arrangement sans casser le routage. Voir
-[Ce que contient un preset]({% link fr/blackveil/presets.md %}#what-a-preset-holds).
+[Ce que contient un preset]({{ site.baseurl }}{% link fr/blackveil/presets.md %}#what-a-preset-holds).
 
 ## Conseils de mixage {#mixing-tips}
 
@@ -110,6 +110,6 @@ essayer des sons en plein arrangement sans casser le routage. Voir
   limiteur.
 - **Kick et rumble en phase.** Si le bas sonne plus maigre avec le rumble que sans, basculez **POL**
   ou tournez **PHASE** (voir
-  [Aligner le bas du spectre]({% link fr/blackveil/master.md %}#lining-up-the-low-end)).
+  [Aligner le bas du spectre]({{ site.baseurl }}{% link fr/blackveil/master.md %}#lining-up-the-low-end)).
 - **Pas de latence.** Blackveil n'ajoute aucun retard à la piste : aucune compensation nécessaire, et
   il se joue sans problème en live.

@@ -16,7 +16,7 @@ traverse de gauche à droite, et vous pouvez les placer dans n'importe quel ordr
 - **Éteindre :** le bouton d'alimentation de la barre de titre. Les modules éteints sont dessinés
   plus sombres et laissent passer le signal. La commutation se fait en fondu, sans clic.
 - **Verrouiller :** le verrou en bas à droite d'un module empêche
-  [RANDOM]({% link fr/blackveil/presets.md %}#random) de le modifier ou de le déplacer.
+  [RANDOM]({{ site.baseurl }}{% link fr/blackveil/presets.md %}#random) de le modifier ou de le déplacer.
 
 Ordre par défaut : FILTER, DIST, DELAY, REVERB, EQ, GRAIN (GRAIN éteint).
 

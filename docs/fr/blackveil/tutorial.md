@@ -78,7 +78,7 @@ eux. Sa courbe est la ligne blanche du visualiseur.
 
 Pour affiner la courbe, faites glisser ses points. Double-cliquez pour ajouter ou retirer un point,
 et faites glisser un losange pour courber un segment. Voir
-[Éditer la courbe]({% link fr/blackveil/duck.md %}#editing-the-curve).
+[Éditer la courbe]({{ site.baseurl }}{% link fr/blackveil/duck.md %}#editing-the-curve).
 
 ## 5. Le garder serré : SEND GATE
 
@@ -106,7 +106,7 @@ kick sec n'est pas modifié.
 Là où le kick et le rumble se chevauchent, leurs graves peuvent s'annuler, et le résultat sonne
 maigre. Dans **OUTPUT**, basculez **POL** sur − puis sur + et gardez la version la plus pleine.
 Tournez ensuite doucement **PHASE** jusqu'à ce que le bas sonne le plus plein. Voir
-[Aligner le bas du spectre]({% link fr/blackveil/master.md %}#lining-up-the-low-end).
+[Aligner le bas du spectre]({{ site.baseurl }}{% link fr/blackveil/master.md %}#lining-up-the-low-end).
 
 ![OUTPUT : POL, PHASE, WIDTH et VOLUME]({{ '/assets/images/blackveil/output.png' | relative_url }})
 
@@ -124,8 +124,8 @@ Tournez ensuite doucement **PHASE** jusqu'à ce que le bas sonne le plus plein. 
 Voilà un rumble complet. Ensuite :
 
 - Passez votre propre kick dedans : réglez SOURCE sur **EXT** et voyez
-  [Blackveil dans votre DAW]({% link fr/blackveil/in-your-daw.md %}).
-- Transformez-le en clip audio avec [BOUNCE]({% link fr/blackveil/bounce.md %}).
+  [Blackveil dans votre DAW]({{ site.baseurl }}{% link fr/blackveil/in-your-daw.md %}).
+- Transformez-le en clip audio avec [BOUNCE]({{ site.baseurl }}{% link fr/blackveil/bounce.md %}).
 
 ## Variations à essayer
 

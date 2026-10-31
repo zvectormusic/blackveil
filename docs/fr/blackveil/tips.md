@@ -32,9 +32,9 @@ s'aimante sur la fondamentale ou la quinte, et l'accentuation renforce la bonne 
 | Pas de rumble, seulement le kick | Lancez la lecture (EXT et GRID en ont besoin). Vérifiez qu'au moins un de FILTER, DIST, DELAY, REVERB est actif, et que RUMBLE n'est ni coupé ni à −60 dB. |
 | En SAMPLE + MIDI, pas de kick | Vérifiez que votre piste MIDI envoie vers Blackveil (dans Live : MIDI To → la piste de Blackveil → Blackveil). |
 | Le rumble est abaissé au mauvais moment (EXT) | Réglez la division de SOURCE sur votre motif de kick. Blackveil suit la grille, pas l'audio. |
-| Le bas s'amincit quand le rumble arrive | Basculez POL, puis tournez PHASE (voir [Aligner le bas du spectre]({% link fr/blackveil/master.md %}#lining-up-the-low-end)). |
+| Le bas s'amincit quand le rumble arrive | Basculez POL, puis tournez PHASE (voir [Aligner le bas du spectre]({{ site.baseurl }}{% link fr/blackveil/master.md %}#lining-up-the-low-end)). |
 | Trop fort ou saturé | Baissez LEVEL dans SOURCE ou VOLUME ; le CEILING du LIMITER fixe le maximum. |
-| Charger un preset n'a pas changé mon kick | C'est voulu : les presets gardent la configuration. Voir [Ce que contient un preset]({% link fr/blackveil/presets.md %}#what-a-preset-holds). |
+| Charger un preset n'a pas changé mon kick | C'est voulu : les presets gardent la configuration. Voir [Ce que contient un preset]({{ site.baseurl }}{% link fr/blackveil/presets.md %}#what-a-preset-holds). |
 | BOUNCE affiche PLAY FIRST | Laissez jouer une mesure entière avec du son, puis glissez de nouveau. |
 | Les presets d'usine ont disparu | Supprimez `%APPDATA%\ShadowDSP\Blackveil\User Presets` (après avoir sauvegardé vos propres presets) et relancez le DAW : Blackveil les réinstalle. |
 
@@ -44,7 +44,7 @@ s'aimante sur la fondamentale ou la quinte, et l'accentuation renforce la bonne 
 Non. En EXT, il place les kicks sur la grille de l'hôte, à la division de SOURCE. C'est ce qui le rend
 précis et sans latence, mais votre kick doit être calé sur la grille. Pour les autres motifs, laissez
 Blackveil jouer le kick à partir de notes MIDI (voir
-[Des kicks depuis des notes MIDI]({% link fr/blackveil/in-your-daw.md %}#kicks-from-midi-notes)).
+[Des kicks depuis des notes MIDI]({{ site.baseurl }}{% link fr/blackveil/in-your-daw.md %}#kicks-from-midi-notes)).
 
 **Ajoute-t-il de la latence ?**
 Non. Rien dans Blackveil n'anticipe, le limiteur compris.
