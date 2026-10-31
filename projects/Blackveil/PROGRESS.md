@@ -443,11 +443,14 @@
   Node compiled (88 parameters), the stacking rebuilt (the knob under the preset browser; FILTER
   TYPE and the duck curve, reset by the rebuild, restored; the project XML only gains the knob and
   the attribute). Measured in HISE with a wide reverb: the lows' side signal -17 dB OFF -> -49 dB at
-  200 Hz, the highs and the mid unchanged. Screenshot checked. Not heard; the ON / OFF switch not
-  measured for clicks (StepClicks needs a plugin build).
+  200 Hz, the highs and the mid unchanged. Screenshot checked. Plugin build (170 s): StepClicks with "~Bass Mono" stepped every 25 ms: median 1.06, 90th pct 1.85
+  (no step: 0.98 / 1.27), a few steps louder (likely the crossover's allpass phase moving with the
+  frequency). Not heard yet.
 - 2026-10-31: Windows installer (user: "We need a windows installer"; chose Inno Setup, unsigned
   for now): `tools/build_installer.sh` + `tools/installer/plugin.iss` (see the root CLAUDE.md),
   `installer/app_id` and `installer/THIRD-PARTY.txt` here, the GPL-3.0 text as the repository's
-  `LICENSE`. Built: Blackveil-0.4.0-Setup.exe, 10 MB (from the build before BASS MONO). Manual:
-  getting-started's install steps. Not yet tested: install / uninstall (the admin prompt was
-  cancelled).
+  `LICENSE`. Built: Blackveil-0.4.0-Setup.exe, 10 MB (with BASS MONO). Manual: getting-started's
+  install steps. Tested (silent mode, elevated): install = the bundle identical to the build, the
+  licence files, the Apps entry "Blackveil 0.4.0" / ShadowDSP; uninstall removes all three and keeps
+  AppData's User Presets; reinstall as the first. Not tested: the wizard's pages by hand, the
+  close-the-DAW prompt with Live open.
