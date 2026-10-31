@@ -18,7 +18,9 @@ tools/                shared tools: build_plugin.sh, rest.ps1, Analyze.ps1, Step
                       vendored DSP they amalgamate (vital, duskverb)
 docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-the-docs via
                       remote_theme; GitHub builds it, nothing to install): docs/<plugin>/*.md, one
-                      page per section, screenshots in docs/assets/images/<plugin>/
+                      page per section, screenshots in docs/assets/images/<plugin>/; the home page
+                      is Blackveil's manual (blackveil/index.md, permalink /; user, 2026-10-31),
+                      docs/blackveil-redirect.html forwards the old /blackveil/ address
 ```
 
 - **Docs, always (user, 2026-10-31: "from now on update the docs when something changes"):** every

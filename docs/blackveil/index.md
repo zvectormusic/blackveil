@@ -1,12 +1,12 @@
 ---
 title: Blackveil
-nav_order: 2
+nav_order: 1
+# the site's home page (the only plugin so far; the old /blackveil/ address: blackveil-redirect.html)
+permalink: /
 has_children: true
 ---
 
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
-
-# Blackveil
 
 Blackveil is a rumble generator for techno. It takes a kick, either the one already on your track
 or one of its own built-in kicks, and sends it through a chain of effects (filter, distortion,

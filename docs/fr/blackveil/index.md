@@ -7,8 +7,6 @@ has_children: true
 
 ![Blackveil]({{ '/assets/images/blackveil/logo.png' | relative_url }}){: .product-logo }
 
-# Blackveil
-
 Blackveil est un générateur de rumble pour la techno. Il prend un kick, celui qui est déjà sur votre
 piste ou l'un de ses kicks intégrés, et l'envoie dans une chaîne d'effets (filtre, distorsion,
 delay, reverb, EQ, grain). Le résultat est le **rumble** : une queue grave et sombre qui s'installe
