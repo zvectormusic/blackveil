@@ -2,17 +2,12 @@
 
 <Preset Version="0.3.0">
   <Content Processor="Interface">
-    <Control type="ScriptComboBox" id="cmbSrcMode" value="1.0"/>
-    <Control type="ScriptComboBox" id="cmbSrcTrig" value="1.0"/>
-    <Control type="ScriptComboBox" id="cmbSrcDiv" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckTrig" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckDiv" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckTarget" value="1.0"/>
-    <Control type="ScriptSlider" id="knbKickIndex" value="0.0"/>
     <Control type="ScriptSlider" id="knbFxOrder" value="156.0"/>
     <Control type="ScriptSlider" id="knbChainOrder" value="174168.0"/>
     <Control type="ScriptPanel" id="pnlDuckCurve" value="JSON{&quot;points&quot;: [[0, 1, 0], [0.12, 0.05, -0.5], [0.8, 1, -0.3], [1, 1, 0]], &quot;length&quot;: 3, &quot;offset&quot;: 0.0}"/>
-    <Control type="ScriptComboBox" id="cmbKey" value="1.0"/>
     <Control type="ScriptSlider" id="sldKick" value="0.0"/>
     <Control type="ScriptSlider" id="sldRumble" value="0.0"/>
     <Control type="ScriptButton" id="btnRumbleMute" value="0.0"/>

@@ -181,7 +181,10 @@ Run commands from the project folder (`projects/<P>`) unless they say otherwise.
 - **The REST server handles one request at a time**: set values before a blocking `recordOutput`.
 - **Knob `middlePosition`:** "Linear" knobs keep HISE's 0..1 default middle after min/max change,
   which skews the knob and its host mapping; set it to the centre of the range.
-- **Script panels get no mouse-wheel events** (only HISE's own components handle the wheel).
+- **Script panels get no mouse-wheel events in stock HISE** (only its own components handle the
+  wheel). Our HISE patch (`tools/hise-patches`, 2026-10-31) sends one to a panel set to "All
+  Callbacks": `event.mouseWheel` true, `event.wheelDeltaY` (up positive; a Windows notch is about
+  0.234), `wheelDeltaX`. Other panels pass the wheel on as before.
 - **A component made visible again needs `set("visible", true)` in the script**: the stored UI data
   keeps `visible = false`.
 - **A stray `local` statement outside any function (e.g. at the top of an included file) hangs

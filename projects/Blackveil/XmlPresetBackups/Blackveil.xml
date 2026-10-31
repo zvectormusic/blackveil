@@ -100,7 +100,7 @@
         <Processor Type="HardcodedMasterFX" ID="BvEngine" Bypassed="0" Network="bv_engine"
                    Source="0.0" Drive="0.2000000029802322" Level="0.0" Window="1.0"
                    Trigger="0.0" Division="1.0" Tune="0.0" Decay="2000.0" Pitch="0.0"
-                   PitchDecay="60.0" Hit="3.0" HitOffset="0.0" HitVelocity="1.0"
+                   PitchDecay="60.0" Hit="8.0" HitOffset="0.0" HitVelocity="1.0"
                    FilterOn="1.0" FilterType="1.0" Cutoff="400.0" Resonance="0.300000011920929"
                    FilterEnv="0.4000000059604645" FilterEnvDecay="150.0" Order="228.0"
                    DryOn="1.0" DryLevel="0.0" Phase="0.0" Polarity="0.0" Width="100.0"
@@ -125,11 +125,10 @@
           <ChildProcessors/>
           <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
           <SliderPacks>
-            <SliderPack EmbeddedData="196....n.A........3O.....7lDCvC..........X4PK1C..........XOJb6C...3OMyLy9....9C...3O......................................................................................................................................................................................"/>
+            <SliderPack EmbeddedData="196....n.A........3O.....7lDCvC..........X4PK1C..........XOJb6C...3OMyLy9....9C...3O.....LyLy8C...3OMyLy9B...9C...3O.....v0iB7C..........LyLy7C...3O....+B...8C...3O.....v0iB8C..........LyLy8C...3O....+B...9C...3O......................................................"/>
           </SliderPacks>
           <AudioFiles>
-            <AudioFile EmbeddedData="{PROJECT_FOLDER}ADRKT_RT2_Kick_01_G.wav" MinValue="0"
-                       MaxValue="78400"/>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}Kick_01_G.wav" MinValue="0" MaxValue="78400"/>
           </AudioFiles>
         </Processor>
       </ChildProcessors>

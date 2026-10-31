@@ -3,7 +3,15 @@
 # Run from projects/Blackveil with the project loaded. Each preset starts from presetInit()
 # (every sound control at its default, the default chain order, duck curve TIGHT 1/4; the setup
 # SOURCE / KEY / kick stays), applies its overrides and is saved with Engine.saveUserPreset() into
-# UserPresets/<Category>/<Name>.preset. The plugin ships them (embedded at export).
+# UserPresets/<Category>/<Name>.preset. The plugin ships them (embedded at export). The setup
+# (Interface.js PRESET_KEEP: SOURCE, its trigger and division, KEY, the kick) is stripped from each
+# file: a preset never loads it (2026-10-31, user: "don't load kicks with presets").
+#
+# Not every factory preset is made here (2026-10-31, the user's selection): Rumble/Classic Rumble 2
+# and 3, Sub/*, Movement/* and Industrial/Closed Factory, Grainy Therapy, Sub Dirty, Tube
+# Hammer 2 were made by the user in the plugin and are kept as files (their setup stripped too).
+# This script only rewrites the presets below; it never touches the others. Dropped then: Dub (the
+# category; Octave Ghost moved to Hypnotic), Sixteenth Echo, Triplet Haze, Grinder, Grain Shred.
 #
 # Values are in the controls' own units; combos are 1-based:
 #   cmbFltType 1 LP 12, 2 LP 24, 3 BP 12, 4 BP 24, 5 HP 12, 6 HP 24
@@ -23,6 +31,9 @@ repl() { curl -s -X POST localhost:1900/api/repl -H "Content-Type: application/j
 setv() { curl -s -X POST localhost:1900/api/set_component_value -H "Content-Type: application/json" \
 	-d "{\"moduleId\":\"Interface\",\"id\":\"$1\",\"value\":$2}" | grep -q '"success": true' || echo "FAILED $1=$2"; }
 
+# the setup controls out of a saved preset (PRESET_KEEP in Interface.js)
+strip_setup() { sed -E -i '/<Control [^>]*id="(cmbSrcMode|cmbSrcTrig|cmbSrcDiv|cmbKey|knbKickIndex|lblKickFile)"/d' "$1"; }
+
 # preset "Category/Name" [id value | order a b c d e | curve NAME LEN] ...
 preset() {
 	local name="$1"; shift
@@ -38,8 +49,9 @@ preset() {
 	done
 	sleep 0.5
 	repl "Engine.saveUserPreset(FileSystem.getFolder(FileSystem.UserPresets).getChildFile(\\\"$name.preset\\\"))" \
-		&& echo "saved $name"
+		&& strip_setup "UserPresets/$name.preset" && echo "saved $name"
 }
+
 
 preset "Init/Init"
 
@@ -66,28 +78,13 @@ preset "Rumble/Low Pressure" order 3 1 0 4 2 btnFx2On 0 \
 	knbDuckSplit 150 knbDuckDepth 100 curve TIGHT 3
 
 # hypnotic: synced echoes into the room
-preset "Hypnotic/Sixteenth Echo" order 0 2 3 1 4 btnFx1On 0 \
-	cmbDlyTime 3 knbDlyFeedback 55 knbDlyLowCut 40 knbDlyHighCut 2000 knbDlyMix 50 btnDlyPing 1 \
-	knbFltCutoff 300 knbFltReso 30 knbFltEnv 40 knbFltEnvDec 200 \
-	cmbRvbType 2 knbRvbSize 60 knbRvbDamp 60 knbRvbMix 80 \
-	knbEqGain 3 knbDuckDepth 85 curve SMOOTH 3
 preset "Hypnotic/Dotted Roll" order 0 2 3 4 1 btnFx1On 0 \
 	cmbDlyTime 7 knbDlyFeedback 45 knbDlyHighCut 1500 knbDlyMix 45 \
 	cmbRvbType 1 knbRvbSize 55 knbRvbMix 90 \
 	cmbFltType 3 knbFltCutoff 200 knbFltReso 40 knbFltEnv 50 knbFltEnvDec 250 \
 	knbDuckDepth 90 curve PUMP 3
-preset "Hypnotic/Triplet Haze" order 0 2 3 4 1 btnFx1On 0 \
-	cmbDlyTime 5 knbDlyFeedback 60 knbDlyHighCut 1200 knbDlyMix 50 btnDlyPing 1 \
-	cmbRvbType 4 knbRvbSize 70 knbRvbDamp 70 knbRvbMix 60 \
-	knbFltCutoff 400 knbFltReso 20 \
-	knbEqFreq 100 knbEqGain 3 knbDuckDepth 80 curve SMOOTH 3
 
 # industrial: heavy distortion, after or before the reverb
-preset "Industrial/Grinder" order 3 1 0 4 2 btnFx2On 0 \
-	cmbDstMode 3 knbDstDrive 65 knbDstTone 3000 knbDstMix 80 \
-	cmbRvbType 3 knbRvbSize 60 knbRvbDamp 40 \
-	cmbFltType 4 knbFltCutoff 350 knbFltReso 45 knbFltEnv 40 knbFltEnvDec 120 \
-	knbEqFreq 150 knbEqGain 5 knbDuckDepth 100 curve SNAP 3
 preset "Industrial/Clipped Wall" order 3 1 0 4 2 btnFx2On 0 \
 	cmbDstMode 4 knbDstDrive 70 knbDstTone 2500 \
 	cmbRvbType 5 knbRvbSize 85 \
@@ -99,31 +96,13 @@ preset "Industrial/Tube Hammer" order 1 3 0 4 2 btnFx2On 0 \
 	knbFltCutoff 350 knbFltEnv 50 knbFltEnvDec 80 \
 	knbDuckDepth 100 curve TIGHT 3
 
-# dub: dark echoes and springs
-preset "Dub/Dub Chamber" order 0 2 3 4 1 btnFx1On 0 \
-	cmbDlyTime 7 knbDlyFeedback 65 knbDlyLowCut 80 knbDlyHighCut 1200 knbDlyMix 55 btnDlyPing 1 \
-	cmbRvbType 3 knbRvbSize 65 knbRvbDamp 60 knbRvbMix 85 \
-	cmbFltType 1 knbFltCutoff 400 knbFltReso 20 \
-	knbDuckDepth 80 curve SMOOTH 3
-preset "Dub/Spring Thump" order 3 0 4 1 2 btnFx2On 0 \
-	cmbRvbType 3 knbRvbSize 50 knbRvbDamp 45 knbRvbWidth 50 \
-	knbFltCutoff 220 knbFltReso 35 knbFltEnv 60 knbFltEnvDec 180 \
-	cmbDstMode 1 knbDstDrive 30 knbDstMix 60 \
-	knbDuckDepth 85 curve DOUBLE 3
-
 # grain (2026-10-30): GRAIN last in the chain, after the room
 preset "Hypnotic/Grain Haze" order 0 3 1 4 2 btnFx1On 0 btnFx2On 0 \
 	cmbRvbType 2 knbRvbSize 70 knbRvbDamp 65 \
 	knbFltCutoff 300 knbFltReso 20 knbFltEnv 30 \
 	btnGrnOn 1 cmbGrnMode 2 knbGrnSize 120 knbGrnDensity 30 knbGrnSpray 400 knbGrnMix 45 \
 	knbDuckDepth 85 curve SMOOTH 3
-preset "Industrial/Grain Shred" order 3 1 0 4 2 btnFx2On 0 \
-	cmbDstMode 3 knbDstDrive 55 knbDstTone 3500 \
-	cmbRvbType 5 knbRvbSize 75 \
-	knbFltCutoff 450 knbFltReso 15 \
-	btnGrnOn 1 cmbGrnMode 5 knbGrnSize 40 knbGrnDensity 60 knbGrnSpray 150 knbGrnMix 60 \
-	knbDuckDepth 100 curve SNAP 3
-preset "Dub/Octave Ghost" order 0 2 3 4 1 btnFx1On 0 \
+preset "Hypnotic/Octave Ghost" order 0 2 3 4 1 btnFx1On 0 \
 	cmbDlyTime 7 knbDlyFeedback 55 knbDlyHighCut 1400 knbDlyMix 45 \
 	cmbRvbType 3 knbRvbSize 60 knbRvbMix 80 \
 	cmbFltType 1 knbFltCutoff 380 \

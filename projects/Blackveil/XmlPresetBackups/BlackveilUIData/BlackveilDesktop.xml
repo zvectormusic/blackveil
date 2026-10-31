@@ -364,13 +364,13 @@
   <Component type="ScriptPanel" id="pnlBrowser" x="280" y="77" width="620"
              height="460" allowCallbacks="All Callbacks" popupMenuItems="Duplicate to User"
              visible="0"/>
-  <Component type="ScriptPanel" id="pnlSave" x="440" y="77" width="340" height="236"
+  <Component type="ScriptPanel" id="pnlSave" x="440" y="77" width="340" height="204"
              allowCallbacks="Clicks &amp; Hover" visible="0"/>
   <Component type="ScriptComboBox" id="cmbSaveCat" x="456" y="195" items="User"
              width="308" height="28" visible="0" saveInPreset="0"/>
-  <Component type="ScriptLabel" id="lblSearch" x="320" y="89" width="350"
+  <Component type="ScriptLabel" id="lblSearch" x="320" y="89" width="522"
              height="26" fontName="Segoe UI" fontSize="15" alignment="left"
-             textColour="4293519852" text="" visible="0" updateEachKey="1"/>
+             textColour="4293519852" text="" updateEachKey="1" visible="0"/>
   <Component type="ScriptLabel" id="lblSaveName" x="460" y="135" width="300"
              height="28" fontName="Segoe UI" fontSize="15" alignment="left"
              textColour="4293519852" text="" visible="0" updateEachKey="1"/>

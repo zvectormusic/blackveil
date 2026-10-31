@@ -520,7 +520,7 @@ inline function kickNoteOf(name)
 }
 for (ref in Engine.loadAudioFilesIntoPool())
 {
-	// "{PROJECT_FOLDER}ADRKT_RT2_Kick_01_G.wav" -> "ADRKT RT2 Kick 01 G", G
+	// "{PROJECT_FOLDER}Kick_01_G.wav" -> "Kick 01 G", G
 	var kn = ref.replace("{PROJECT_FOLDER}", "");
 	kn = kn.substring(0, kn.lastIndexOf("."));
 	KICKS.push([ref, kn.replace("_", " "), kickNoteOf(kn)]);
@@ -3688,22 +3688,22 @@ for (hp in [["knbDstCrush", "Dist Crush"], ["sldNoise", "Noise"], ["cmbNoiseColo
 // ---------------------------------------------------------------------------
 // PRESETS (2026-10-30): the header box and the browser are the PRESET BROWSER block below
 // (pnlPreset, pnlBrowser, pnlSave). A preset is a sound: loading one keeps the setup (PRESET_KEEP:
-// SOURCE, its trigger and division, KEY, the kick), so a preset never swaps the track's kick
-// for the sample. A DAW session restores everything (isInternalPresetLoad). Factory presets:
-// tools/make_presets.sh (presetInit, presetCurve), shipped with the plugin; HISE extracts them
-// when the plugin's version changes (HISE_OVERWRITE_OLD_USER_PRESETS in project_info.xml).
+// SOURCE, its trigger and division, KEY, the kick), always (2026-10-31, user: "don't load kicks
+// with presets"; before, an option loaded a SAMPLE preset's kick). A DAW session restores
+// everything (isInternalPresetLoad). Factory presets: tools/make_presets.sh (presetInit,
+// presetCurve; it strips the PRESET_KEEP values from the files), shipped with the plugin; HISE
+// extracts them when the plugin's version changes (HISE_OVERWRITE_OLD_USER_PRESETS in
+// project_info.xml).
 const var PRESET_KEEP = ["cmbSrcMode", "cmbSrcTrig", "cmbSrcDiv", "cmbKey", "knbKickIndex", "lblKickFile"];
-const var PRESET_KICK = ["knbKickIndex", "lblKickFile"];   // the kick (see pkKick)
-// the browser's settings (per user, not in presets): favourites (relative paths), "load their kick"
+// the browser's settings (per user, not in presets): favourites (relative paths). (An older
+// version's "loadKick" in the file is ignored.)
 const var pbPrefsFile = FileSystem.getFolder(FileSystem.AppData).getChildFile("PresetBrowser.json");
-const var pbPrefs = {"favs": [], "loadKick": false};
+const var pbPrefs = {"favs": []};
 if (pbPrefsFile.isFile())
 {
 	var pbStored = pbPrefsFile.loadAsObject();
 	if (typeof pbStored == "object" && isDefined(pbStored.favs))
 		pbPrefs.favs = pbStored.favs;
-	if (typeof pbStored == "object" && isDefined(pbStored.loadKick))
-		pbPrefs.loadKick = pbStored.loadKick;
 }
 const var uph = Engine.createUserPresetHandler();
 uph.setEnableUserPresetPreprocessing(true, false);
@@ -3711,32 +3711,21 @@ uph.setPreCallback(function(presetData)
 {
 	if (uph.isInternalPresetLoad() || !isDefined(presetData.Content))
 		return;
-	// the browser's "KICK presets also load their kick": a preset made with the SAMPLE kick
-	// (its cmbSrcMode 2) then brings its kick (PRESET_KICK: the factory one, its user kick's file
-	// or none: a preset from before USER KICKS); the source itself stays
-	var pkKick = false;
-	for (pc in presetData.Content)
-		if (pc.id == "cmbSrcMode" && pc.value > 1.5)
-			pkKick = pbPrefs.loadKick;
+	// the setup stays as it is: its values in the preset are replaced by the current ones (added
+	// where the preset has none, e.g. the stripped factory presets)
 	var pkFound = [];
 	for (pc in presetData.Content)
 	{
-		if (PRESET_KEEP.contains(pc.id) && !(pkKick && PRESET_KICK.contains(pc.id)))
+		if (PRESET_KEEP.contains(pc.id))
 		{
 			pc.value = Content.getComponent(pc.id).getValue();
 			pkFound.push(pc.id);
 		}
-		if (PRESET_KICK.contains(pc.id))
-			pkFound.push(pc.id);
 	}
 	for (pk in PRESET_KEEP)
-	{
-		if (!pkFound.contains(pk) && !(pkKick && PRESET_KICK.contains(pk)))
+		if (!pkFound.contains(pk))
 			presetData.Content.push({"type": Content.getComponent(pk).get("type"), "id": pk,
 			                         "value": Content.getComponent(pk).getValue()});
-		else if (!pkFound.contains(pk) && pk == "lblKickFile")
-			presetData.Content.push({"type": "ScriptLabel", "id": pk, "value": ""});
-	}
 	// a preset made before a control existed (EQ TYPE, 2026-10-30): that control at its default
 	// (else it would keep whatever the last sound had)
 	var pkIds = [];
@@ -3810,24 +3799,24 @@ fltPresets.setContentData({"Type": "PresetBrowser", "ShowSaveButton": true, "Sho
 // PRESET BROWSER (2026-10-30, user: "the preset system is not user friendly at all").
 // - The header box shows CATEGORY / name, a dot when the sound changed since it was loaded or
 //   saved (pbSnap: the host parameters and the chain order); ‹ › step through the browser's
-//   category and filter (wrapping). A click on the name opens the browser; a click outside it
+//   category (wrapping). A click on the name opens the browser; a click outside it
 //   (pnlPbShade) or ✕ closes it.
 // - pnlBrowser, a dropdown under the box: categories (ALL with Init pinned on top, FAVORITES, the
-//   factory folders, then the user's), a search (Enter or a click away applies it), the source
-//   filter ALL / EXT / KICK (it opens on the current SOURCE), a star per preset (favourites, kept
-//   per user in AppData/PresetBrowser.json with "KICK presets also load their kick"). A click
-//   loads and the browser stays open, to audition. Right-click a preset of yours: Rename,
-//   Duplicate, Move to category, Delete (asks first); a factory one: Duplicate to User.
-// - The source tag is the preset's own cmbSrcMode (2 SAMPLE: KICK, else EXT): saving tags it.
+//   factory folders, then the user's), a search (Enter or a click away applies it), a star per
+//   preset (favourites, kept per user in AppData/PresetBrowser.json). A click loads and the
+//   browser stays open, to audition. Right-click a preset of yours: Rename, Duplicate, Move to
+//   category, Delete (asks first); a factory one: Duplicate to User. (Until 2026-10-31 a source
+//   filter ALL / EXT / KICK, an EXT / KICK tag per preset and "KICK presets also load their
+//   kick"; user: "too complicated".)
 // - Factory presets are the shipped folders (PRESET_FACTORY): never overwritten, renamed or
 //   deleted, and not offered as a save category.
 // - The floppy disk (pnlSaveBtn) opens pnlSave: NAME (typed in place, Enter saves), CATEGORY
-//   (cmbSaveCat: the user's, or a new one), MADE WITH (the tag, and the kick it keeps), SAVE /
-//   CANCEL; a name taken asks before overwriting. A save reloads the file, so it's the current
-//   preset (in sessions too), and the box flashes "Saved".
+//   (cmbSaveCat: the user's, or a new one), SAVE / CANCEL; a name taken asks before
+//   overwriting. A save reloads the file, so it's the current preset (in sessions too), and the
+//   box flashes "Saved".
 // Components: pnlSaveBtn, pnlPbShade, pnlBrowser, pnlSave, cmbSaveCat (after fltPresets: on top).
 
-const var PRESET_FACTORY = ["Init", "Rumble", "Dub", "Hypnotic", "Industrial"];
+const var PRESET_FACTORY = ["Init", "Rumble", "Hypnotic", "Industrial", "Movement", "Sub"];
 const var PB_W = 620;                 // the browser
 const var PB_H = 460;
 const var PB_X = PRESET_X + PRESET_W / 2 - PB_W / 2;
@@ -3840,16 +3829,16 @@ const var PB_LIST_X = PB_CAT_W + 8;
 const var PB_LIST_W = PB_W - PB_LIST_X - 18;
 const var PB_LIST_Y = PB_TOP + 8;
 const var PB_VIS = Math.floor((PB_H - PB_FOOT - 8 - PB_LIST_Y) / PB_ROW);
-const var PB_SEG_X = 406;             // ALL / EXT / KICK
-const var PB_SEG = ["ALL", "EXT", "KICK"];
+const var PB_SEARCH_W = PB_W - 12 - 50;   // the search field, from x 12 to the ✕
 const var PB_CONFIRM = [150, 160, 320, 130];
 const var PB_SAVE_W = 340;            // the save popup
-const var PB_SAVE_H = 236;
-const var PB_MENU_USER = "Rename\nDuplicate\nMove to category...\nDelete";
+const var PB_SAVE_H = 204;
 const var PB_MENU_FACTORY = "Duplicate to User";
+const var PB_MOVE = "Move to::";      // the user's preset menu's submenu (pbMenuFor)
+const var PB_NEW_CAT = "New category...";
 const var pbRoot = FileSystem.getFolder(FileSystem.UserPresets);
 
-const var pbList = [];                // {rel, name, cat, file, factory, kick (made with the SAMPLE kick)}
+const var pbList = [];                // {rel, name, cat, file, factory}
 const var pbCats = [];                // the categories in order (Init is pinned in ALL, not listed)
 const var pbRows = [];                // the browser's rows: indexes into pbList
 const var pbSnap = [];
@@ -3859,10 +3848,10 @@ var pbSnapPending = false;            // take the clean snapshot on the next tim
 var pbFlash = "";
 var pbFlashTicks = 0;
 var pbCat = "ALL";
-var pbSrc = 0;                        // 0 ALL, 1 EXT, 2 KICK
 var pbQuery = "";
 var pbScroll = 0;
-var pbHover = -1;                     // the area under the mouse (pbAreaAt)
+var pbWheel = 0.0;                    // the mouse wheel's rows not scrolled yet
+var pbHover = -1;                    // the area under the mouse (pbAreaAt)
 var pbMenuRow = -1;                   // the pbList index the right-click menu is for
 var pbEditRow = -1;                   // the row being renamed / moved (the mouse moves on meanwhile)
 var pbConfirm = -1;                   // a pbList index to delete (asking), -1 none
@@ -3903,8 +3892,7 @@ inline function pbScan()
 		local rel = pbRel(f);
 		local slash = rel.lastIndexOf("/");
 		local cat = slash > 0 ? rel.substring(0, slash) : "User";
-		raw.push({"rel": rel, "name": f.toString(1), "cat": cat, "file": f, "factory": PRESET_FACTORY.contains(cat),
-		          "kick": f.loadAsString().indexOf("id=\"cmbSrcMode\" value=\"2") != -1});
+		raw.push({"rel": rel, "name": f.toString(1), "cat": cat, "file": f, "factory": PRESET_FACTORY.contains(cat)});
 		if (!PRESET_FACTORY.contains(cat) && cat != "User" && !userCats.contains(cat))
 			userCats.push(cat);
 	}
@@ -3942,13 +3930,10 @@ inline function pbIndexOf(rel)
 	return -1;
 }
 
-inline function pbPass(p) { return p.cat == "Init" || pbSrc == 0 || (pbSrc == 2) == p.kick; }
 inline function pbInCat(p, c)
 {
 	if (p.cat == "Init")
 		return c == "ALL";
-	if (!pbPass(p))
-		return false;
 	if (c == "ALL")
 		return true;
 	if (c == "FAVORITES")
@@ -3971,7 +3956,7 @@ inline function pbUpdateRows()
 	for (pbJ = 0; pbJ < pbList.length; pbJ++)
 	{
 		local p = pbList[pbJ];
-		if (q != "" ? (p.cat != "Init" && pbPass(p) && p.name.toLowerCase().indexOf(q) != -1) : pbInCat(p, pbCat))
+		if (q != "" ? (p.cat != "Init" && p.name.toLowerCase().indexOf(q) != -1) : pbInCat(p, pbCat))
 			pbRows.push(pbJ);
 	}
 	pbScroll = Math.range(pbScroll, 0, Math.max(0, pbRows.length - PB_VIS));
@@ -4056,7 +4041,7 @@ inline function pbAddLabel(name, x, y, w, h)
 	l.set("visible", false);
 	return l;
 }
-const var lblSearch = pbAddLabel("lblSearch", PB_X + 40, PB_Y + 12, PB_SEG_X - 56, 26);
+const var lblSearch = pbAddLabel("lblSearch", PB_X + 40, PB_Y + 12, PB_SEARCH_W - 36, 26);
 lblSearch.set("updateEachKey", true);
 const var lblSaveName = pbAddLabel("lblSaveName", PRESET_X + 20, PB_Y + 58, PB_SAVE_W - 40, 28);
 lblSaveName.set("updateEachKey", true);
@@ -4088,7 +4073,6 @@ inline function pbOpenBrowser()
 {
 	pbClose();
 	pbScan();
-	pbSrc = srcMode == 1 ? 2 : 1;
 	pbQuery = "";
 	local cur = pbCurrent();
 	pbCat = isDefined(cur) && cur.cat != "Init" ? cur.cat : "ALL";
@@ -4114,7 +4098,7 @@ inline function pbLoaded(presetFile)
 		pnlBrowser.repaint();
 }
 
-// ‹ › : the previous / next preset of the browser's category and filter, wrapping
+// ‹ › : the previous / next preset of the browser's category, wrapping
 inline function pbStep(dir)
 {
 	pbScan();
@@ -4132,8 +4116,8 @@ inline function pbStep(dir)
 // ---------------------------------------------------------------------------
 // The browser: its areas (pbAreaAt), drawing, mouse
 
-// 1 search, 3 close, 4 scrollbar, 5 the kick option, 6 / 7 the delete box's CANCEL / DELETE,
-// 10 + k the filter's k, 100 + k category k (CATS: ALL, FAVORITES, then pbCats),
+// 1 search, 3 close, 4 scrollbar, 6 / 7 the delete box's CANCEL / DELETE,
+// 100 + k category k (CATS: ALL, FAVORITES, then pbCats),
 // 200 + r row r (visible slot), 300 + r row r's star
 inline function pbCatsShown()
 {
@@ -4155,14 +4139,11 @@ inline function pbAreaAt(x, y)
 	}
 	if (y >= 10 && y < 40)
 	{
-		if (x >= 12 && x < PB_SEG_X - 8) return 1;
-		if (x >= PB_SEG_X && x < PB_SEG_X + 3 * 46) return 10 + Math.floor((x - PB_SEG_X) / 46);
+		if (x >= 12 && x < 12 + PB_SEARCH_W) return 1;
 		if (x >= PB_W - 42 && x < PB_W - 12) return 3;
 		return -1;
 	}
-	if (y >= PB_H - PB_FOOT)
-		return x < 300 ? 5 : -1;
-	if (y < PB_LIST_Y)
+	if (y >= PB_H - PB_FOOT || y < PB_LIST_Y)
 		return -1;
 	if (x < PB_CAT_W)
 	{
@@ -4175,25 +4156,6 @@ inline function pbAreaAt(x, y)
 	if (r >= PB_VIS || pbScroll + r >= pbRows.length)
 		return -1;
 	return (x < PB_LIST_X + 28 ? 300 : 200) + r;
-}
-
-inline function pbBadge(g, kick, x, y)
-{
-	g.setFontWithSpacing(Theme.FONT_BOLD, 10.0, 0.1);
-	if (kick)
-	{
-		g.setColour(0xFF3A3D43);
-		g.fillRoundedRectangle([x, y, 34, 16], 2.0);
-		g.setColour(Theme.TEXT);
-		g.drawAlignedText("KICK", [x, y, 34, 16], "centred");
-	}
-	else
-	{
-		g.setColour(0xFF3A3D43);
-		g.drawRoundedRectangle([x + 0.5, y + 0.5, 33, 15], 2.0, 1.0);
-		g.setColour(Theme.TEXT_DIM);
-		g.drawAlignedText("EXT", [x, y, 34, 16], "centred");
-	}
 }
 
 inline function pbButton(g, area, text, primary, hover)
@@ -4223,28 +4185,15 @@ pnlBrowser.setPaintRoutine(function(g)
 
 	// the search field (a magnifier, the query or its placeholder)
 	g.setColour(pbHover == 1 ? 0xFF1A1B1F : 0xFF16171A);
-	g.fillRoundedRectangle([12, 10, PB_SEG_X - 20, 30], 3.0);
+	g.fillRoundedRectangle([12, 10, PB_SEARCH_W, 30], 3.0);
 	g.setColour(pbQuery != "" ? 0xFF6A6D74 : Theme.LINE);
-	g.drawRoundedRectangle([12.5, 10.5, PB_SEG_X - 21, 29], 3.0, 1.0);
+	g.drawRoundedRectangle([12.5, 10.5, PB_SEARCH_W - 1, 29], 3.0, 1.0);
 	g.setColour(Theme.TEXT_DIM);
 	g.drawEllipse([22, 18, 10, 10], 1.4);
 	g.drawLine(30.5, 35, 26.5, 31, 1.4);
 	g.setFont(Theme.FONT, 15.0);
 	g.setColour(pbQuery != "" ? Theme.TEXT : Theme.TEXT_FAINT);
-	g.drawAlignedText(pbQuery != "" ? pbQuery : "Search presets", [42, 10, PB_SEG_X - 60, 30], "left");
-
-	// ALL / EXT / KICK
-	for (pbI = 0; pbI < 3; pbI++)
-	{
-		var pbSa = [PB_SEG_X + pbI * 46, 10, 46, 30];
-		g.setColour(pbSrc == pbI ? 0xFFE9E9EC : (pbHover == 10 + pbI ? 0xFF1E2024 : 0xFF16171A));
-		g.fillRect(pbSa);
-		g.setColour(pbSrc == pbI ? 0xFF08090B : (pbHover == 10 + pbI ? 0xFFFFFFFF : Theme.TEXT_DIM));
-		g.setFontWithSpacing(Theme.FONT_BOLD, 11.0, 0.12);
-		g.drawAlignedText(PB_SEG[pbI], pbSa, "centred");
-	}
-	g.setColour(Theme.LINE);
-	g.drawRoundedRectangle([PB_SEG_X + 0.5, 10.5, 3 * 46 - 1, 29], 3.0, 1.0);
+	g.drawAlignedText(pbQuery != "" ? pbQuery : "Search presets", [42, 10, PB_SEARCH_W - 40, 30], "left");
 
 	// ✕
 	g.setColour(pbHover == 3 ? 0xFF1E2024 : 0xFF16171A);
@@ -4274,7 +4223,7 @@ pnlBrowser.setPaintRoutine(function(g)
 		g.drawAlignedText("" + pbCount(pbCs[pbI]), [pbCa[0], pbCa[1], pbCa[2] - 12, pbCa[3]], "right");
 	}
 
-	// the rows: star, name (the current one lit), category (in ALL, FAVORITES, a search), tag, lock
+	// the rows: star, name (the current one lit), category (in ALL, FAVORITES, a search), lock
 	var pbShowCat = pbQuery != "" || pbCat == "ALL" || pbCat == "FAVORITES";
 	for (pbI = 0; pbI < PB_VIS && pbScroll + pbI < pbRows.length; pbI++)
 	{
@@ -4319,7 +4268,7 @@ pnlBrowser.setPaintRoutine(function(g)
 		g.setColour(pbCur ? 0xFFFFFFFF : (pbHover == 200 + pbI ? 0xFFFFFFFF : 0xFFC9CBD0));
 		g.setFont(pbCur ? Theme.FONT_BOLD : Theme.FONT, 15.0);
 		g.drawAlignedText(pbP.name, [PB_LIST_X + 34, pbY, PB_LIST_W - 200, PB_ROW - 2], "left");
-		// right side, right to left: the lock, the tag, the category
+		// right side, right to left: the lock, the category
 		var pbRx = PB_LIST_X + PB_LIST_W - 10;
 		if (pbP.factory)
 		{
@@ -4330,23 +4279,18 @@ pnlBrowser.setPaintRoutine(function(g)
 			g.drawLine(pbRx - 9, pbRx - 3, pbY + 9, pbY + 9, 1.1);
 		}
 		pbRx -= 20;
-		if (pbP.cat != "Init")
+		if (pbP.cat != "Init" && pbShowCat)
 		{
-			pbBadge(g, pbP.kick, pbRx - 34, pbY + 7);
-			pbRx -= 42;
-			if (pbShowCat)
-			{
-				g.setColour(Theme.TEXT_FAINT);
-				g.setFontWithSpacing(Theme.FONT_BOLD, 10.5, 0.1);
-				g.drawAlignedText(pbP.cat.toUpperCase(), [pbRx - 120, pbY, 120, PB_ROW - 2], "right");
-			}
+			g.setColour(Theme.TEXT_FAINT);
+			g.setFontWithSpacing(Theme.FONT_BOLD, 10.5, 0.1);
+			g.drawAlignedText(pbP.cat.toUpperCase(), [pbRx - 120, pbY, 120, PB_ROW - 2], "right");
 		}
 	}
 	if (pbRows.length == 0)
 	{
 		g.setColour(Theme.TEXT_DIM);
 		g.setFont(Theme.FONT, 14.0);
-		g.drawAlignedText(pbQuery != "" ? "No preset matches." : "No preset here with this source: try ALL.", [PB_LIST_X + 12, PB_LIST_Y + 8, PB_LIST_W - 24, 24], "left");
+		g.drawAlignedText(pbQuery != "" ? "No preset matches." : "No preset here yet.", [PB_LIST_X + 12, PB_LIST_Y + 8, PB_LIST_W - 24, 24], "left");
 	}
 
 	// the scrollbar
@@ -4361,26 +4305,10 @@ pnlBrowser.setPaintRoutine(function(g)
 		g.fillRoundedRectangle([PB_W - 12, pbTy, 5, pbThumb], 2.5);
 	}
 
-	// the footer: the kick option, the hint
-	var pbBox = [12, PB_H - PB_FOOT / 2 - 7, 14, 14];
-	if (pbPrefs.loadKick)
-	{
-		g.setColour(Theme.TEXT);
-		g.fillRoundedRectangle(pbBox, 2.0);
-		g.setColour(0xFF08090B);
-		g.drawLine(15, 18.5, PB_H - 19, PB_H - 15.5, 1.8);
-		g.drawLine(18.5, 23.5, PB_H - 15.5, PB_H - 22, 1.8);
-	}
-	else
-	{
-		g.setColour(pbHover == 5 ? 0xFF8A8D94 : 0xFF6A6D74);
-		g.drawRoundedRectangle([12.5, PB_H - PB_FOOT / 2 - 6.5, 13, 13], 2.0, 1.0);
-	}
+	// the footer: the hint
 	g.setFont(Theme.FONT, 12.5);
-	g.setColour(pbHover == 5 ? 0xFFFFFFFF : 0xFFB8BAC0);
-	g.drawAlignedText("KICK presets also load their kick", [34, PB_H - PB_FOOT, 260, PB_FOOT], "left");
 	g.setColour(Theme.TEXT_DIM);
-	g.drawAlignedText("Click: load  ·  right-click yours: rename, delete", [300, PB_H - PB_FOOT, PB_W - 312, PB_FOOT], "right");
+	g.drawAlignedText("Click: load  ·  right-click yours: rename, delete", [12, PB_H - PB_FOOT, PB_W - 24, PB_FOOT], "right");
 
 	// deleting: the confirmation box over the list
 	if (pbConfirm != -1)
@@ -4758,7 +4686,24 @@ pnlPbShade.setMouseCallback(function(event)
 	if (event.clicked)
 		pbClose();
 });
-// a right-click menu item for pbList[i] (the row's menu: PB_MENU_USER / PB_MENU_FACTORY)
+// a row's right-click menu: a factory preset PB_MENU_FACTORY; one of the user's Rename,
+// Duplicate, Move to > (the user's categories but its own, New category...), Delete
+// (2026-10-31, user: a preset "cannot be moved": before, Move to category typed a name in place,
+// with no list)
+inline function pbMenuFor(p)
+{
+	if (p.factory)
+		return PB_MENU_FACTORY;
+	local items = ["Rename", "Duplicate"];
+	for (c in pbSaveCats())
+		if (c != p.cat)
+			items.push(PB_MOVE + c);
+	items.push(PB_MOVE + PB_NEW_CAT);
+	items.push("Delete");
+	return items.join("\n");
+}
+
+// a right-click menu item (its text, a submenu's with its "Move to::") for pbList[i]
 inline function pbMenuAction(item, i)
 {
 	if (i == -1)
@@ -4767,8 +4712,10 @@ inline function pbMenuAction(item, i)
 	local rowY = PB_LIST_Y + (pbRows.indexOf(i) - pbScroll) * PB_ROW;
 	if (item == "Rename")
 		pbEdit("rename", PB_X + PB_LIST_X + 30, PB_Y + rowY + 2, 300, pbList[i].name);
-	else if (item == "Move to category...")
-		pbEdit("move", PB_X + PB_LIST_X + 30, PB_Y + rowY + 2, 300, pbList[i].cat);
+	else if (item == PB_MOVE + PB_NEW_CAT)
+		pbEdit("move", PB_X + PB_LIST_X + 30, PB_Y + rowY + 2, 300, "New category");
+	else if (item.indexOf(PB_MOVE) == 0)
+		pbMove(i, item.substring(PB_MOVE.length, item.length));
 	else if (item == "Delete")
 		pbConfirm = i;
 	else
@@ -4785,6 +4732,26 @@ pnlBrowser.setMouseCallback(function(event)
 		return;
 	}
 
+	// the mouse wheel scrolls the list, 3 rows a notch (a Windows notch is a wheelDeltaY of
+	// about 0.234, up positive; trackpads send smaller steps: pbWheel adds them up). HISE sends
+	// panels no wheel; our HISE patch does (tools/hise-patches, 2026-10-31, user: "the scrollwheel
+	// does not work in the preset list")
+	if (isDefined(event.mouseWheel) && event.mouseWheel)
+	{
+		if (pbRows.length > PB_VIS && pbConfirm == -1)
+		{
+			pbWheel += event.wheelDeltaY / 0.234 * 3.0;
+			var pbSteps = pbWheel > 0 ? Math.floor(pbWheel) : Math.ceil(pbWheel);
+			pbWheel -= pbSteps;
+			if (pbSteps != 0)
+			{
+				pbScroll = Math.range(pbScroll - pbSteps, 0, pbRows.length - PB_VIS);
+				this.repaint();
+			}
+		}
+		return;
+	}
+
 	var pbA = event.hover || event.clicked || event.drag ? pbAreaAt(event.x, event.y) : -1;
 	if (pbA != pbHover)
 	{
@@ -4793,7 +4760,7 @@ pnlBrowser.setMouseCallback(function(event)
 		if (pbA >= 200 && pbA < 400)
 		{
 			pbMenuRow = pbRows[pbScroll + pbA % 100];
-			this.set("popupMenuItems", pbList[pbMenuRow].factory ? PB_MENU_FACTORY : PB_MENU_USER);
+			this.set("popupMenuItems", pbMenuFor(pbList[pbMenuRow]));
 		}
 		else
 			pbMenuRow = -1;
@@ -4852,16 +4819,6 @@ pnlBrowser.setMouseCallback(function(event)
 		pbDragFrom = pbScroll;
 		this.data.scrolling = true;
 	}
-	else if (pbA == 5)
-	{
-		pbPrefs.loadKick = !pbPrefs.loadKick;
-		pbSavePrefs();
-	}
-	else if (pbA >= 10 && pbA < 13)
-	{
-		pbSrc = pbA - 10;
-		pbScroll = 0;
-	}
 	else if (pbA >= 100 && pbA < 200)
 	{
 		pbCat = pbCatsShown()[pbA - 100];
@@ -4917,14 +4874,6 @@ pnlSave.setPaintRoutine(function(g)
 	g.fillRoundedRectangle([16, 56, PB_SAVE_W - 32, 32], 3.0);
 	g.setColour(0xFF8A8D94);
 	g.drawRoundedRectangle([16.5, 56.5, PB_SAVE_W - 33, 31], 3.0, 1.0);
-	// MADE WITH: the source tag (and the kick a KICK preset keeps)
-	g.setColour(Theme.TEXT_DIM);
-	g.setFontWithSpacing(Theme.FONT_BOLD, 10.5, 0.12);
-	g.drawAlignedText("MADE WITH", [16, 158, 80, 16], "left");
-	pbBadge(g, srcMode == 1, 90, 158);
-	g.setColour(0xFF9A9DA4);
-	g.setFont(Theme.FONT, 13.0);
-	g.drawAlignedText(srcMode == 1 ? kickName() + " (saved with it)" : "your own kick (the input)", [132, 158, PB_SAVE_W - 148, 16], "left");
 	pbButton(g, [PB_SAVE_W - 16 - 80 - 8 - 80, pbBtnY, 80, 30], "CANCEL", false, this.data.hover == 1);
 	pbButton(g, [PB_SAVE_W - 16 - 80, pbBtnY, 80, 30], "SAVE", true, this.data.hover == 2);
 });

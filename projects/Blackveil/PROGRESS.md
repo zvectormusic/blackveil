@@ -457,3 +457,19 @@
 - 2026-10-31: first GitHub release, v0.4.0 (https://github.com/zvectormusic/blackveil/releases/tag/v0.4.0):
   Blackveil-0.4.0-Setup.exe (the download checked: same SHA-256 as the build). The manual's
   getting-started (EN, and FR, which still said to copy the bundle by hand) links releases/latest.
+- 2026-10-31: presets simplified (user: "the preset system is too complicated with kick / ext
+  filtering. don't load kicks with presets"): a preset never changes SOURCE, its trigger and
+  division, KEY or the kick; the browser's ALL / EXT / KICK filter, the EXT / KICK tags, "load
+  their kick" and the save box's MADE WITH are gone; the factory presets' setup values stripped.
+  Tested in HISE: a SAMPLE / GRID / kick 5 / key F setup stayed through two factory presets and an
+  old-style preset holding kick 8; each factory preset's 65 sound controls loaded exactly.
+  Move to: a submenu of the user's categories + New category (before: a bare text field, user: a
+  preset "cannot be moved"). The mouse wheel scrolls the preset list (user: "the scrollwheel does
+  not work"), through a HISE patch (tools/hise-patches #4; HISE rebuilt, 304 s); tested by the
+  user in HISE ("works like a charm").
+- 2026-10-31: the factory set reorganised by the user: Dub dropped (Octave Ghost to Hypnotic;
+  Dub Chamber, Spring Thump dropped), Sixteenth Echo, Triplet Haze, Grinder, Grain Shred dropped;
+  10 of the user's presets added (Rumble: Classic Rumble 2, 3; Industrial: Closed Factory, Grainy
+  Therapy, Sub Dirty, Tube Hammer 2; new Movement: Distant Club, Feedback Pong, Sub Groove 1..3;
+  new Sub: Sub Density; Movement/Deep Haze, the user's "Init 2"). 22 presets. Version 0.4.1 (so the plugin unpacks them). Init stays all
+  defaults (the tutorial starts from it).

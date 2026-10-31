@@ -1,60 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Preset Version="0.3.0">
+<Preset Version="0.4.0">
   <Content Processor="Interface">
-    <Control type="ScriptComboBox" id="cmbSrcMode" value="1.0"/>
-    <Control type="ScriptComboBox" id="cmbSrcTrig" value="1.0"/>
-    <Control type="ScriptComboBox" id="cmbSrcDiv" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckTrig" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckDiv" value="1.0"/>
     <Control type="ScriptComboBox" id="cmbDuckTarget" value="1.0"/>
-    <Control type="ScriptSlider" id="knbKickIndex" value="0.0"/>
-    <Control type="ScriptSlider" id="knbFxOrder" value="135.0"/>
-    <Control type="ScriptSlider" id="knbChainOrder" value="174091.0"/>
-    <Control type="ScriptPanel" id="pnlDuckCurve" value="JSON{&quot;points&quot;: [[0, 1, 0], [0.005, 0, 0], [0.25, 1, -0.6], [1, 1, 0]], &quot;length&quot;: 3, &quot;offset&quot;: 0.0}"/>
-    <Control type="ScriptComboBox" id="cmbKey" value="1.0"/>
+    <Control type="ScriptSlider" id="knbFxOrder" value="201.0"/>
+    <Control type="ScriptSlider" id="knbChainOrder" value="143501.0"/>
+    <Control type="ScriptPanel" id="pnlDuckCurve" value="JSON{&quot;points&quot;: [[0, 0.0, 0], [0.001, 0.0, 0], [0.6373410689170182, 0.0, 0.0], [0.6383410689170183, 0.0, 0], [0.75, 0.9436619718309859, -0.704225352112676], [0.8382299578059071, 0.9577464788732395, 0.0], [0.9620731364275668, 0.0, 0.4], [1, 0.0, 0.971830985915493]], &quot;length&quot;: 3, &quot;offset&quot;: -0.05}"/>
     <Control type="ScriptSlider" id="sldKick" value="0.0"/>
-    <Control type="ScriptSlider" id="sldRumble" value="0.0"/>
+    <Control type="ScriptSlider" id="sldRumble" value="-6.5"/>
     <Control type="ScriptButton" id="btnRumbleMute" value="0.0"/>
-    <Control type="ScriptSlider" id="sldSend" value="1000.0"/>
+    <Control type="ScriptSlider" id="sldSend" value="82.0"/>
     <Control type="ScriptButton" id="btnFx0On" value="1.0"/>
-    <Control type="ScriptButton" id="btnFx1On" value="1.0"/>
-    <Control type="ScriptButton" id="btnFx2On" value="0.0"/>
+    <Control type="ScriptButton" id="btnFx1On" value="0.0"/>
+    <Control type="ScriptButton" id="btnFx2On" value="1.0"/>
     <Control type="ScriptButton" id="btnFx3On" value="1.0"/>
     <Control type="ScriptButton" id="btnEqOn" value="1.0"/>
-    <Control type="ScriptButton" id="btnGrnOn" value="1.0"/>
+    <Control type="ScriptButton" id="btnGrnOn" value="0.0"/>
     <Control type="ScriptButton" id="btnLimOn" value="1.0"/>
     <Control type="ScriptSlider" id="knbSrcTune" value="0.0"/>
-    <Control type="ScriptSlider" id="knbSrcDecay" value="2000.0"/>
+    <Control type="ScriptSlider" id="knbSrcDecay" value="416.0"/>
     <Control type="ScriptSlider" id="knbSrcPitch" value="0.0"/>
     <Control type="ScriptSlider" id="knbSrcPitchDec" value="60.0"/>
     <Control type="ScriptSlider" id="knbSrcDrive" value="20.0"/>
     <Control type="ScriptSlider" id="knbSrcLevel" value="0.0"/>
     <Control type="ScriptComboBox" id="cmbFltType" value="2.0"/>
-    <Control type="ScriptSlider" id="knbFltCutoff" value="450.0"/>
-    <Control type="ScriptSlider" id="knbFltReso" value="15.0"/>
+    <Control type="ScriptSlider" id="knbFltCutoff" value="78.0"/>
+    <Control type="ScriptSlider" id="knbFltReso" value="30.0"/>
     <Control type="ScriptSlider" id="knbFltEnv" value="40.0"/>
     <Control type="ScriptSlider" id="knbFltEnvDec" value="150.0"/>
-    <Control type="ScriptComboBox" id="cmbDstMode" value="3.0"/>
-    <Control type="ScriptSlider" id="knbDstDrive" value="55.0"/>
-    <Control type="ScriptSlider" id="knbDstTone" value="3500.0"/>
+    <Control type="ScriptComboBox" id="cmbDstMode" value="2.0"/>
+    <Control type="ScriptSlider" id="knbDstDrive" value="81.59999847412109"/>
+    <Control type="ScriptSlider" id="knbDstTone" value="20000.0"/>
     <Control type="ScriptSlider" id="knbDstMix" value="100.0"/>
-    <Control type="ScriptComboBox" id="cmbDlyTime" value="3.0"/>
+    <Control type="ScriptComboBox" id="cmbDlyTime" value="6.0"/>
     <Control type="ScriptButton" id="btnDlyPing" value="0.0"/>
-    <Control type="ScriptSlider" id="knbDlyFeedback" value="45.0"/>
+    <Control type="ScriptSlider" id="knbDlySwing" value="33.0"/>
+    <Control type="ScriptSlider" id="knbDlyFeedback" value="95.0"/>
     <Control type="ScriptSlider" id="knbDlyLowCut" value="40.0"/>
     <Control type="ScriptSlider" id="knbDlyHighCut" value="2500.0"/>
-    <Control type="ScriptSlider" id="knbDlyMix" value="50.0"/>
+    <Control type="ScriptSlider" id="knbDlyMix" value="100.0"/>
     <Control type="ScriptComboBox" id="cmbRvbType" value="5.0"/>
-    <Control type="ScriptSlider" id="knbRvbSize" value="75.0"/>
+    <Control type="ScriptSlider" id="knbRvbSize" value="100.0"/>
     <Control type="ScriptSlider" id="knbRvbDamp" value="60.0"/>
     <Control type="ScriptSlider" id="knbRvbWidth" value="40.0"/>
-    <Control type="ScriptSlider" id="knbRvbMix" value="100.0"/>
-    <Control type="ScriptComboBox" id="cmbGrnMode" value="5.0"/>
-    <Control type="ScriptSlider" id="knbGrnSize" value="40.0"/>
-    <Control type="ScriptSlider" id="knbGrnDensity" value="60.0"/>
-    <Control type="ScriptSlider" id="knbGrnSpray" value="150.0"/>
-    <Control type="ScriptSlider" id="knbGrnMix" value="60.0"/>
+    <Control type="ScriptSlider" id="knbRvbMix" value="25.44000053405762"/>
+    <Control type="ScriptComboBox" id="cmbGrnMode" value="3.0"/>
+    <Control type="ScriptSlider" id="knbGrnSize" value="149.0"/>
+    <Control type="ScriptSlider" id="knbGrnDensity" value="10.81999969482422"/>
+    <Control type="ScriptSlider" id="knbGrnSpray" value="200.0"/>
+    <Control type="ScriptSlider" id="knbGrnMix" value="31.76000022888184"/>
     <Control type="ScriptSlider" id="knbDuckDepth" value="100.0"/>
     <Control type="ScriptSlider" id="knbDuckSplit" value="2000.0"/>
     <Control type="ScriptButton" id="btnOutPol" value="0.0"/>
@@ -63,16 +59,17 @@
     <Control type="ScriptSlider" id="knbOutWidth" value="100.0"/>
     <Control type="ScriptSlider" id="knbOutVolume" value="0.0"/>
     <Control type="ScriptButton" id="btnDryOn" value="1.0"/>
-    <Control type="ScriptSlider" id="knbEqFreq" value="140.0"/>
-    <Control type="ScriptSlider" id="knbEqGain" value="4.0"/>
-    <Control type="ScriptSlider" id="knbEqWidth" value="1.0"/>
-    <Control type="ScriptSlider" id="knbEqSubCut" value="35.0"/>
+    <Control type="ScriptComboBox" id="cmbEqType" value="1.0"/>
+    <Control type="ScriptSlider" id="knbEqFreq" value="194.0"/>
+    <Control type="ScriptSlider" id="knbEqGain" value="11.0"/>
+    <Control type="ScriptSlider" id="knbEqWidth" value="0.8500000238418579"/>
+    <Control type="ScriptSlider" id="knbEqSubCut" value="75.0"/>
     <Control type="ScriptSlider" id="knbLimDrive" value="0.0"/>
     <Control type="ScriptSlider" id="knbLimCeiling" value="-0.300000011920929"/>
     <Control type="ScriptSlider" id="knbLimRelease" value="60.0"/>
     <Control type="ScriptSlider" id="knbDstCrush" value="0.0"/>
     <Control type="ScriptSlider" id="sldNoise" value="-60.0"/>
-    <Control type="ScriptComboBox" id="cmbNoiseColor" value="2.0"/>
+    <Control type="ScriptComboBox" id="cmbNoiseColor" value="3.0"/>
   </Content>
   <MidiAutomation/>
   <MPEData Enabled="0"/>

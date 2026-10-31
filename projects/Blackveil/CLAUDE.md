@@ -113,8 +113,7 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   path>)`; the engine already reads mono files and the file's sample rate); ‹ › step through its
   folder (`userKicks`, sorted). Its path is the hidden label `lblKickFile` (saved; "" = factory,
   `knbKickIndex` keeps the factory kick meanwhile); a missing file plays the factory kick and
-  shows MISSING. Presets: `lblKickFile` is in PRESET_KEEP and PRESET_KICK (it travels with
-  "load their kick"; a preset without it then means the factory kick). The note comes from the
+  shows MISSING. Presets: `lblKickFile` is in PRESET_KEEP (a preset never changes it). The note comes from the
   name's last word (`kickNoteOf`). `Graphics.drawFittedText` isn't registered in this HISE
   ("function not found"): the name shrinks / shortens by `getStringWidth`. Test paths through
   `/api/repl` with forward slashes: its string parser drops backslashes.
@@ -237,7 +236,10 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   copied here by `tools/gen_vital_filters.sh`: never edit the copy.
 - **Kicks:** every audio file in `AudioFiles/` (embedded in the plugin; `Engine.loadAudioFilesIntoPool`),
   in file order, named after the file (underscores -> spaces). Add a kick = drop a WAV there and
-  rebuild. The script loads the selected one into `BvEngine`'s audio file slot.
+  rebuild. **Names: `Kick_<NN>_<key>.wav`** (Kick_01_G .. Kick_10_A). Presets and sessions store the kick as its index
+  (`knbKickIndex`), so a new kick takes the next number (it must sort after the others), and an
+  existing one is never renumbered or removed. The project XML names the engine's loaded file
+  (`AudioFile EmbeddedData`). The script loads the selected one into `BvEngine`'s audio file slot.
 - MIDI reaches the Interface script's `onNoteOn` (the plugin takes MIDI); it passes the note's
   offset in the block and its velocity, then bumps Hit, so the kick plays sample-accurately.
 - DUCK LOW END (`knbDuckSplit`, 2026-10-29, in MIX's place; user: "replace duck mix with ducking
@@ -312,36 +314,37 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
   other slots. A new RAND_* control needs one of those tags in its id.
 - **Presets** (2026-10-30). A preset is a sound: `uph`'s pre-callback (preprocessing on)
   rewrites the `PRESET_KEEP` controls (SOURCE mode / trigger / division, KEY, the kick) to their
-  current values on a user-preset load; a DAW session (`isInternalPresetLoad`) restores everything.
-  Exception: with the browser's "KICK presets also load their kick" (`pbPrefs.loadKick`), a preset
-  saved in SAMPLE (its `cmbSrcMode` 2) brings its `knbKickIndex`; the source stays.
+  current values (added where a preset has none) on a user-preset load, always (2026-10-31, user:
+  "the preset system is too complicated with kick / ext filtering. don't load kicks with presets":
+  the source filter, the EXT / KICK tag, MADE WITH and the "load their kick" option went); a DAW
+  session (`isInternalPresetLoad`) restores everything. The factory presets have no PRESET_KEEP
+  values (`make_presets.sh` strips them, `strip_setup`).
   The post-callback (`pbLoaded`) sets the current preset, clears the dot, clears RANDOM's undo.
 - **Preset browser** (2026-10-30, branch `preset-ux`; user: "the preset system ... is not user
   friendly at all"; mockup approved first). The PRESET BROWSER block in Interface.js, `pb*`:
   - Header: `pnlPreset` shows CATEGORY / name and a dot when the sound changed since the load or
     save (`pbSnap`: every host parameter but `PRESET_KEEP`, plus the chain order, compared on a
     300 ms timer; the snapshot is taken on the tick after a load / init, after the stored values
-    are restored); ‹ › step through the browser's category and filter, wrapping (`pbStep`);
+    are restored); ‹ › step through the browser's category, wrapping (`pbStep`);
     the floppy disk `pnlSaveBtn` opens the save popup; the "Saved" flash lasts 1.5 s.
   - `pnlBrowser` (620 x 460, under the box; `pnlPbShade` under it: a click outside closes):
     categories (ALL with Init pinned on top, FAVORITES, the factory folders, User, the user's),
-    search (`lblSearch`, filters on each key), filter ALL / EXT / KICK (opens on the current
-    SOURCE), a star per preset, the tag badge, a lock on factory presets, a dragged scrollbar (11
-    rows; panels get no wheel). A click loads, the browser stays open (audition). Right-click
+    search (`lblSearch`, filters on each key), a star per preset, a lock on factory presets, a dragged scrollbar (11
+    rows; the mouse wheel scrolls it, 3 rows a notch, through our HISE patch: `event.mouseWheel`,
+    see the root CLAUDE.md). A click loads, the browser stays open (audition). Right-click
     (the panel's own popup menu, its items set as the mouse moves over a row): Rename / Duplicate /
-    Move to category... / Delete (a confirmation box) on the user's, Duplicate to User on factory
+    Move to > (`pbMenuFor`: the user's categories but its own, New category... typed in place; a
+    submenu item arrives as "Move to::<cat>"; until 2026-10-31 a bare text field, user: a preset
+    "cannot be moved") / Delete (a confirmation box) on the user's, Duplicate to User on factory
     ones (`pbMenuAction`). Rename / move / a new save category type into `lblEdit` in place.
-  - The tag is read from the file (`cmbSrcMode` value 2 = KICK), so saving tags it. The factory
-    presets were all made in EXT, so they're all EXT: give make_presets.sh a `cmbSrcMode 2` where a
-    sound is meant for the SAMPLE kick.
-  - Factory = the folders in `PRESET_FACTORY` (Init, Rumble, Dub, Hypnotic, Industrial): never
+  - Factory = the folders in `PRESET_FACTORY` (Init, Rumble, Hypnotic, Industrial, Movement, Sub; 2026-10-31, the user's selection: Dub dropped): never
     overwritten, renamed, moved or deleted, not a save category. **Add a new factory folder there.**
   - `pnlSave`: NAME (`lblSaveName`, each key), CATEGORY (`cmbSaveCat`: the user's categories, or
-    "+ New category..."), MADE WITH (the tag; for KICK the kick it keeps), CANCEL / SAVE; a name
+    "+ New category..."), CANCEL / SAVE; a name
     taken asks "Overwrite?" (BACK / OVERWRITE). `pbDoSave` writes with
     `Engine.saveUserPreset(file)` and loads the file back, so it is the current preset (box,
     arrows, sessions). Default name: the current one (a factory one + " 2"), category User.
-  - Favourites and the kick option: `%APPDATA%\ShadowDSP\Blackveil\PresetBrowser.json`, per user.
+  - Favourites: `%APPDATA%\ShadowDSP\Blackveil\PresetBrowser.json`, per user.
   - `fltPresets` (HISE's PresetBrowser before) stays, hidden (ids are append-only). The browser's
     components come after it, the labels last (on top).
   - Traps found: HISE's `Content.showModalTextInput` box only closes when it loses keyboard focus,
@@ -351,10 +354,13 @@ engine was wired module by module (below; every module since 2026-10-29; host pa
     `event.clicked` too. A panel's right-click menu is modal: e2e can't drive it (it hangs the
     test window until HISE restarts); test `pbMenuAction` through the REPL.
   - **Factory presets:** `bash tools/make_presets.sh` (from this folder, HISE running, project
-    loaded): 12 sounds in Rumble / Hypnotic / Industrial / Dub plus Init/Init, each from
+    loaded): Init/Init and the 9 sounds it lists (Rumble, Hypnotic, Industrial), each from
     `presetInit()` (every host-parameter control but `PRESET_KEEP` at its default, default chain
     order, curve TIGHT 1/4) plus its overrides (`presetCurve(name, lengthIndex)` for the curve).
     Re-run it after adding a control, then save the project (it ends at the defaults).
+    The other factory presets (2026-10-31: Rumble/Classic Rumble 2, 3, Industrial/Closed Factory,
+    Grainy Therapy, Sub Dirty, Tube Hammer 2, Movement/* (Deep Haze: the user's "Init 2"), Sub/*) were made by the user in the plugin
+    and are kept as files, their setup stripped (`strip_setup`); the script never touches them.
   - **Shipping:** the export embeds `UserPresets/`; the plugin extracts them into
     `%APPDATA%\ShadowDSP\Blackveil\User Presets` when its version differs from that folder's
     `info.json` (`HISE_OVERWRITE_OLD_USER_PRESETS=1`, ExtraDefinitionsWindows in

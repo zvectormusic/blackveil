@@ -10,8 +10,8 @@ nav_order: 9
 
 A preset is a **sound**: the FX chain and its order, DUCK and its curve, OUTPUT, LIMITER, the
 levels. Loading a preset **keeps your setup**: SOURCE (EXT or SAMPLE, the trigger and the
-division), KEY and the selected kick stay as they are. So you can browse presets while your kick
-keeps playing the same way.
+division), KEY and the selected kick (a built-in one or your own file) stay as they are, always.
+So you can browse presets while your kick keeps playing the same way.
 
 Your DAW session, on the other hand, restores everything.
 
@@ -19,28 +19,24 @@ Your DAW session, on the other hand, restores everything.
 
 In the header:
 
-- **‹ ›** step to the previous / next preset in the browser's current category and filter.
+- **‹ ›** step to the previous / next preset in the browser's current category.
 - **Click the name** to open the browser.
 - **The floppy disk** saves.
 - **A dot** after the name: you changed the sound since you loaded or saved it.
 
 ## The browser
 
-![The preset browser, filtered on EXT]({{ '/assets/images/blackveil/browser.png' | relative_url }})
+![The preset browser]({{ '/assets/images/blackveil/browser.png' | relative_url }})
 
 - **Categories** on the left: ALL (with Init on top), FAVORITES, the factory categories
-  (Rumble, Hypnotic, Industrial, Dub), User, and your own.
+  (Rumble, Hypnotic, Industrial, Movement, Sub), User, and your own.
 - **Search** filters as you type.
-- **ALL / EXT / KICK** filters by what a preset was made with: your track's kick (EXT) or a
-  built-in kick (KICK). The browser opens on your current SOURCE.
 - **A click loads** the preset and leaves the browser open, so you can audition one after another.
   Click outside the browser to close it.
 - **The star** marks a favourite.
-- **Right-click** a preset of yours: Rename, Duplicate, Move to category..., Delete. On a factory
-  preset (it has a lock): Duplicate to User.
-
-**"KICK presets also load their kick"**: a browser option. When on, a preset saved in SAMPLE mode
-also brings its kick, a built-in one or your own file (the source mode still stays).
+- **Scroll** the list with the mouse wheel, or drag its scrollbar.
+- **Right-click** a preset of yours: Rename, Duplicate, **Move to** (one of your categories, or New
+  category... to make one), Delete. On a factory preset (it has a lock): Duplicate to User.
 
 ## Saving
 
@@ -50,7 +46,6 @@ The floppy disk opens the save box:
 
 - **NAME**: the current preset's name (a factory one gets " 2"; after Init, "My Preset").
 - **CATEGORY**: one of your categories, or "+ New category...".
-- **MADE WITH**: EXT or KICK, from the current SOURCE (with the kick's name for KICK).
 
 A name that already exists asks before overwriting. Factory presets can't be overwritten, renamed,
 moved or deleted.

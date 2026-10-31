@@ -10,8 +10,8 @@ nav_order: 9
 
 Un preset est un **son** : la chaîne d'effets et son ordre, DUCK et sa courbe, OUTPUT, LIMITER, les
 niveaux. Charger un preset **garde votre configuration** : SOURCE (EXT ou SAMPLE, le déclenchement et
-la division), KEY et le kick choisi restent tels quels. Vous pouvez donc parcourir les presets
-pendant que votre kick continue de jouer de la même façon.
+la division), KEY et le kick choisi (intégré ou votre propre fichier) restent tels quels, toujours.
+Vous pouvez donc parcourir les presets pendant que votre kick continue de jouer de la même façon.
 
 Votre session DAW, elle, restaure tout.
 
@@ -19,29 +19,25 @@ Votre session DAW, elle, restaure tout.
 
 Dans l'en-tête :
 
-- **‹ ›** passent au preset précédent / suivant dans la catégorie et le filtre actuels du navigateur.
+- **‹ ›** passent au preset précédent / suivant dans la catégorie actuelle du navigateur.
 - **Cliquez sur le nom** pour ouvrir le navigateur.
 - **La disquette** sauvegarde.
 - **Un point** après le nom : vous avez modifié le son depuis son chargement ou sa sauvegarde.
 
 ## Le navigateur {#the-browser}
 
-![Le navigateur de presets, filtré sur EXT]({{ '/assets/images/blackveil/browser.png' | relative_url }})
+![Le navigateur de presets]({{ '/assets/images/blackveil/browser.png' | relative_url }})
 
 - **Catégories** à gauche : ALL (avec Init en haut), FAVORITES, les catégories d'usine (Rumble,
-  Hypnotic, Industrial, Dub), User, et les vôtres.
+  Hypnotic, Industrial, Movement, Sub), User, et les vôtres.
 - **La recherche** filtre pendant la frappe.
-- **ALL / EXT / KICK** filtre selon ce avec quoi un preset a été fait : le kick de votre piste (EXT)
-  ou un kick intégré (KICK). Le navigateur s'ouvre sur votre SOURCE actuelle.
 - **Un clic charge** le preset et laisse le navigateur ouvert : vous pouvez en écouter plusieurs à la
   suite. Cliquez hors du navigateur pour le fermer.
 - **L'étoile** marque un favori.
-- **Clic droit** sur un de vos presets : Rename, Duplicate, Move to category..., Delete. Sur un preset
-  d'usine (il porte un cadenas) : Duplicate to User.
-
-**« KICK presets also load their kick »** : une option du navigateur. Activée, un preset sauvegardé
-en mode SAMPLE apporte aussi son kick, intégré ou votre propre fichier (le mode de source, lui, ne
-change pas).
+- **Faites défiler** la liste avec la molette de la souris, ou en faisant glisser sa barre de défilement.
+- **Clic droit** sur un de vos presets : Rename, Duplicate, **Move to** (une de vos catégories, ou New
+  category... pour en créer une), Delete. Sur un preset d'usine (il porte un cadenas) : Duplicate to
+  User.
 
 ## Sauvegarder {#saving}
 
@@ -51,7 +47,6 @@ La disquette ouvre la fenêtre de sauvegarde :
 
 - **NAME** : le nom du preset actuel (un preset d'usine reçoit « 2 » ; après Init, « My Preset »).
 - **CATEGORY** : une de vos catégories, ou « + New category... ».
-- **MADE WITH** : EXT ou KICK, d'après la SOURCE actuelle (avec le nom du kick pour KICK).
 
 Un nom qui existe déjà demande confirmation avant d'écraser. Les presets d'usine ne peuvent pas être
 écrasés, renommés, déplacés ni supprimés.
