@@ -480,3 +480,6 @@
   too, CHOP's DEPTH capped at 85 like LONG / GATE (`RAND_DUCK_HARD`). Tested in HISE: each button
   loads its curve and lights (`duckPresetMatch`), screenshots. Manual EN / FR updated. Manual screenshots
   duck.png and overview.png retaken. Plugin build (204 s), installed. Not heard yet.
+- 2026-10-31: release v0.4.1 (https://github.com/zvectormusic/blackveil/releases/tag/v0.4.1):
+  Blackveil-0.4.1-Setup.exe (CHOP / SHUFFLE, the simpler presets, the reorganised factory set, the
+  preset list's wheel); the download checked against the build (same SHA-256).
