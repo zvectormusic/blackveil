@@ -14,7 +14,8 @@ nav_order: 1
 ## Installing
 
 1. Close your DAW.
-2. Run `Blackveil-<version>-Setup.exe` and follow it. It installs `Blackveil.vst3` into
+2. Download `Blackveil-<version>-Setup.exe` from the
+   [latest release](https://github.com/zvectormusic/blackveil/releases/latest), run it and follow it. It installs `Blackveil.vst3` into
    `C:\Program Files\Common Files\VST3\` (it asks for administrator rights for that folder).
    The installer isn't signed yet, so Windows may show "Windows protected your PC": click
    **More info**, then **Run anyway**.

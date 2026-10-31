@@ -454,3 +454,6 @@
   licence files, the Apps entry "Blackveil 0.4.0" / ShadowDSP; uninstall removes all three and keeps
   AppData's User Presets; reinstall as the first. Not tested: the wizard's pages by hand, the
   close-the-DAW prompt with Live open.
+- 2026-10-31: first GitHub release, v0.4.0 (https://github.com/zvectormusic/blackveil/releases/tag/v0.4.0):
+  Blackveil-0.4.0-Setup.exe (the download checked: same SHA-256 as the build). The manual's
+  getting-started (EN, and FR, which still said to copy the bundle by hand) links releases/latest.
