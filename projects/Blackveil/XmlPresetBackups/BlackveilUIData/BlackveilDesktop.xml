@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptComboBox" id="cmbSrcMode" x="0" y="0" max="2" items="EXT&#10;SAMPLE"
+             width="10" height="24" visible="0" pluginParameterName="Source"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbSrcTrig" x="0" y="0" max="2" items="MIDI&#10;GRID"
+             width="10" height="24" visible="0" pluginParameterName="Kick Trigger"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbSrcDiv" x="0" y="0" max="4" items="1/4&#10;1/8&#10;1/2&#10;1 BAR"
+             width="10" height="24" visible="0" pluginParameterName="Kick Division"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbDuckTrig" x="0" y="0" max="2" items="KICK&#10;GRID"
+             width="10" height="24" visible="0" pluginParameterName="Duck Trigger"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbDuckDiv" x="0" y="0" max="4" items="1/4&#10;1/8&#10;1/2&#10;1 BAR"
+             width="10" height="24" visible="0" pluginParameterName="Duck Division"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbDuckTarget" x="0" y="0" max="2"
+             items="RUMBLE&#10;ALL" width="10" height="24" visible="0" pluginParameterName="Duck Target"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbKickIndex" x="0" y="0" middlePosition="127.5"
+             text="" width="72" height="92" max="255" dragDirection="Vertical"
+             stepSize="1" visible="0"/>
+  <Component type="ScriptSlider" id="knbFxOrder" x="0" y="0" middlePosition="127.5"
+             text="" width="72" height="92" max="255" defaultValue="228.0"
+             dragDirection="Vertical" stepSize="1" visible="0"/>
+  <Component type="ScriptSlider" id="knbChainOrder" x="0" y="0" middlePosition="131071.5"
+             text="" width="72" height="92" max="262143" defaultValue="181896.0"
+             dragDirection="Vertical" stepSize="1" visible="0"/>
+  <Component type="ScriptPanel" id="pnlDuckCurve" x="0" y="0" width="1" height="1"
+             visible="0" saveInPreset="1"/>
+  <Component type="ScriptPanel" id="pnlBg" x="0" y="0" width="1200" height="926"/>
+  <Component type="ScriptPanel" id="pnlUiSize" x="1106" y="42" width="70"
+             height="26" allowCallbacks="Clicks &amp; Hover" tooltip="SIZE: the window size, S 80 % / M 100 % / L 125 % (click for the next)"/>
+  <Component type="ScriptComboBox" id="cmbKey" x="1034" y="42" max="13" items="OFF&#10;C&#10;C#&#10;D&#10;D#&#10;E&#10;F&#10;F#&#10;G&#10;G#&#10;A&#10;A#&#10;B"
+             width="56" height="26" tooltip="KEY: the SAMPLE kick is tuned to it (its note from the file name), EQ FREQ snaps to its root and fifth, a COMB filter to its root"
+             pluginParameterName="Key" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlViz" x="24" y="122" width="1152" height="220"
+             allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlVizWindow" x="864" y="128" width="300"
+             height="22" allowCallbacks="Clicks &amp; Hover" visible="0"/>
+  <Component type="ScriptPanel" id="pnlVizMode" x="0" y="0" width="10" height="10"
+             allowCallbacks="Clicks &amp; Hover" visible="0"/>
+  <Component type="ScriptSlider" id="sldKick" x="670" y="881" style="Horizontal"
+             middlePosition="-12" stepSize="0.1" min="-60" max="6" suffix=" dB"
+             text="KICK" width="226" height="30" mode="Decibel" pluginParameterName="Kick Level"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="sldRumble" x="950" y="881" style="Horizontal"
+             middlePosition="-12" stepSize="0.1" min="-60" max="6" suffix=" dB"
+             text="RUMBLE" width="226" height="30" mode="Decibel" pluginParameterName="Rumble Level"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnKickMute" x="640" y="885" text=""
+             tooltip="On / mute" width="22" height="22" saveInPreset="0"/>
+  <Component type="ScriptButton" id="btnRumbleMute" x="920" y="885" text=""
+             tooltip="On / mute" width="22" height="22" pluginParameterName="Rumble Mute"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="sldSend" x="24" y="881" style="Horizontal"
+             middlePosition="150" stepSize="1" min="10" max="1000" suffix=" ms"
+             text="SEND GATE" width="246" height="30" mode="Time" tooltip="SEND GATE: how much of each kick feeds the FX chain (FULL: all of it)"
+             pluginParameterName="Send Gate" defaultValue="1000.0" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlNode0" x="238" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode1" x="356" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode2" x="474" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode3" x="592" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode4" x="828" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode5" x="946" y="388" width="108"
+             height="472"/>
+  <Component type="ScriptPanel" id="pnlNode6" x="710" y="388" width="108"
+             height="472" allowCallbacks="Clicks, Hover &amp; Dragging"/>
+  <Component type="ScriptPanel" id="pnlNode7" x="1064" y="388" width="108"
+             height="472"/>
+  <Component type="ScriptButton" id="btnFx0On" x="322" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="Filter On"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnFx1On" x="440" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="Dist On"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnFx2On" x="558" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="Delay On"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnFx3On" x="676" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="Reverb On"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnEqOn" x="794" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="EQ On"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnGrnOn" x="912" y="393" text="POWER"
+             width="18" height="18" pluginParameterName="Grain On" isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnLimOn" x="1148" y="393" text="POWER"
+             width="18" height="18" defaultValue="1" pluginParameterName="Limiter On"
+             isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlDisp0" x="246" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp1" x="364" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp2" x="482" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp3" x="600" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp4" x="836" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp5" x="954" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp6" x="718" y="422" width="92" height="50"/>
+  <Component type="ScriptPanel" id="pnlDisp7" x="1072" y="422" width="92"
+             height="50"/>
+  <Component type="ScriptPanel" id="pnlSrcNode" x="28" y="388" width="200"
+             height="472"/>
+  <Component type="ScriptPanel" id="pnlSrcMode" x="42" y="422" width="172"
+             height="26" allowCallbacks="Clicks &amp; Hover"/>
+  <Component type="ScriptPanel" id="pnlSrcKick" x="42" y="454" width="172"
+             height="62" allowCallbacks="Clicks Only" popupMenuItems="Load a kick file...&#10;Factory kicks"
+             tooltip="Drop an audio file here to use it as the kick; the arrows then browse its folder. Right-click: load a file, or back to the factory kicks"/>
+  <Component type="ScriptPanel" id="pnlSrcTrig" x="42" y="524" width="100"
+             height="24" allowCallbacks="Clicks &amp; Hover"/>
+  <Component type="ScriptPanel" id="pnlSrcDiv" x="150" y="524" width="64"
+             height="24" allowCallbacks="Clicks Only"/>
+  <Component type="ScriptSlider" id="knbSrcTune" x="49" y="558" middlePosition="0.0"
+             text="TUNE" width="72" height="92" min="-24" max="24" dragDirection="Vertical"
+             stepSize="1" pluginParameterName="Tune" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbSrcDecay" x="149" y="558" middlePosition="300"
+             stepSize="1.0" max="2000" suffix=" ms" text="DECAY" width="72"
+             height="92" mode="Time" min="20" defaultValue="2000.0" dragDirection="Vertical"
+             pluginParameterName="Decay" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbSrcPitch" x="49" y="660" middlePosition="24.0"
+             text="PITCH" width="72" height="92" max="48" dragDirection="Vertical"
+             stepSize="1" pluginParameterName="Pitch" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbSrcPitchDec" x="149" y="660" middlePosition="100"
+             stepSize="1.0" max="1000" suffix=" ms" text="P.DECAY" width="72"
+             height="92" mode="Time" min="1" defaultValue="60.0" dragDirection="Vertical"
+             pluginParameterName="Pitch Decay" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbSrcDrive" x="49" y="762" middlePosition="50.0"
+             text="DRIVE" width="72" height="92" max="100" defaultValue="20.0"
+             dragDirection="Vertical" pluginParameterName="Drive" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbSrcLevel" x="149" y="762" middlePosition="-6"
+             stepSize="0.1000000014901161" min="-24" max="12" suffix=" dB"
+             text="LEVEL" width="72" height="92" mode="Decibel" dragDirection="Vertical"
+             pluginParameterName="Level" isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbFltType" x="246" y="480" max="10"
+             items="LP 12 dB&#10;LP 24 dB&#10;BP 12 dB&#10;BP 24 dB&#10;HP 12 dB&#10;HP 24 dB&#10;LADDER&#10;DIODE&#10;DIRTY&#10;COMB"
+             width="92" height="24" pluginParameterName="Filter Type" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbFltCutoff" x="256" y="510" middlePosition="1000"
+             stepSize="1.0" min="20" max="20000" suffix=" Hz" text="CUTOFF"
+             width="72" height="84" mode="Frequency" defaultValue="400.0"
+             dragDirection="Vertical" pluginParameterName="Filter Cutoff"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbFltReso" x="256" y="596" middlePosition="50.0"
+             text="RESO" width="72" height="84" max="100" defaultValue="30.0"
+             dragDirection="Vertical" pluginParameterName="Filter Resonance"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbFltEnv" x="256" y="682" middlePosition="0.0"
+             text="ENV" width="72" height="84" min="-100" max="100" defaultValue="40.0"
+             dragDirection="Vertical" pluginParameterName="Filter Env" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbFltEnvDec" x="256" y="768" middlePosition="300"
+             stepSize="1.0" max="2000" suffix=" ms" text="ENV DEC" width="72"
+             height="84" mode="Time" min="1" defaultValue="150.0" dragDirection="Vertical"
+             pluginParameterName="Filter Env Decay" isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbDstMode" x="364" y="480" max="4"
+             items="TAPE&#10;TUBE&#10;FOLD&#10;CLIP" width="92" height="24"
+             pluginParameterName="Dist Mode" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDstDrive" x="374" y="510" middlePosition="50.0"
+             text="DRIVE" width="72" height="84" max="100" defaultValue="40.0"
+             dragDirection="Vertical" pluginParameterName="Dist Drive" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDstTone" x="374" y="596" middlePosition="2000"
+             stepSize="1.0" min="200" max="20000" suffix=" Hz" text="TONE"
+             width="72" height="84" mode="Frequency" defaultValue="4000.0"
+             dragDirection="Vertical" pluginParameterName="Dist Tone" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDstMix" x="374" y="682" middlePosition="50.0"
+             text="MIX" width="72" height="84" max="100" defaultValue="100.0"
+             dragDirection="Vertical" pluginParameterName="Dist Mix" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbClnBar2" x="0" y="0" middlePosition="50.0"
+             text="" width="72" height="92" max="100" dragDirection="Vertical"
+             visible="0" saveInPreset="0"/>
+  <Component type="ScriptSlider" id="knbClnBar3" x="0" y="0" middlePosition="50.0"
+             text="" width="72" height="92" max="100" dragDirection="Vertical"
+             visible="0" saveInPreset="0"/>
+  <Component type="ScriptSlider" id="knbClnBar4" x="0" y="0" middlePosition="50.0"
+             text="" width="72" height="92" max="100" dragDirection="Vertical"
+             visible="0" saveInPreset="0"/>
+  <Component type="ScriptSlider" id="knbClnDecay" x="0" y="0" middlePosition="50.0"
+             text="" width="72" height="92" max="100" dragDirection="Vertical"
+             visible="0" saveInPreset="0"/>
+  <Component type="ScriptComboBox" id="cmbDlyTime" x="482" y="480" max="11"
+             items="1/32&#10;1/16T&#10;1/16&#10;1/16D&#10;1/8T&#10;1/8&#10;1/8D&#10;1/4T&#10;1/4&#10;1/4D&#10;1/2"
+             width="62" height="24" defaultValue="3" pluginParameterName="Delay Time"
+             isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnDlyPing" x="548" y="480" text="PING"
+             width="26" height="24" tooltip="PING-PONG: the repeats alternate left and right (their lows stay mono)"
+             pluginParameterName="Delay Ping-Pong" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDlySwing" x="485" y="423" style="Horizontal"
+             middlePosition="0" text="SWING" width="86" height="14" min="-33"
+             max="33" dragDirection="Horizontal" stepSize="1" tooltip="SWING: the off-beat repeats early (left) or late (right); centre = straight, +33 % = triplet shuffle"
+             pluginParameterName="Delay Swing" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDlyFeedback" x="492" y="510" middlePosition="47.5"
+             text="FEEDBACK" width="72" height="84" max="95" defaultValue="45.0"
+             dragDirection="Vertical" pluginParameterName="Delay Feedback"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDlyLowCut" x="492" y="596" middlePosition="100"
+             stepSize="1.0" min="20" max="1000" suffix=" Hz" text="LOW CUT"
+             width="72" height="84" mode="Frequency" defaultValue="40.0" dragDirection="Vertical"
+             pluginParameterName="Delay Low Cut" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDlyHighCut" x="492" y="682" middlePosition="2000"
+             stepSize="1.0" min="200" max="20000" suffix=" Hz" text="HIGH CUT"
+             width="72" height="84" mode="Frequency" defaultValue="2500.0"
+             dragDirection="Vertical" pluginParameterName="Delay High Cut"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDlyMix" x="492" y="768" middlePosition="50.0"
+             text="MIX" width="72" height="84" max="100" defaultValue="50.0"
+             dragDirection="Vertical" pluginParameterName="Delay Mix" isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbRvbType" x="600" y="480" max="5"
+             items="PLATE&#10;HALL&#10;SPRING&#10;SHIMMER&#10;DARK" width="92"
+             height="24" pluginParameterName="Reverb Type" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbRvbSize" x="610" y="510" middlePosition="50.0"
+             text="SIZE" width="72" height="84" max="100" defaultValue="70.0"
+             dragDirection="Vertical" pluginParameterName="Reverb Size" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbRvbDamp" x="610" y="596" middlePosition="50.0"
+             text="DAMP" width="72" height="84" max="100" defaultValue="60.0"
+             dragDirection="Vertical" pluginParameterName="Reverb Damp" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbRvbWidth" x="610" y="682" middlePosition="50.0"
+             text="WIDTH" width="72" height="84" max="100" defaultValue="40.0"
+             dragDirection="Vertical" pluginParameterName="Reverb Width" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbRvbMix" x="610" y="768" middlePosition="50.0"
+             text="MIX" width="72" height="84" max="100" defaultValue="100.0"
+             dragDirection="Vertical" pluginParameterName="Reverb Mix" isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbGrnMode" x="836" y="480" max="5"
+             items="CLOUD&#10;DETUNE&#10;OCT UP&#10;OCT DOWN&#10;REVERSE"
+             width="92" height="24" pluginParameterName="Grain Mode" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbGrnSize" x="846" y="510" middlePosition="80"
+             stepSize="1.0" max="500" suffix=" ms" text="SIZE" width="72"
+             height="84" mode="Time" min="10" defaultValue="80.0" dragDirection="Vertical"
+             pluginParameterName="Grain Size" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbGrnDensity" x="846" y="596" middlePosition="20"
+             text="DENSITY" width="72" height="84" min="2" max="100" defaultValue="25.0"
+             dragDirection="Vertical" pluginParameterName="Grain Density"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbGrnSpray" x="846" y="682" middlePosition="200"
+             stepSize="1.0" max="1000" suffix=" ms" text="SPRAY" width="72"
+             height="84" mode="Time" defaultValue="200.0" dragDirection="Vertical"
+             pluginParameterName="Grain Spray" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbGrnMix" x="846" y="768" middlePosition="50.0"
+             text="MIX" width="72" height="84" max="100" defaultValue="50.0"
+             dragDirection="Vertical" pluginParameterName="Grain Mix" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlDuckTrig" x="1000" y="158" width="98"
+             height="24" allowCallbacks="Clicks &amp; Hover"/>
+  <Component type="ScriptPanel" id="pnlDuckDiv" x="1104" y="158" width="60"
+             height="24" allowCallbacks="Clicks Only"/>
+  <Component type="ScriptSlider" id="knbDuckDepth" x="1005" y="228" middlePosition="50.0"
+             text="DEPTH" width="72" height="92" max="100" defaultValue="85.0"
+             dragDirection="Vertical" pluginParameterName="Duck Depth" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDuckMix" x="0" y="0" middlePosition="50.0"
+             text="MIX" width="72" height="92" max="100" defaultValue="100.0"
+             dragDirection="Vertical" visible="0" saveInPreset="0"/>
+  <Component type="ScriptSlider" id="knbDuckSplit" x="1087" y="228" middlePosition="250"
+             stepSize="1.0" min="40" max="2000" suffix=" Hz" text="LOW END"
+             width="72" height="92" mode="Frequency" defaultValue="2000.0"
+             dragDirection="Vertical" pluginParameterName="Duck Low End" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlDuckInfo" x="0" y="0" width="92" height="76"
+             visible="0"/>
+  <Component type="ScriptPanel" id="pnlDuckTarget" x="1000" y="192" width="164"
+             height="22" allowCallbacks="Clicks &amp; Hover"/>
+  <Component type="ScriptComboBox" id="cmbDuckPreset" x="1000" y="128" max="8"
+             items="TIGHT&#10;PUMP&#10;SMOOTH&#10;LONG&#10;GATE&#10;SNAP&#10;SWELL&#10;DOUBLE"
+             width="164" height="22" text="CURVE PRESETS" visible="0" saveInPreset="0"/>
+  <Component type="ScriptButton" id="btnOutPol" x="954" y="480" text="POL +|POL -"
+             width="92" height="24" pluginParameterName="Polarity" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbDryLevel" x="0" y="0" middlePosition="-12"
+             stepSize="0.1000000014901161" min="-60" max="6" suffix=" dB"
+             text="DRY" width="72" height="92" mode="Decibel" dragDirection="Vertical"
+             visible="0"/>
+  <Component type="ScriptSlider" id="knbOutPhase" x="964" y="510" middlePosition="180.0"
+             text="PHASE" width="72" height="84" max="360" dragDirection="Vertical"
+             pluginParameterName="Phase" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbOutWidth" x="964" y="596" middlePosition="100.0"
+             text="WIDTH" width="72" height="84" max="200" defaultValue="100.0"
+             dragDirection="Vertical" pluginParameterName="Width" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbOutVolume" x="964" y="682" middlePosition="-12"
+             stepSize="0.1000000014901161" min="-60" max="6" suffix=" dB"
+             text="VOLUME" width="72" height="84" mode="Decibel" dragDirection="Vertical"
+             pluginParameterName="Volume" isPluginParameter="1"/>
+  <Component type="ScriptButton" id="btnDryOn" x="0" y="0" text="POWER" width="18"
+             height="18" defaultValue="1" visible="0" pluginParameterName="Kick On"
+             isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbEqType" x="718" y="480" max="3"
+             items="BELL&#10;LOW SHELF&#10;HIGH SHELF" width="92" height="24"
+             pluginParameterName="EQ Type" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbEqFreq" x="728" y="510" middlePosition="150"
+             stepSize="1.0" min="60" max="400" suffix=" Hz" text="FREQ" width="72"
+             height="84" mode="Frequency" defaultValue="140.0" dragDirection="Vertical"
+             pluginParameterName="EQ Freq" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbEqGain" x="728" y="596" middlePosition="6"
+             stepSize="0.1000000014901161" max="12" suffix=" dB" text="GAIN"
+             width="72" height="84" mode="Decibel" defaultValue="4.0" dragDirection="Vertical"
+             pluginParameterName="EQ Gain" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbEqWidth" x="728" y="682" middlePosition="1.0"
+             text="WIDTH" width="72" height="84" min="0.3" max="3.0" defaultValue="1.0"
+             dragDirection="Vertical" pluginParameterName="EQ Width" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbEqSubCut" x="728" y="768" middlePosition="40"
+             stepSize="1.0" min="20" max="80" suffix=" Hz" text="SUB CUT"
+             width="72" height="84" mode="Frequency" defaultValue="35.0" dragDirection="Vertical"
+             pluginParameterName="EQ Sub Cut" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbLimDrive" x="1082" y="510" middlePosition="4"
+             stepSize="0.1000000014901161" max="12" suffix=" dB" text="DRIVE"
+             width="72" height="84" mode="Decibel" dragDirection="Vertical"
+             pluginParameterName="Limiter Drive" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbLimCeiling" x="1082" y="596" middlePosition="-4"
+             stepSize="0.1000000014901161" min="-12" max="0" suffix=" dB"
+             text="CEILING" width="72" height="84" mode="Decibel" defaultValue="-0.300000011920929"
+             dragDirection="Vertical" pluginParameterName="Limiter Ceiling"
+             isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="knbLimRelease" x="1082" y="682" middlePosition="80"
+             stepSize="1.0" max="500" suffix=" ms" text="RELEASE" width="72"
+             height="84" mode="Time" min="1" defaultValue="60.0" dragDirection="Vertical"
+             pluginParameterName="Limiter Release" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlLock0" x="326" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock1" x="444" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock2" x="562" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock3" x="680" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock4" x="798" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock5" x="916" y="838" width="14" height="16"
+             allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlLock6" x="1150" y="131" width="14"
+             height="16" allowCallbacks="Clicks &amp; Hover" tooltip="LOCK: RANDOM leaves this module alone"/>
+  <Component type="ScriptPanel" id="pnlDice" x="356" y="37" width="36" height="36"
+             allowCallbacks="Clicks &amp; Hover" tooltip="RANDOM: a new sound (shift-click: MUTATE, small changes)"/>
+  <Component type="ScriptPanel" id="pnlRandUndo" x="396" y="37" width="36"
+             height="36" allowCallbacks="Clicks &amp; Hover" tooltip="UNDO the last random roll"/>
+  <Component type="ScriptComboBox" id="cmbBounceStem" x="804" y="42" max="3"
+             items="RUMBLE&#10;KICK&#10;MIX" width="80" height="26" tooltip="What BOUNCE drags out: the RUMBLE, the KICK or the whole MIX"
+             saveInPreset="0"/>
+  <Component type="ScriptPanel" id="pnlBounce" x="892" y="42" width="90" height="26"
+             allowCallbacks="Clicks, Hover &amp; Dragging" tooltip="BOUNCE: drag the last bar into your DAW"/>
+  <Component type="ScriptSlider" id="knbDstCrush" x="374" y="768" middlePosition="50.0"
+             text="CRUSH" width="72" height="84" max="100" dragDirection="Vertical"
+             pluginParameterName="Dist Crush" isPluginParameter="1"/>
+  <Component type="ScriptSlider" id="sldNoise" x="306" y="881" style="Horizontal"
+             middlePosition="-18" stepSize="0.1" min="-60" max="0" suffix=" dB"
+             text="NOISE" width="200" height="30" mode="Decibel" tooltip="NOISE: noise into the FX chain, following each kick (OFF at the bottom)"
+             pluginParameterName="Noise" defaultValue="-60.0" isPluginParameter="1"/>
+  <Component type="ScriptComboBox" id="cmbNoiseColor" x="514" y="884" max="3"
+             items="DARK&#10;MID&#10;AIR" width="72" height="24" defaultValue="2"
+             tooltip="NOISE's colour: DARK (~500 Hz), MID (~2 kHz), AIR (above 5 kHz)"
+             pluginParameterName="Noise Color" isPluginParameter="1"/>
+  <Component type="ScriptPanel" id="pnlPreset" x="440" y="37" width="300"
+             height="36" allowCallbacks="Clicks &amp; Hover" tooltip="Presets: &#8249; &#8250; step through the browser's category, click the name to browse"/>
+  <Component type="ScriptFloatingTile" id="fltPresets" x="24" y="118" width="1152"
+             height="748" visible="0" ContentType="PresetBrowser" bgColour="4143972352"
+             itemColour="4287692721" itemColour2="0" Data="{&#10;  &quot;ShowSaveButton&quot;: true,&#10;  &quot;ShowExpansionsAsColumn&quot;: false,&#10;  &quot;ShowFolderButton&quot;: true,&#10;  &quot;ShowNotes&quot;: false,&#10;  &quot;ShowEditButtons&quot;: true,&#10;  &quot;EditButtonOffset&quot;: 10,&#10;  &quot;ShowAddButton&quot;: true,&#10;  &quot;ShowRenameButton&quot;: true,&#10;  &quot;ShowDeleteButton&quot;: true,&#10;  &quot;ShowSearchBar&quot;: true,&#10;  &quot;FavoriteIconOffset&quot;: 0,&#10;  &quot;ShowFavoriteIcon&quot;: true,&#10;  &quot;FullPathFavorites&quot;: false,&#10;  &quot;ButtonsInsideBorder&quot;: false,&#10;  &quot;NumColumns&quot;: 2,&#10;  &quot;ColumnWidthRatio&quot;: [&#10;    0.3333333333333333,&#10;    0.3333333333333333,&#10;    0.3333333333333333&#10;  ],&#10;  &quot;ListAreaOffset&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;ColumnRowPadding&quot;: [&#10;    0,&#10;    0,&#10;    0,&#10;    0&#10;  ],&#10;  &quot;SearchBarBounds&quot;: [],&#10;  &quot;MoreButtonBounds&quot;: [],&#10;  &quot;SaveButtonBounds&quot;: [],&#10;  &quot;FavoriteButtonBounds&quot;: []&#10;}"/>
+  <Component type="ScriptPanel" id="pnlSaveBtn" x="744" y="37" width="36"
+             height="36" allowCallbacks="Clicks &amp; Hover" tooltip="Save the current settings as a preset"/>
+  <Component type="ScriptPanel" id="pnlPbShade" x="0" y="110" width="1200"
+             height="816" allowCallbacks="Clicks Only" visible="0"/>
+  <Component type="ScriptPanel" id="pnlBrowser" x="280" y="77" width="620"
+             height="460" allowCallbacks="All Callbacks" popupMenuItems="Duplicate to User"
+             visible="0"/>
+  <Component type="ScriptPanel" id="pnlSave" x="440" y="77" width="340" height="236"
+             allowCallbacks="Clicks &amp; Hover" visible="0"/>
+  <Component type="ScriptComboBox" id="cmbSaveCat" x="456" y="195" items="User"
+             width="308" height="28" visible="0" saveInPreset="0"/>
+  <Component type="ScriptLabel" id="lblSearch" x="320" y="89" width="350"
+             height="26" fontName="Segoe UI" fontSize="15" alignment="left"
+             textColour="4293519852" text="" visible="0" updateEachKey="1"/>
+  <Component type="ScriptLabel" id="lblSaveName" x="460" y="135" width="300"
+             height="28" fontName="Segoe UI" fontSize="15" alignment="left"
+             textColour="4293519852" text="" visible="0" updateEachKey="1"/>
+  <Component type="ScriptLabel" id="lblEdit" x="0" y="0" width="300" height="26"
+             fontName="Segoe UI" fontSize="15" alignment="left" textColour="4293519852"
+             text="" visible="0" bgColour="4279637786" itemColour="4287270292"/>
+  <Component type="ScriptLabel" id="lblKickFile" x="0" y="0" visible="0" saveInPreset="1"
+             editable="0" text=""/>
+</ContentProperties>

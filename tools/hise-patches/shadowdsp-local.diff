@@ -1,0 +1,99 @@
+diff --git a/hi_scripting/scripting/api/ScriptingApi.cpp b/hi_scripting/scripting/api/ScriptingApi.cpp
+index d17c9e9..53b3fb5 100644
+--- a/hi_scripting/scripting/api/ScriptingApi.cpp
++++ b/hi_scripting/scripting/api/ScriptingApi.cpp
+@@ -3830,6 +3830,7 @@ struct ScriptingApi::Sampler::Wrapper
+ 	API_METHOD_WRAPPER_0(Sampler, createListFromGUISelection);
+ 	API_METHOD_WRAPPER_0(Sampler, createListFromScriptSelection);
+ 	API_METHOD_WRAPPER_1(Sampler, saveCurrentSampleMap);
++	API_VOID_METHOD_WRAPPER_0(Sampler, encodeAllMonoliths);
+ 	API_METHOD_WRAPPER_2(Sampler, importSamples);
+ 	API_METHOD_WRAPPER_0(Sampler, clearSampleMap);
+ 	API_METHOD_WRAPPER_1(Sampler, parseSampleFile);
+@@ -3885,6 +3886,7 @@ sampler(sampler_)
+ 	ADD_API_METHOD_0(createListFromGUISelection);
+ 	ADD_API_METHOD_0(createListFromScriptSelection);
+ 	ADD_API_METHOD_1(saveCurrentSampleMap);
++	ADD_API_METHOD_0(encodeAllMonoliths);
+ 	ADD_API_METHOD_1(parseSampleFile);
+ 	ADD_API_METHOD_2(importSamples);
+ 	ADD_API_METHOD_0(clearSampleMap);
+@@ -5172,6 +5174,37 @@ void ScriptingApi::Sampler::setSortByRRGroup(bool shouldSort)
+ 	s->setSortByGroup(shouldSort);
+ }
+ 
++void ScriptingApi::Sampler::encodeAllMonoliths()
++{
++#if USE_BACKEND
++	ModulatorSampler *s = static_cast<ModulatorSampler*>(sampler.get());
++
++	if (s == nullptr)
++	{
++		reportScriptError("encodeAllMonoliths() only works with Samplers.");
++		return;
++	}
++
++	WeakReference<Processor> safeSampler = s;
++
++	// Same as the "Encode all samplemaps" button, but silent and without the dialog.
++	MessageManager::callAsync([safeSampler]()
++	{
++		if (auto ms = dynamic_cast<ModulatorSampler*>(safeSampler.get()))
++		{
++			auto encoder = new BatchReencoder(ms);
++			encoder->setSilentMode(true);
++			encoder->setAdditionalFinishCallback([safeSampler]()
++			{
++				if (safeSampler != nullptr)
++					debugToConsole(safeSampler.get(), "encodeAllMonoliths() finished");
++			});
++			encoder->runThread();
++		}
++	});
++#endif
++}
++
+ bool ScriptingApi::Sampler::saveCurrentSampleMap(String relativePathWithoutXml)
+ {
+ 	ModulatorSampler *s = static_cast<ModulatorSampler*>(sampler.get());
+diff --git a/hi_scripting/scripting/api/ScriptingApi.h b/hi_scripting/scripting/api/ScriptingApi.h
+index b4ee9ed..7145786 100644
+--- a/hi_scripting/scripting/api/ScriptingApi.h
++++ b/hi_scripting/scripting/api/ScriptingApi.h
+@@ -1062,6 +1062,9 @@ public:
+ 		/** Saves (and loads) the current samplemap to the given path (which should be the same string as the ID). */
+ 		bool saveCurrentSampleMap(String relativePathWithoutXml);
+ 
++		/** Backend only: converts all samplemaps of the project to HLAC monoliths without showing a dialog. */
++		void encodeAllMonoliths();
++
+ 		/** Clears the current samplemap. */
+ 		bool clearSampleMap();
+ 
+diff --git a/projects/standalone/HISE Standalone.jucer b/projects/standalone/HISE Standalone.jucer
+index 30a5ff9..3fcbbb4 100644
+--- a/projects/standalone/HISE Standalone.jucer	
++++ b/projects/standalone/HISE Standalone.jucer	
+@@ -95,10 +95,10 @@
+         <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+       </MODULEPATHS>
+     </XCODE_MAC>
+-    <VS2026 targetFolder="Builds/VisualStudio2026" smallIcon="ho3qQy" bigIcon="ho3qQy"
+-            useIPP="Sequential" IPPLibrary="" extraDefs="HISE_SCRIPT_SERVER_TIMEOUT=20000&#10;HISE_USE_VS2022=0&#10;HISE_INCLUDE_PROFILING_TOOLKIT=1"
++    <VS2022 targetFolder="Builds/VisualStudio2022" smallIcon="ho3qQy" bigIcon="ho3qQy"
++             extraDefs="HISE_SCRIPT_SERVER_TIMEOUT=20000&#10;HISE_USE_VS2022=1&#10;HISE_INCLUDE_PROFILING_TOOLKIT=1"
+             extraCompilerFlags="/bigobj  /cgthreads8 /wd&quot;4100&quot; /wd&quot;4661&quot; /wd&quot;4456&quot; /wd&quot;4244&quot; /wd&quot;4457&quot; /wd&quot;4458&quot; /wd&quot;4127&quot; /vmg&#10; "
+-            IPP1ALibrary="Static_Library">
++            >
+       <CONFIGURATIONS>
+         <CONFIGURATION name="Debug" generateManifest="1" winArchitecture="x64" isDebug="1"
+                        optimisation="1" targetName="HISE Debug" headerPath="../../../../tools/SDK/ASIOSDK2.3/common&#10;../../../../tools/fftw"
+@@ -169,7 +169,7 @@
+         <MODULEPATH id="melatonin_blur" path="../../"/>
+         <MODULEPATH id="juce_audio_processors_headless" path="../../JUCE/modules"/>
+       </MODULEPATHS>
+-    </VS2026>
++    </VS2022>
+     <LINUX_MAKE targetFolder="Builds/LinuxMakefile" extraDefs="HI_ENABLE_EXPANSION_EDITING=1&#10;HISE_ENABLE_EXPANSIONS=1&#10;HISE_SCRIPT_SERVER_TIMEOUT=20000&#10;HISE_INCLUDE_PROFILING_TOOLKIT=0"
+                 smallIcon="bfBEgJ" bigIcon="bfBEgJ" linuxExtraPkgConfig="x11 xinerama xext"
+                 extraLinkerFlags="-no-pie&#10;-flto=auto&#10;-fuse-ld=gold" extraCompilerFlags="-fno-strict-aliasing"

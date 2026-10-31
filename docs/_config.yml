@@ -1,0 +1,30 @@
+# GitHub Pages site: the ShadowDSP plugins' user manuals (Jekyll, built by GitHub from /docs).
+title: ShadowDSP
+description: User manuals for the ShadowDSP plugins
+remote_theme: just-the-docs/just-the-docs@v0.10.1
+plugins:
+  - jekyll-remote-theme
+color_scheme: shadowdsp
+search_enabled: true
+heading_anchors: true
+back_to_top: true
+back_to_top_text: "Back to top"
+footer_content: "ShadowDSP plugins are free software under the GPL."
+# the {: .note } / {: .tip } / {: .important } boxes in the pages
+callouts:
+  note:
+    title: Note
+    color: blue
+  tip:
+    title: Tip
+    color: green
+  important:
+    title: Important
+    color: yellow
+  # the same boxes with French titles, for the pages under fr/
+  remarque:
+    title: Remarque
+    color: blue
+  astuce:
+    title: Astuce
+    color: green

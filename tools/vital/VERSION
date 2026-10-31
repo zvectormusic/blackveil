@@ -1,0 +1,3 @@
+Vital by Matt Tytel, https://github.com/mtytel/vital (GPL-3.0)
+commit 636ca0ef517a4db087a6a08a6a8a5e704e21f836 (2022-04-20)
+Files copied unchanged (formant_filter.cpp only for its vowel tables) from src/synthesis/{framework,lookups,filters,effects (reverb only)} and src/common.

@@ -1,0 +1,18 @@
+// ShadowDSP: the dark scheme in Blackveil's colours (projects/Blackveil/Scripts/Theme.js).
+@import "./color_schemes/dark";
+
+$color-scheme: dark;
+$body-background-color: #0b0c0e;          // Theme.BG
+$sidebar-color: #0b0c0e;
+$body-heading-color: #e9e9ec;             // Theme.TEXT
+$body-text-color: #e9e9ec;
+$link-color: #e9e9ec;
+$nav-child-link-color: #9a9ca3;           // Theme.TEXT_DIM
+$border-color: #2a2c31;                   // Theme.LINE
+$search-background-color: #0f1013;        // Theme.SECTION
+$search-result-preview-color: #9a9ca3;
+$table-background-color: #0f1013;
+$code-background-color: #0f1013;
+$feedback-color: #0f1013;
+$base-button-color: #17181c;              // a chain node's lighter face
+$btn-primary-color: #e9e9ec;

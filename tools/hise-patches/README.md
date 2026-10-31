@@ -1,0 +1,14 @@
+# Local changes to the HISE checkout (`C:\dev\HISE`)
+
+These are needed for this setup to work. Keep them in mind if you update HISE.
+
+1. `projects/standalone/HISE Standalone.jucer`: VS2026 exporter switched to VS2022, `HISE_USE_VS2022=1`, Intel IPP disabled. The original is kept as `.jucer.orig`.
+2. `hi_scripting/scripting/api/ScriptingApi.{h,cpp}`: added `Sampler.encodeAllMonoliths()`. It runs HISE's "encode all samplemaps to monolith" without the GUI dialog, which is what made the conversion scriptable.
+3. `%APPDATA%\HISE\compilerSettings.xml`: HISE path, VS2022, IPP off.
+
+This folder holds `shadowdsp-local.diff` (changes 1 and 2), the settings file, and the HISE commit they were made against (`BASE_COMMIT.txt`). To rebuild HISE from scratch:
+1. Clone HISE at that commit and run `git submodule update --init JUCE`.
+2. Run `git apply shadowdsp-local.diff` and unzip `tools/SDK/sdk.zip`.
+3. Run `JUCE/projucer/Projucer.exe --resave "projects/standalone/HISE Standalone.jucer"`.
+4. Build `Builds/VisualStudio2022/HISE Standalone.sln` (Release x64) with MSBuild `/m:4 /p:PreferredToolArchitecture=x64` (16 parallel jobs run out of memory).
+5. Run `HISE set_hise_folder` and `HISE set_project_folder`.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CompilerSettings>
+  <HisePath value="C:\dev\HISE"/>
+  <VisualStudioVersion value="Visual Studio 2022"/>
+  <UseIPP value="No"/>
+  <RebuildPoolFiles value="Yes"/>
+  <Support32BitMacOS value="No"/>
+</CompilerSettings>

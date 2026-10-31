@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="Blackveil" Bypassed="0" Gain="1.0" Balance="0.0"
+           VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0" packageName=""
+           BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptComboBox" id="cmbSrcMode" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbSrcTrig" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbSrcDiv" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbDuckTrig" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbDuckDiv" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbDuckTarget" value="1.0"/>
+            <Control type="ScriptSlider" id="knbKickIndex" value="0.0"/>
+            <Control type="ScriptSlider" id="knbFxOrder" value="228.0"/>
+            <Control type="ScriptSlider" id="knbChainOrder" value="181896.0"/>
+            <Control type="ScriptPanel" id="pnlDuckCurve" value="JSON{&quot;points&quot;: [[0, 1, 0], [0.008, 0, 0], [0.068, 0, 0], [0.43, 1, 0.4], [1, 1, 0]], &quot;length&quot;: 3, &quot;offset&quot;: 0.0}"/>
+            <Control type="ScriptComboBox" id="cmbKey" value="1.0"/>
+            <Control type="ScriptSlider" id="sldKick" value="0.0"/>
+            <Control type="ScriptSlider" id="sldRumble" value="0.0"/>
+            <Control type="ScriptButton" id="btnRumbleMute" value="0.0"/>
+            <Control type="ScriptSlider" id="sldSend" value="1000.0"/>
+            <Control type="ScriptButton" id="btnFx0On" value="1.0"/>
+            <Control type="ScriptButton" id="btnFx1On" value="1.0"/>
+            <Control type="ScriptButton" id="btnFx2On" value="1.0"/>
+            <Control type="ScriptButton" id="btnFx3On" value="1.0"/>
+            <Control type="ScriptButton" id="btnEqOn" value="1.0"/>
+            <Control type="ScriptButton" id="btnGrnOn" value="0.0"/>
+            <Control type="ScriptButton" id="btnLimOn" value="1.0"/>
+            <Control type="ScriptSlider" id="knbSrcTune" value="0.0"/>
+            <Control type="ScriptSlider" id="knbSrcDecay" value="2000.0"/>
+            <Control type="ScriptSlider" id="knbSrcPitch" value="0.0"/>
+            <Control type="ScriptSlider" id="knbSrcPitchDec" value="60.0"/>
+            <Control type="ScriptSlider" id="knbSrcDrive" value="20.0"/>
+            <Control type="ScriptSlider" id="knbSrcLevel" value="0.0"/>
+            <Control type="ScriptComboBox" id="cmbFltType" value="2.0"/>
+            <Control type="ScriptSlider" id="knbFltCutoff" value="400.0"/>
+            <Control type="ScriptSlider" id="knbFltReso" value="30.0"/>
+            <Control type="ScriptSlider" id="knbFltEnv" value="40.0"/>
+            <Control type="ScriptSlider" id="knbFltEnvDec" value="150.0"/>
+            <Control type="ScriptComboBox" id="cmbDstMode" value="1.0"/>
+            <Control type="ScriptSlider" id="knbDstDrive" value="40.0"/>
+            <Control type="ScriptSlider" id="knbDstTone" value="4000.0"/>
+            <Control type="ScriptSlider" id="knbDstMix" value="100.0"/>
+            <Control type="ScriptComboBox" id="cmbDlyTime" value="3.0"/>
+            <Control type="ScriptButton" id="btnDlyPing" value="0.0"/>
+            <Control type="ScriptSlider" id="knbDlySwing" value="0.0"/>
+            <Control type="ScriptSlider" id="knbDlyFeedback" value="45.0"/>
+            <Control type="ScriptSlider" id="knbDlyLowCut" value="40.0"/>
+            <Control type="ScriptSlider" id="knbDlyHighCut" value="2500.0"/>
+            <Control type="ScriptSlider" id="knbDlyMix" value="50.0"/>
+            <Control type="ScriptComboBox" id="cmbRvbType" value="1.0"/>
+            <Control type="ScriptSlider" id="knbRvbSize" value="70.0"/>
+            <Control type="ScriptSlider" id="knbRvbDamp" value="60.0"/>
+            <Control type="ScriptSlider" id="knbRvbWidth" value="40.0"/>
+            <Control type="ScriptSlider" id="knbRvbMix" value="100.0"/>
+            <Control type="ScriptComboBox" id="cmbGrnMode" value="1.0"/>
+            <Control type="ScriptSlider" id="knbGrnSize" value="80.0"/>
+            <Control type="ScriptSlider" id="knbGrnDensity" value="25.0"/>
+            <Control type="ScriptSlider" id="knbGrnSpray" value="200.0"/>
+            <Control type="ScriptSlider" id="knbGrnMix" value="50.0"/>
+            <Control type="ScriptSlider" id="knbDuckDepth" value="85.0"/>
+            <Control type="ScriptSlider" id="knbDuckSplit" value="2000.0"/>
+            <Control type="ScriptButton" id="btnOutPol" value="0.0"/>
+            <Control type="ScriptSlider" id="knbDryLevel" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOutPhase" value="0.0"/>
+            <Control type="ScriptSlider" id="knbOutWidth" value="100.0"/>
+            <Control type="ScriptSlider" id="knbOutVolume" value="0.0"/>
+            <Control type="ScriptButton" id="btnDryOn" value="1.0"/>
+            <Control type="ScriptComboBox" id="cmbEqType" value="1.0"/>
+            <Control type="ScriptSlider" id="knbEqFreq" value="140.0"/>
+            <Control type="ScriptSlider" id="knbEqGain" value="4.0"/>
+            <Control type="ScriptSlider" id="knbEqWidth" value="1.0"/>
+            <Control type="ScriptSlider" id="knbEqSubCut" value="35.0"/>
+            <Control type="ScriptSlider" id="knbLimDrive" value="0.0"/>
+            <Control type="ScriptSlider" id="knbLimCeiling" value="-0.300000011920929"/>
+            <Control type="ScriptSlider" id="knbLimRelease" value="60.0"/>
+            <Control type="ScriptSlider" id="knbDstCrush" value="0.0"/>
+            <Control type="ScriptSlider" id="sldNoise" value="-60.0"/>
+            <Control type="ScriptComboBox" id="cmbNoiseColor" value="2.0"/>
+            <Control type="ScriptLabel" id="lblKickFile" value=""/>
+          </Content>
+          <UIData Source="BlackveilUIData"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="HardcodedMasterFX" ID="BvEngine" Bypassed="0" Network="bv_engine"
+                   Source="0.0" Drive="0.2000000029802322" Level="0.0" Window="1.0"
+                   Trigger="0.0" Division="1.0" Tune="0.0" Decay="2000.0" Pitch="0.0"
+                   PitchDecay="60.0" Hit="3.0" HitOffset="0.0" HitVelocity="1.0"
+                   FilterOn="1.0" FilterType="1.0" Cutoff="400.0" Resonance="0.300000011920929"
+                   FilterEnv="0.4000000059604645" FilterEnvDecay="150.0" Order="228.0"
+                   DryOn="1.0" DryLevel="0.0" Phase="0.0" Polarity="0.0" Width="100.0"
+                   Volume="0.0" DuckTrigger="0.0" DuckDivision="1.0" DuckDepth="0.8500000238418579"
+                   DuckMix="1.0" DuckFall="4.0" DuckHold="30.0" DuckRelease="180.0"
+                   DuckShape="0.4000000059604645" DuckOffset="0.0" ReverbOn="1.0"
+                   ReverbType="0.0" ReverbSize="0.699999988079071" ReverbDamp="0.6000000238418579"
+                   ReverbWidth="0.4000000059604645" ReverbMix="1.0" DuckLength="1.0"
+                   CloneOn="1.0" CloneBar2="0.6000000238418579" CloneBar3="0.4000000059604645"
+                   CloneBar4="0.2000000029802322" CloneDecay="120.0" DistOn="1.0"
+                   DistMode="0.0" DistDrive="0.4000000059604645" DistTone="4000.0"
+                   DistMix="1.0" EqOn="1.0" EqFreq="140.0" EqGain="4.0" EqWidth="1.0"
+                   EqSubCut="35.0" LimiterOn="1.0" LimiterDrive="0.0" LimiterCeiling="-0.300000011920929"
+                   LimiterRelease="60.0" DuckTarget="0.0" WetLevel="0.0" DelayOn="1.0"
+                   DelayTime="0.25" DelayFeedback="0.449999988079071" DelayLowCut="40.0"
+                   DelayHighCut="2500.0" DelayMix="0.5" DelayPingPong="0.0" DuckSplit="2000.0"
+                   GateLength="1000.0" ChainOrder="181896.0" DistCrush="0.0" NoiseLevel="-60.0"
+                   NoiseColor="1.0" GrainOn="0.0" GrainMode="0.0" GrainSize="80.0"
+                   GrainDensity="25.0" GrainSpray="200.0" GrainMix="0.5" EqType="0.0"
+                   Bounce="0.0" BounceBars="1.0" BounceStem="2.0" DelaySwing="0.0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+          <SliderPacks>
+            <SliderPack EmbeddedData="196....n.A........3O.....7lDCvC..........X4PK1C..........XOJb6C...3OMyLy9....9C...3O......................................................................................................................................................................................"/>
+          </SliderPacks>
+          <AudioFiles>
+            <AudioFile EmbeddedData="{PROJECT_FOLDER}ADRKT_RT2_Kick_01_G.wav" MinValue="0"
+                       MaxValue="78400"/>
+          </AudioFiles>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 2" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 3" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 4" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 5" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 6" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

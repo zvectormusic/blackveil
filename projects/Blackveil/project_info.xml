@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ProjectSettings>
+  <Name value="Blackveil"/>
+  <Version value="0.4.0"/>
+  <Description value="Blackveil"/>
+  <BundleIdentifier value="com.shadowdsp.blackveil"/>
+  <PluginCode value="Bkvl"/>
+  <EmbedAudioFiles value="Yes"/>
+  <EmbedImageFiles value="Yes"/>
+  <VST3Support value="Yes"/>
+  <SupportFullDynamicsHLAC value="No"/>
+  <ExpansionType value="Disabled"/>
+  <EnableMidiInputFX value="Yes"/>
+  <ExtraDefinitionsWindows value="HISE_OVERWRITE_OLD_USER_PRESETS=1"/>
+</ProjectSettings>

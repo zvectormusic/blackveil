@@ -1,0 +1,65 @@
+// The Blackveil window's details on top of the shadowdsp colour scheme: uppercase spaced
+// titles, hairlines, the white pill for the one active thing, tables like a node's title band.
+$sd-section: #0f1013;
+$sd-raised: #17181c;
+$sd-line: #2a2c31;
+$sd-line-soft: #1c1e22;
+$sd-text: #e9e9ec;
+$sd-dim: #9a9ca3;
+$sd-faint: #5c5f66;
+$sd-ink: #0b0c0e;
+
+.side-bar, .main-header, .site-header { border-color: $sd-line-soft; }
+.site-title { font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+
+a { text-decoration: underline; text-decoration-color: $sd-faint; text-underline-offset: 3px; }
+a:hover { text-decoration-color: $sd-text; }
+.site-nav a, .site-title, .breadcrumb-nav a, .search-results a { text-decoration: none; }
+
+// sidebar: top entries uppercase, the current page a white pill
+.nav-list .nav-list-item > .nav-list-link { border-radius: 3px; }
+.site-nav > .nav-list > .nav-list-item > .nav-list-link { font-weight: 600; font-size: .78rem !important; letter-spacing: .16em; text-transform: uppercase; }
+.nav-list .nav-list-item .nav-list-link:hover { background: $sd-section; }
+.nav-list .nav-list-item .nav-list-link.active,
+.nav-list .nav-list-item .nav-list-link.active:hover { background: $sd-text; color: $sd-ink; }
+.nav-list .nav-list-item .nav-list-expander { color: $sd-dim; }
+
+// search box: a recessed field
+.search-input-wrap { background: $sd-section; }
+.search-results { background: $sd-section; border: 1px solid $sd-line; }
+
+// titles: Theme.drawSectionTitle (uppercase, spaced, a hairline to the right)
+.main-content h1 { font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.main-content h2 { display: flex; align-items: center; gap: 1rem; font-size: .95rem !important; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+.main-content h2::after { content: ""; flex: 1; height: 1px; background: $sd-line; }
+.main-content h3 { font-weight: 600; }
+.main-content h4, .main-content .text-delta { font-weight: 600; letter-spacing: .16em; color: $sd-dim; }
+.main-content p, .main-content li { color: $sd-text; }
+
+// the product logo above a manual's title
+.main-content .product-logo { display: block; width: 300px; max-width: 100%; height: auto; border: 0; margin-bottom: .5rem; }
+
+// screenshots: framed, like a node
+.main-content img:not(.product-logo) { border: 1px solid $sd-line; border-radius: 4px; background: $sd-section; }
+
+// tables: the header band of a node
+.table-wrapper { border: 1px solid $sd-line; border-radius: 4px; box-shadow: none; }
+.main-content th { background: $sd-raised; font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: $sd-dim; border-color: $sd-line; }
+.main-content td { color: $sd-dim; border-color: $sd-line-soft; }
+.main-content td strong { color: $sd-text; }
+
+// code
+code, div.highlighter-rouge, pre.highlight { border: 1px solid $sd-line; border-radius: 3px; }
+div.highlighter-rouge code { color: $sd-dim; }
+
+// callouts: monochrome, a muted edge for tips and warnings
+.main-content .note, .main-content .remarque { background: $sd-section; border: 1px solid $sd-line; border-left: 3px solid $sd-dim; }
+.main-content .note::before, .main-content .remarque::before { color: $sd-text; }
+.main-content .tip, .main-content .astuce { background: $sd-section; border: 1px solid $sd-line; border-left: 3px solid #6fa88a; }
+.main-content .tip::before, .main-content .astuce::before { color: #6fa88a; }
+.main-content .important { background: $sd-section; border: 1px solid $sd-line; border-left: 3px solid #c9a85a; }
+.main-content .important::before { color: #c9a85a; }
+
+// buttons and back to top: the white pill
+.btn, #back-to-top { background: $sd-text; color: $sd-ink; border-radius: 3px; padding: .35rem .9rem; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.site-footer { color: $sd-faint; }
