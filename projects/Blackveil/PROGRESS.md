@@ -501,3 +501,9 @@
   both languages (a row per preset: name + player, grouped by category, `.demo` in custom.scss),
   a "Listen to the demos" button on both home pages, a row in their tables, a README link. Not
   previewed (no local Jekyll): check the live page after the push.
+- 2026-11-01: a VST3 zip next to the installer (user: "go for the zip", after the question of
+  signing the installer; options noted: Certum open-source certificate, Microsoft's cloud signing,
+  SignPath, a commercial certificate; none bought yet). `tools/build_installer.sh` also writes
+  Blackveil-<Version>-VST3.zip (the bundle, LICENSE.txt, THIRD-PARTY.txt, INSTALL.txt; the DLL in
+  it identical to the build). Added to the v0.4.1 release (download checked: same SHA-256) with a
+  line in its notes; manual (EN / FR getting-started) and README describe the manual install.

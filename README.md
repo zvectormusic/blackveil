@@ -30,7 +30,7 @@ more than a preset, every stage is yours to shape, for precise rumble design.
   tails short, NOISE for texture, separate KICK and RUMBLE faders, and a limiter.
 - **RANDOM and MUTATE.** Roll a new sound built from recipes that always make a rumble, or nudge
   the current one; lock the modules you want to keep; undo up to eight rolls.
-- **A real preset browser.** 21 factory presets in categories, search, favourites, and your own
+- **A real preset browser.** 22 factory presets plus Init, in categories, search, favourites, and your own
   categories.
 - **BOUNCE.** Drag the rumble, the kick or the mix straight into your DAW as audio, named with the
   preset, tempo and key.
@@ -51,6 +51,9 @@ more than a preset, every stage is yours to shape, for precise rumble design.
    installer isn't signed yet: if Windows shows "Windows protected your PC", click **More info**,
    then **Run anyway**.
 3. Start your DAW and let it rescan its plugins.
+
+Or skip the installer: download `Blackveil-<version>-VST3.zip` from the same release, unzip it and
+copy the `Blackveil.vst3` folder into `C:\Program Files\Common Files\VST3\`.
 
 New versions install over the old one and keep your presets. Then start with
 [Getting started](https://zvectormusic.github.io/blackveil/blackveil/getting-started.html) or the

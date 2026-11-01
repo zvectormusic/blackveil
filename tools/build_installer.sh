@@ -2,7 +2,10 @@
 # Builds a project's Windows installer (Inno Setup 6, tools/installer/plugin.iss) from its
 # plugin bundle. Run tools/build_plugin.sh <Project> first: the installer packs that build.
 # Usage: bash tools/build_installer.sh <Project>      (a folder in projects/, e.g. Blackveil)
-# Output: projects/<Project>/Binaries/Installer/<Name>-<Version>-Setup.exe
+# Output: projects/<Project>/Binaries/Installer/<Name>-<Version>-Setup.exe, and
+# <Name>-<Version>-VST3.zip (the bundle, LICENSE.txt, THIRD-PARTY.txt, INSTALL.txt) for a manual
+# install: no program to run, so no SmartScreen warning, which the unsigned installer gets (user,
+# 2026-11-01)
 # Needs: Inno Setup 6 (winget install JRSoftware.InnoSetup), the project's installer/app_id and
 # installer/THIRD-PARTY.txt, the repository's LICENSE.
 set -e
@@ -36,3 +39,41 @@ MSYS2_ARG_CONV_EXCL="*" "$ISCC" /Q \
 OUT="$PD/Binaries/Installer/$NAME-$VERSION-Setup.exe"
 [ -f "$OUT" ] || { echo "INSTALLER FAILED"; exit 1; }
 echo "INSTALLER OK: ${OUT#$ROOT/} ($(( $(stat -c %s "$OUT") / 1024 / 1024 )) MB)"
+
+# the zip: the bundle as a top-level folder, entries with forward slashes (.NET's ZipArchive;
+# PowerShell 5's Compress-Archive writes backslashes, which other unzip tools misread)
+ZIP="$PD/Binaries/Installer/$NAME-$VERSION-VST3.zip"
+STAGE="$PD/Binaries/Installer/_zip"
+rm -rf "$STAGE"
+mkdir -p "$STAGE"
+cp -r "$BUNDLE" "$STAGE/"
+cp "$ROOT/LICENSE" "$STAGE/LICENSE.txt"
+cp "$PD/installer/THIRD-PARTY.txt" "$STAGE/THIRD-PARTY.txt"
+cat > "$STAGE/INSTALL.txt" <<EOF
+$NAME $VERSION, VST3 for Windows (64-bit), by $COMPANY
+
+1. Close your DAW.
+2. Copy the $NAME.vst3 folder into C:\\Program Files\\Common Files\\VST3\\
+   (Windows asks for administrator rights). To update, replace the old folder.
+3. Start your DAW and let it rescan its plugins.
+
+Manual: https://zvectormusic.github.io/blackveil/
+Licence: GNU GPL v3 (LICENSE.txt); third-party notices: THIRD-PARTY.txt
+EOF
+sed -i 's/$/\r/' "$STAGE/INSTALL.txt"   # (CRLF, for Notepad)
+rm -f "$ZIP"
+ZPS="$PD/Binaries/Installer/_zip.ps1"
+cat > "$ZPS" <<'EOF'
+param([string]$Src, [string]$Zip)
+Add-Type -AssemblyName System.IO.Compression, System.IO.Compression.FileSystem
+$z = [System.IO.Compression.ZipFile]::Open($Zip, 'Create')
+Get-ChildItem -LiteralPath $Src -Recurse -File | ForEach-Object {
+	$rel = $_.FullName.Substring($Src.Length + 1).Replace('\', '/')
+	[void][System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($z, $_.FullName, $rel, 'Optimal')
+}
+$z.Dispose()
+EOF
+powershell -NoProfile -File "$(w "$ZPS")" -Src "$(w "$STAGE")" -Zip "$(w "$ZIP")"
+rm -rf "$STAGE" "$ZPS"
+[ -f "$ZIP" ] || { echo "ZIP FAILED"; exit 1; }
+echo "ZIP OK: ${ZIP#$ROOT/} ($(( $(stat -c %s "$ZIP") / 1024 / 1024 )) MB)"

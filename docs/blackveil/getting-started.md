@@ -22,6 +22,11 @@ nav_order: 1
 3. Start the DAW and let it rescan its plugins. Blackveil appears as an **audio effect** from
    ShadowDSP.
 
+**Or install by hand, without the installer** (no Windows warning): download
+`Blackveil-<version>-VST3.zip` from the same release, unzip it, and copy the `Blackveil.vst3` folder
+into `C:\Program Files\Common Files\VST3\` (Windows asks for administrator rights). To update,
+replace the folder. To remove Blackveil, delete it.
+
 A new version installs the same way, over the old one. To remove Blackveil, uninstall it from
 Windows' **Settings > Apps**. Updating or uninstalling never touches your presets.
 

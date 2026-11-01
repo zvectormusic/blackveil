@@ -134,8 +134,12 @@ Run commands from the project folder (`projects/<P>`) unless they say otherwise.
      GUID per project, **never change it**: it's how a new version replaces the old one). A new
      project needs both files. Inno Setup: `winget install JRSoftware.InnoSetup` (user scope,
      `%LOCALAPPDATA%\Programs\Inno Setup 6`).
+     The same script also writes `<Name>-<Version>-VST3.zip` (`ZIP OK`; 2026-11-01, user: a
+     manual install without the unsigned installer's SmartScreen warning): the bundle as a
+     top-level folder, LICENSE.txt, THIRD-PARTY.txt, INSTALL.txt (forward-slash entries through
+     .NET's ZipArchive: PowerShell 5's Compress-Archive writes backslashes).
    - **A GitHub release** (2026-10-31, first: v0.4.0): `gh release create v<Version> <Setup.exe>
-     --repo zvectormusic/blackveil --target main --title "<Name> <Version>" --notes-file <notes>`
+     <VST3.zip> --repo zvectormusic/blackveil --target main --title "<Name> <Version>" --notes-file <notes>`
      (`gh` from winget GitHub.cli, logged in as zvectormusic; not on Git Bash's PATH until a new
      shell: `%LOCALAPPDATA%\Microsoft\WinGet\Packages\GitHub.cli_*\bin\gh.exe`). The manual's
      getting-started (EN and FR) links `releases/latest`. The repository is public.
