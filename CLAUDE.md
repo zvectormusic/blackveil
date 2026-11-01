@@ -31,7 +31,8 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       releases/latest. The sidebar's title is the ShadowDSP logo (2026-11-01,
                       user: 230 px wide): `logo:` in _config.yml, assets/images/shadowdsp-logo.png
                       (white on transparent, 460 x 116 = 2x), sized in custom.scss (the headers
-                      grow to 72 px for it)
+                      grow to 72 px for it); the sidebar is wider for it (296 / 280 px,
+                      `$nav-width` in setup.scss; at the theme's 264 it touched the border)
                       Sound demos: docs/<plugin>/demos.md (+ fr/), MP3s in docs/assets/audio/<plugin>/
                       (ffmpeg from winget Gyan.FFmpeg, libmp3lame -q:a 2), linked from both index
                       pages (a "Listen" button) and the README

@@ -73,10 +73,11 @@ div.highlighter-rouge code { color: $sd-dim; }
 
 // the company logo in the sidebar's header (_config.yml logo): 230 px wide; the header grows to
 // fit it (60 -> 72 px, the search bar's header with it), the padding lines it up with the menu
+// (the sidebar is wider for it: setup.scss)
 .site-logo { flex: none; width: 230px; height: 58px; }
 .site-title { padding-left: 1rem; padding-right: 0; }
 @media (min-width: 50rem) {
   .site-header, .main-header { height: 4.5rem; max-height: 4.5rem; }
   .site-title { padding: 0 0 0 1rem; }
 }
-@media (min-width: 66.5rem) { .site-title { padding-left: 2rem; } }
+@media (min-width: 68.5rem) { .site-title { padding-left: 2rem; } }

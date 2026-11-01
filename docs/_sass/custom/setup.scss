@@ -1,3 +1,10 @@
 // Fonts: the plugin's (Segoe UI), with system fallbacks.
 $body-font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 $mono-font-family: "Cascadia Mono", Consolas, "SFMono-Regular", Menlo, monospace;
+
+// A wider sidebar (the theme's 264 / 248 px) for the 230 px logo: 34 px after it at both widths
+// (custom.scss). The theme computes these two from the width before this file: set them again.
+$nav-width: 18.5rem;
+$nav-width-md: 17.5rem;
+$search-results-width: $content-width - $nav-width;
+$media-queries: (xs: 20rem, sm: 31.25rem, md: $content-width, lg: $content-width + $nav-width, xl: 87.5rem);
