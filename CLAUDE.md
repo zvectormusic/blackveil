@@ -28,7 +28,10 @@ docs/                 the user manuals, a GitHub Pages site (Jekyll, theme just-
                       The languages are top-level sidebar entries side by side (user, 2026-10-31):
                       "Blackveil" (English) and "Blackveil en français" (fr/blackveil/, its pages'
                       parent; no grand_parent); both index pages have a download button to
-                      releases/latest
+                      releases/latest. The sidebar's title is the ShadowDSP logo (2026-11-01,
+                      user: 230 px wide): `logo:` in _config.yml, assets/images/shadowdsp-logo.png
+                      (white on transparent, 460 x 116 = 2x), sized in custom.scss (the headers
+                      grow to 72 px for it)
                       Sound demos: docs/<plugin>/demos.md (+ fr/), MP3s in docs/assets/audio/<plugin>/
                       (ffmpeg from winget Gyan.FFmpeg, libmp3lame -q:a 2), linked from both index
                       pages (a "Listen" button) and the README

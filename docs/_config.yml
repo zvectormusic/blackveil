@@ -5,6 +5,8 @@ remote_theme: just-the-docs/just-the-docs@v0.10.1
 plugins:
   - jekyll-remote-theme
 color_scheme: shadowdsp
+# the sidebar's title: white on transparent, 460 x 116 = 230 px wide at 2x (custom.scss sizes it)
+logo: "/assets/images/shadowdsp-logo.png"
 search_enabled: true
 heading_anchors: true
 back_to_top: true

@@ -70,3 +70,13 @@ div.highlighter-rouge code { color: $sd-dim; }
 .demo-name { flex: 0 0 10rem; font-weight: 600; letter-spacing: .06em; color: $sd-text; }
 .demo audio { flex: 1 1 auto; min-width: 0; height: 2.25rem; }
 @media (max-width: 40rem) { .demo { flex-direction: column; align-items: stretch; gap: .4rem; } .demo-name { flex: none; } }
+
+// the company logo in the sidebar's header (_config.yml logo): 230 px wide; the header grows to
+// fit it (60 -> 72 px, the search bar's header with it), the padding lines it up with the menu
+.site-logo { flex: none; width: 230px; height: 58px; }
+.site-title { padding-left: 1rem; padding-right: 0; }
+@media (min-width: 50rem) {
+  .site-header, .main-header { height: 4.5rem; max-height: 4.5rem; }
+  .site-title { padding: 0 0 0 1rem; }
+}
+@media (min-width: 66.5rem) { .site-title { padding-left: 2rem; } }
